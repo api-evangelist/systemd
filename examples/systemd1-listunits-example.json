@@ -1,0 +1,16 @@
+{
+  "operation": "ListUnits",
+  "description": "Sample of one element from the array returned by org.freedesktop.systemd1.Manager.ListUnits.",
+  "example": {
+    "name": "nginx.service",
+    "description": "A high performance web server and a reverse proxy server",
+    "load_state": "loaded",
+    "active_state": "active",
+    "sub_state": "running",
+    "follower": null,
+    "object_path": "/org/freedesktop/systemd1/unit/nginx_2eservice",
+    "job_id": 0,
+    "job_type": "",
+    "job_object_path": "/"
+  }
+}

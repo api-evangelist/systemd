@@ -1,0 +1,70 @@
+extends: [["spectral:oas", "all"]]
+documentationUrl: https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/rules/systemd-rules.yml
+description: |
+  Spectral ruleset enforcing the conventions used by the OpenAPI documents in this systemd profile.
+  These specs model D-Bus and Varlink interfaces as REST operations, so the rules center on naming
+  consistency, Title Case summaries, presence of bus/socket information in description, and the
+  use of explicit operationIds matching the underlying D-Bus method name.
+rules:
+  systemd-operationid-pascalcase:
+    description: operationId must use PascalCase, matching the D-Bus method name (e.g. StartUnit, ListSessions, SetLinkDNS).
+    given: $.paths[*][*]
+    severity: error
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]+$"
+  systemd-summary-title-case:
+    description: Operation summaries must be in Title Case.
+    given: $.paths[*][*].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z0-9][A-Za-z0-9-]*\\s*)+$"
+  systemd-summary-required:
+    description: Every operation must declare a summary.
+    given: $.paths[*][*]
+    severity: error
+    then:
+      field: summary
+      function: truthy
+  systemd-description-required:
+    description: Every operation must declare a description that names the underlying D-Bus or Varlink method (use the word "Mirrors" for D-Bus, "Calls" for Varlink).
+    given: $.paths[*][*]
+    severity: warn
+    then:
+      field: description
+      function: truthy
+  systemd-server-transport:
+    description: Server URL must use one of the systemd transport schemes (dbus://, varlink://).
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(dbus|varlink)://"
+  systemd-tags-title-case:
+    description: Tag names must be in Title Case (matching the network-wide convention).
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][A-Za-z0-9-]*\\s*)+$"
+  systemd-info-contact:
+    description: info.contact should be present for traceability.
+    given: $.info
+    severity: hint
+    then:
+      field: contact
+      function: truthy
+  systemd-license-lgpl-or-gpl:
+    description: License must be LGPL-2.1-or-later or GPL-2.0-or-later (systemd's dual licensing).
+    given: $.info.license.name
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(LGPL-2\\.1-or-later|GPL-2\\.0-or-later)$"

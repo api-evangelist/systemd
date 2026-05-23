@@ -1,0 +1,22 @@
+{
+  "operation": "io.systemd.UserDatabase.GetUserRecord",
+  "description": "Look up the systemd JSON User Record for user 'kinlane' via the io.systemd.UserDatabase Varlink interface.",
+  "request": {
+    "userName": "kinlane",
+    "service": "io.systemd.NameServiceSwitch"
+  },
+  "response": {
+    "record": {
+      "userName": "kinlane",
+      "realName": "Kin Lane",
+      "uid": 1000,
+      "gid": 1000,
+      "memberOf": ["wheel", "docker"],
+      "homeDirectory": "/home/kinlane",
+      "shell": "/usr/bin/zsh",
+      "service": "io.systemd.NameServiceSwitch",
+      "disposition": "regular"
+    },
+    "incomplete": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "operation": "ListSessions",
+  "description": "Sample of two elements from the array returned by org.freedesktop.login1.Manager.ListSessions.",
+  "example": [
+    {
+      "session_id": "c1",
+      "uid": 1000,
+      "user_name": "kinlane",
+      "seat_id": "seat0",
+      "object_path": "/org/freedesktop/login1/session/c1"
+    },
+    {
+      "session_id": "c7",
+      "uid": 0,
+      "user_name": "root",
+      "seat_id": "",
+      "object_path": "/org/freedesktop/login1/session/c7"
+    }
+  ]
+}

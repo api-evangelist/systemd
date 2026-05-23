@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  title: systemd Varlink Interfaces (io.systemd.*)
+  version: '1.0'
+  summary: Varlink IPC surface exposed by systemd daemons modeled as REST operations.
+  description: |
+    Documentation/contract artifact modeling the family of `io.systemd.*` Varlink interfaces
+    exposed by systemd daemons through AF_UNIX sockets under `/run/systemd/io.systemd.*`. Varlink
+    is a self-describing, JSON-line IPC protocol (single FD, newline-terminated messages); every
+    interface implements `org.varlink.service.GetInterfaceDescription` and `GetInfo`. Callers
+    typically use `varlinkctl call <socket> <method> '<json-args>'`.
+
+    Interfaces modeled here are a representative subset. The full catalog of ~39 interfaces is
+    listed in `apis.yml` and includes: `io.systemd.Manager`, `io.systemd.Unit`, `io.systemd.Job`,
+    `io.systemd.Login`, `io.systemd.Machine`, `io.systemd.MachineImage`,
+    `io.systemd.MachineInstance`, `io.systemd.VirtualMachineInstance`, `io.systemd.Network`,
+    `io.systemd.Network.Link`, `io.systemd.Resolve`, `io.systemd.Resolve.Hook`,
+    `io.systemd.Resolve.Monitor`, `io.systemd.Journal`, `io.systemd.JournalAccess`,
+    `io.systemd.Hostname`, `io.systemd.BootControl`, `io.systemd.Credentials`,
+    `io.systemd.FactoryReset`, `io.systemd.Import`, `io.systemd.InstanceMetadata`,
+    `io.systemd.AskPassword`, `io.systemd.Metrics`, `io.systemd.ManagedOOM`,
+    `io.systemd.MountFileSystem`, `io.systemd.MuteConsole`, `io.systemd.NamespaceResource`,
+    `io.systemd.PCRExtend`, `io.systemd.PCRLock`, `io.systemd.Repart`, `io.systemd.Shutdown`,
+    `io.systemd.StorageProvider`, `io.systemd.Udev`, `io.systemd.UserDatabase`,
+    `io.systemd.oom`, `io.systemd.oom.Prekill`, `io.systemd.service`, `io.systemd.sysext`.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers: [{ url: 'varlink://run/systemd/io.systemd' }]
+tags:
+- name: Manager
+- name: Unit
+- name: UserDatabase
+- name: Resolve
+- name: Credentials
+- name: PCR
+- name: Boot
+- name: Image
+paths:
+  /io.systemd.Manager/Describe:
+    post:
+      tags: [Manager]
+      operationId: ManagerDescribe
+      summary: Describe Manager State
+      description: Calls `io.systemd.Manager.Describe` on PID 1's varlink socket. Returns the manager's runtime state (architecture, virtualization, version, features, tainted, timestamps).
+      responses: { '200': { description: Manager description., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /io.systemd.Manager/ListUnits:
+    post:
+      tags: [Manager, Unit]
+      operationId: ManagerListUnits
+      summary: List All Units
+      description: Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.
+      responses: { '200': { description: Streamed unit records., content: { application/json: { schema: { type: array, items: { type: object, additionalProperties: true } } } } } }
+  /io.systemd.Unit/Describe:
+    post:
+      tags: [Unit]
+      operationId: UnitDescribe
+      summary: Describe A Single Unit
+      description: Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit.
+      requestBody: { content: { application/json: { schema: { type: object, required: [unit], properties: { unit: { type: string } } } } } }
+      responses: { '200': { description: Unit description., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /io.systemd.UserDatabase/GetUserRecord:
+    post:
+      tags: [UserDatabase]
+      operationId: UserDatabaseGetUserRecord
+      summary: Look Up A User Record
+      description: Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { userName: { type: string }, uid: { type: integer }, service: { type: string } } } } } }
+      responses: { '200': { description: JSON User Record., content: { application/json: { schema: { type: object, properties: { record: { type: object, additionalProperties: true }, incomplete: { type: boolean } } } } } } }
+  /io.systemd.UserDatabase/GetGroupRecord:
+    post:
+      tags: [UserDatabase]
+      operationId: UserDatabaseGetGroupRecord
+      summary: Look Up A Group Record
+      description: Calls `io.systemd.UserDatabase.GetGroupRecord`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { groupName: { type: string }, gid: { type: integer }, service: { type: string } } } } } }
+      responses: { '200': { description: JSON Group Record., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /io.systemd.UserDatabase/GetMemberships:
+    post:
+      tags: [UserDatabase]
+      operationId: UserDatabaseGetMemberships
+      summary: Look Up Group Memberships
+      description: Calls `io.systemd.UserDatabase.GetMemberships`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { userName: { type: string }, groupName: { type: string } } } } } }
+      responses: { '200': { description: Memberships., content: { application/json: { schema: { type: array, items: { type: object, properties: { userName: { type: string }, groupName: { type: string } } } } } } } }
+  /io.systemd.Resolve/ResolveHostname:
+    post:
+      tags: [Resolve]
+      operationId: VarlinkResolveHostname
+      summary: Resolve A Hostname (Varlink)
+      description: Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname.
+      requestBody: { content: { application/json: { schema: { type: object, required: [name], properties: { ifindex: { type: integer }, name: { type: string }, family: { type: integer }, flags: { type: integer } } } } } }
+      responses: { '200': { description: Resolved addresses., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /io.systemd.Credentials/Encrypt:
+    post:
+      tags: [Credentials]
+      operationId: CredentialsEncrypt
+      summary: Encrypt A Credential
+      description: Calls `io.systemd.Credentials.Encrypt`. Wraps a secret with the system's encrypted-credentials key (TPM2 or host) for use as a `LoadCredentialEncrypted=` unit credential.
+      requestBody: { content: { application/json: { schema: { type: object, required: [data], properties: { name: { type: string }, data: { type: string, contentEncoding: base64 }, timestamp: { type: integer }, notAfter: { type: integer } } } } } }
+      responses: { '200': { description: Encrypted blob., content: { application/json: { schema: { type: object, properties: { blob: { type: string, contentEncoding: base64 } } } } } } }
+  /io.systemd.Credentials/Decrypt:
+    post:
+      tags: [Credentials]
+      operationId: CredentialsDecrypt
+      summary: Decrypt A Credential
+      description: Calls `io.systemd.Credentials.Decrypt`.
+      requestBody: { content: { application/json: { schema: { type: object, required: [blob], properties: { name: { type: string }, blob: { type: string, contentEncoding: base64 }, timestamp: { type: integer } } } } } }
+      responses: { '200': { description: Decrypted plaintext., content: { application/json: { schema: { type: object, properties: { data: { type: string, contentEncoding: base64 } } } } } } }
+  /io.systemd.PCRExtend/Extend:
+    post:
+      tags: [PCR]
+      operationId: PCRExtend
+      summary: Extend A TPM2 PCR
+      description: Calls `io.systemd.PCRExtend.Extend`. Extends the named PCR with the supplied data.
+      requestBody: { content: { application/json: { schema: { type: object, required: [pcr, data], properties: { pcr: { type: integer }, banks: { type: array, items: { type: string } }, data: { type: string, contentEncoding: base64 } } } } } }
+      responses: { '204': { description: PCR extended. } }
+  /io.systemd.BootControl/ListBootEntries:
+    post:
+      tags: [Boot]
+      operationId: BootControlListEntries
+      summary: List Boot Entries
+      description: Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries.
+      responses: { '200': { description: Array of boot entries., content: { application/json: { schema: { type: array, items: { type: object, additionalProperties: true } } } } } }
+  /io.systemd.MachineImage/List:
+    post:
+      tags: [Image]
+      operationId: MachineImageList
+      summary: List Machine Images (Varlink)
+      description: Calls `io.systemd.MachineImage.List`. JSON-native equivalent of machined's ListImages.
+      responses: { '200': { description: Array of image records., content: { application/json: { schema: { type: array, items: { type: object, additionalProperties: true } } } } } }

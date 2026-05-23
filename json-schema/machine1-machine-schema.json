@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-schema/machine1-machine-schema.json",
+  "title": "machined Machine",
+  "description": "A container or VM registered with systemd-machined.",
+  "type": "object",
+  "required": ["name", "class", "object_path"],
+  "properties": {
+    "name": { "type": "string" },
+    "class": { "type": "string", "enum": ["vm", "container"] },
+    "service": { "type": "string", "description": "Registering service (e.g. systemd-nspawn, libvirt)." },
+    "object_path": { "type": "string" },
+    "leader": { "type": "integer", "description": "PID of the machine leader process." },
+    "root_directory": { "type": "string" },
+    "id": { "type": "string", "format": "uuid" }
+  }
+}

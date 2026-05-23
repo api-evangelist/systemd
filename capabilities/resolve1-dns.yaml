@@ -1,0 +1,40 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: systemd-resolved — DNS Resolution
+  description: |
+    Self-contained Naftiko capability for systemd-resolved hostname/address/record/service
+    resolution and per-link DNS configuration via D-Bus.
+  tags:
+  - D-Bus
+  - DNS
+  - DNSSEC
+  - Resolved
+  created: '2026-05-23'
+  modified: '2026-05-23'
+binds:
+- namespace: env
+  keys:
+    SYSTEMD_BUS_ADDRESS: SYSTEMD_BUS_ADDRESS
+capability:
+  consumes:
+  - type: dbus
+    namespace: org.freedesktop.resolve1
+    busName: org.freedesktop.resolve1
+    objectPath: /org/freedesktop/resolve1
+    description: resolved resolution and configuration methods.
+    resources:
+    - name: resolve
+      operations:
+      - { name: ResolveHostname, method: ResolveHostname, description: Resolve a hostname to addresses. }
+      - { name: ResolveAddress, method: ResolveAddress, description: Resolve an address to hostnames. }
+      - { name: ResolveRecord, method: ResolveRecord, description: Resolve an arbitrary DNS RR. }
+      - { name: ResolveService, method: ResolveService, description: Resolve a DNS-SD/SRV service record. }
+    - name: cache
+      operations:
+      - { name: FlushCaches, method: FlushCaches, description: Flush all DNS caches. }
+      - { name: ResetServerFeatures, method: ResetServerFeatures, description: Reset server feature detection. }
+    - name: configuration
+      operations:
+      - { name: SetLinkDNS, method: SetLinkDNS, description: Set DNS servers on a link. }
+      - { name: SetLinkDNSSEC, method: SetLinkDNSSEC, description: Set DNSSEC mode on a link. }
+      - { name: SetLinkDNSOverTLS, method: SetLinkDNSOverTLS, description: Set DNS-over-TLS mode on a link. }

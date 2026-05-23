@@ -1,0 +1,13 @@
+{
+  "operation": "Inhibit",
+  "description": "Acquire an inhibitor lock that delays system suspend while a backup job runs. The returned FD must be held open by the caller; closing it releases the lock.",
+  "request": {
+    "what": "sleep:shutdown",
+    "who": "backup-daemon",
+    "why": "Ongoing snapshot upload to remote storage",
+    "mode": "delay"
+  },
+  "response": {
+    "fd": 5
+  }
+}

@@ -1,0 +1,438 @@
+aid: systemd
+name: systemd
+description: |
+  systemd is a suite of basic building blocks for a Linux system. It runs as PID 1 and is the system and service
+  manager that bootstraps the rest of the userspace, supervises long-running services, and exposes a coordinated
+  set of D-Bus and Varlink IPC interfaces for managing services (systemd1), users and sessions (logind),
+  network interfaces (networkd), name resolution (resolved), containers/VMs (machined), home directories
+  (homed), boot entries (boot1/sysupdate1), system hostname/locale/timedate, OOM protection (oomd), portable
+  services, and image imports. The project also publishes a stable command-line surface (systemctl,
+  journalctl, networkctl, resolvectl, loginctl, machinectl, hostnamectl, timedatectl, localectl, busctl,
+  varlinkctl, bootctl, homectl, coredumpctl, oomctl, portablectl, importctl, systemd-analyze and more).
+  systemd is dual-licensed (LGPL-2.1-or-later for libraries and most code, GPL-2.0-or-later for select tools)
+  and developed openly on GitHub at systemd/systemd.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://systemd.io/assets/systemd-logo.svg
+tags:
+- Boot
+- Cgroups
+- Container
+- D-Bus
+- Init
+- IPC
+- Journal
+- Linux
+- Logging
+- Network
+- Open Source
+- PID 1
+- Service Manager
+- System
+- Systemd
+- Varlink
+created: '2026-05-23'
+modified: '2026-05-23'
+url: https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+- aid: systemd:org-freedesktop-systemd1
+  name: systemd Manager (org.freedesktop.systemd1)
+  description: |
+    Core D-Bus API exposed by PID 1 on the system bus. The Manager object at /org/freedesktop/systemd1
+    enumerates and controls units (services, sockets, mounts, targets, timers, paths, slices, scopes, swaps,
+    devices), starts and stops jobs, loads/reloads configuration, manages cgroup-backed transient units, and
+    emits lifecycle signals (UnitNew, UnitRemoved, JobNew, JobRemoved, Reloading, StartupFinished). Per-unit
+    interfaces (Unit, Service, Socket, Mount, Slice, Scope, Path, Swap, Timer, Target) expose state,
+    properties, and operations on individual units.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
+  baseURL: dbus:org.freedesktop.systemd1
+  tags:
+  - Cgroups
+  - D-Bus
+  - Service Manager
+  - Systemd
+  - Units
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.systemd1.xml
+  - type: OpenAPI
+    url: openapi/systemd1-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/systemd1-units.yaml
+  - type: NaftikoCapability
+    url: capabilities/systemd1-jobs.yaml
+  - type: NaftikoCapability
+    url: capabilities/systemd1-manager.yaml
+- aid: systemd:org-freedesktop-login1
+  name: systemd-logind (org.freedesktop.login1)
+  description: |
+    D-Bus API of systemd-logind for tracking user logins, seats, sessions, and inhibitor locks. Manages
+    session creation, switching, idle hints, lock/unlock, power-button handling, lid-switch handling,
+    suspend/hibernate/reboot/power-off operations, and ACLs for hot-pluggable devices.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html
+  baseURL: dbus:org.freedesktop.login1
+  tags:
+  - D-Bus
+  - Logind
+  - Sessions
+  - Users
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.login1.xml
+  - type: OpenAPI
+    url: openapi/login1-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/login1-sessions.yaml
+- aid: systemd:org-freedesktop-network1
+  name: systemd-networkd (org.freedesktop.network1)
+  description: |
+    D-Bus API of systemd-networkd for managing network interfaces, link configuration, DHCP server state,
+    and netdev/network unit reload. Exposes Manager and per-Link interfaces with methods to set link
+    properties, reconfigure, force renew, and query link state.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.network1.html
+  baseURL: dbus:org.freedesktop.network1
+  tags:
+  - D-Bus
+  - DHCP
+  - Network
+  - Networkd
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.network1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.network1.xml
+  - type: OpenAPI
+    url: openapi/network1-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/network1-links.yaml
+- aid: systemd:org-freedesktop-resolve1
+  name: systemd-resolved (org.freedesktop.resolve1)
+  description: |
+    D-Bus API of systemd-resolved for DNS/mDNS/LLMNR resolution, DNSSEC validation, per-link DNS
+    configuration, search domain management, DNS-over-TLS settings, and cache flushing. Exposes
+    ResolveHostname, ResolveAddress, ResolveRecord, ResolveService and per-Link configuration methods.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.resolve1.html
+  baseURL: dbus:org.freedesktop.resolve1
+  tags:
+  - D-Bus
+  - DNS
+  - DNSSEC
+  - Resolved
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.resolve1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.resolve1.xml
+  - type: OpenAPI
+    url: openapi/resolve1-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/resolve1-dns.yaml
+- aid: systemd:org-freedesktop-machine1
+  name: systemd-machined (org.freedesktop.machine1)
+  description: |
+    D-Bus API of systemd-machined for tracking and managing local containers and virtual machines,
+    enumerating their associated images, opening shells/login sessions inside them, copying files in/out,
+    and binding mounts across container boundaries.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.machine1.html
+  baseURL: dbus:org.freedesktop.machine1
+  tags:
+  - Containers
+  - D-Bus
+  - Machined
+  - VMs
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.machine1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.machine1.xml
+  - type: OpenAPI
+    url: openapi/machine1-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/machine1-machines.yaml
+- aid: systemd:org-freedesktop-hostname1
+  name: systemd-hostnamed (org.freedesktop.hostname1)
+  description: |
+    D-Bus API of systemd-hostnamed for getting and setting the system hostname (static, transient, pretty),
+    deployment/location/icon metadata, chassis type, and machine info.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.hostname1.html
+  baseURL: dbus:org.freedesktop.hostname1
+  tags:
+  - D-Bus
+  - Hostname
+  - Hostnamed
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.hostname1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.hostname1.xml
+  - type: OpenAPI
+    url: openapi/hostname1-openapi.yml
+- aid: systemd:org-freedesktop-locale1
+  name: systemd-localed (org.freedesktop.locale1)
+  description: |
+    D-Bus API of systemd-localed for getting and setting the system locale, X11 keymap, and console keymap.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.locale1.html
+  baseURL: dbus:org.freedesktop.locale1
+  tags:
+  - D-Bus
+  - Locale
+  - Localed
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.locale1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.locale1.xml
+- aid: systemd:org-freedesktop-timedate1
+  name: systemd-timedated (org.freedesktop.timedate1)
+  description: |
+    D-Bus API of systemd-timedated for getting and setting the system time, timezone, NTP enablement, and
+    RTC-in-local-time policy.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timedate1.html
+  baseURL: dbus:org.freedesktop.timedate1
+  tags:
+  - D-Bus
+  - NTP
+  - Time
+  - Timedated
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timedate1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.timedate1.xml
+- aid: systemd:org-freedesktop-timesync1
+  name: systemd-timesyncd (org.freedesktop.timesync1)
+  description: |
+    D-Bus API of systemd-timesyncd exposing the current NTP server, peers, root delay/dispersion, and
+    synchronization status.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timesync1.html
+  baseURL: dbus:org.freedesktop.timesync1
+  tags:
+  - D-Bus
+  - NTP
+  - SNTP
+  - Timesyncd
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timesync1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.timesync1.xml
+- aid: systemd:org-freedesktop-home1
+  name: systemd-homed (org.freedesktop.home1)
+  description: |
+    D-Bus API of systemd-homed for managing portable, encrypted user home directories (LUKS, btrfs subvol,
+    fscrypt, CIFS, directory) including create/remove/update/list operations, activation, authentication,
+    and rebalancing.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.home1.html
+  baseURL: dbus:org.freedesktop.home1
+  tags:
+  - D-Bus
+  - Home Directories
+  - Homed
+  - LUKS
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.home1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.home1.xml
+- aid: systemd:org-freedesktop-import1
+  name: systemd-importd (org.freedesktop.import1)
+  description: |
+    D-Bus API of systemd-importd for importing, exporting, downloading, listing, and removing container/VM
+    machine images (tar, raw, dkr/OCI, qcow2) used by machined and portable services.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html
+  baseURL: dbus:org.freedesktop.import1
+  tags:
+  - Containers
+  - D-Bus
+  - Images
+  - Importd
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.import1.xml
+- aid: systemd:org-freedesktop-oom1
+  name: systemd-oomd (org.freedesktop.oom1)
+  description: |
+    D-Bus API of systemd-oomd, the userspace out-of-memory killer that uses cgroup v2 PSI signals to kill
+    cgroups under memory or swap pressure. Exposes per-slice/cgroup state and policy.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.oom1.html
+  baseURL: dbus:org.freedesktop.oom1
+  tags:
+  - Cgroups
+  - D-Bus
+  - OOM
+  - Oomd
+  - PSI
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.oom1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.oom1.xml
+- aid: systemd:org-freedesktop-portable1
+  name: systemd-portabled (org.freedesktop.portable1)
+  description: |
+    D-Bus API of systemd-portabled for attaching/detaching portable service images, listing attached
+    images, inspecting them, and managing their lifecycle on the host.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.portable1.html
+  baseURL: dbus:org.freedesktop.portable1
+  tags:
+  - D-Bus
+  - Portable Services
+  - Portabled
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.portable1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.portable1.xml
+- aid: systemd:org-freedesktop-sysupdate1
+  name: systemd-sysupdated (org.freedesktop.sysupdate1)
+  description: |
+    D-Bus API of systemd-sysupdated for transactional A/B updates of system/host/portable/container images
+    using systemd-sysupdate transfers, including target enumeration, version listing, and update jobs.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.sysupdate1.html
+  baseURL: dbus:org.freedesktop.sysupdate1
+  tags:
+  - A/B Updates
+  - D-Bus
+  - Sysupdated
+  - System Updates
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.sysupdate1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.sysupdate1.xml
+- aid: systemd:org-freedesktop-logcontrol1
+  name: LogControl1 (org.freedesktop.LogControl1)
+  description: |
+    Generic D-Bus interface that systemd daemons (and other services) implement to expose runtime log
+    level and log target configuration. Allows tools like systemd-analyze to change verbosity without
+    restart.
+  humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.LogControl1.html
+  baseURL: dbus:org.freedesktop.LogControl1
+  tags:
+  - D-Bus
+  - Logging
+  - Observability
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.LogControl1.html
+  - type: InterfaceDefinition
+    url: https://github.com/systemd/systemd/blob/main/man/org.freedesktop.LogControl1.xml
+- aid: systemd:io-systemd-varlink
+  name: systemd Varlink Interfaces (io.systemd.*)
+  description: |
+    Modern JSON-line IPC surface exposed by systemd daemons via Varlink (single-fd, self-describing,
+    discoverable through `varlinkctl`). Covers ~39 interfaces including io.systemd.Manager, io.systemd.Unit,
+    io.systemd.Job, io.systemd.Login, io.systemd.Machine, io.systemd.Machine.Image,
+    io.systemd.MachineInstance, io.systemd.VirtualMachineInstance, io.systemd.Network,
+    io.systemd.Network.Link, io.systemd.Resolve, io.systemd.Resolve.Hook, io.systemd.Resolve.Monitor,
+    io.systemd.Journal, io.systemd.JournalAccess, io.systemd.Hostname, io.systemd.BootControl,
+    io.systemd.Credentials, io.systemd.FactoryReset, io.systemd.Import, io.systemd.InstanceMetadata,
+    io.systemd.AskPassword, io.systemd.Metrics, io.systemd.ManagedOOM, io.systemd.MountFileSystem,
+    io.systemd.MuteConsole, io.systemd.NamespaceResource, io.systemd.PCRExtend, io.systemd.PCRLock,
+    io.systemd.Repart, io.systemd.Shutdown, io.systemd.StorageProvider, io.systemd.Udev,
+    io.systemd.UserDatabase, io.systemd.oom, io.systemd.oom.Prekill, io.systemd.service, io.systemd.sysext.
+  humanURL: https://systemd.io/USER_GROUP_API/
+  baseURL: varlink:io.systemd
+  tags:
+  - IPC
+  - JSON
+  - Varlink
+  properties:
+  - type: Documentation
+    url: https://www.freedesktop.org/software/systemd/man/latest/varlinkctl.html
+  - type: SourceCode
+    url: https://github.com/systemd/systemd/tree/main/src
+  - type: OpenAPI
+    url: openapi/varlink-openapi.yml
+  - type: NaftikoCapability
+    url: capabilities/varlink-manager.yaml
+  - type: NaftikoCapability
+    url: capabilities/varlink-userdb.yaml
+common:
+- type: Website
+  url: https://systemd.io
+- type: Documentation
+  url: https://www.freedesktop.org/software/systemd/man/latest/
+- type: GitHubOrganization
+  url: https://github.com/systemd
+- type: GitHubRepository
+  url: https://github.com/systemd/systemd
+- type: SourceCode
+  url: https://github.com/systemd/systemd
+- type: License
+  url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+- type: License
+  url: https://github.com/systemd/systemd/blob/main/LICENSES/GPL-2.0-or-later.txt
+- type: ReleaseNotes
+  url: https://github.com/systemd/systemd/releases
+- type: ChangeLog
+  url: https://github.com/systemd/systemd/blob/main/NEWS
+- type: IssueTracker
+  url: https://github.com/systemd/systemd/issues
+- type: PullRequests
+  url: https://github.com/systemd/systemd/pulls
+- type: MailingList
+  url: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+- type: Mastodon
+  url: https://mastodon.social/@pid_eins
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/systemctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/journalctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/networkctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/resolvectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/loginctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/machinectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/timedatectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/localectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/busctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/varlinkctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/bootctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/homectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/coredumpctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/oomctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/portablectl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/importctl.html
+- type: Tool
+  url: https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html
+- type: SDK
+  url: https://www.freedesktop.org/software/systemd/man/latest/sd-bus.html
+- type: SDK
+  url: https://www.freedesktop.org/software/systemd/man/latest/sd-varlink.html
+- type: SDK
+  url: https://www.freedesktop.org/software/systemd/man/latest/sd-journal.html
+- type: SDK
+  url: https://www.freedesktop.org/software/systemd/man/latest/sd-event.html
+- type: Vocabulary
+  url: vocabulary/systemd-vocabulary.yml
+- type: JSONLD
+  url: json-ld/systemd-context.jsonld
+license: LGPL-2.1-or-later AND GPL-2.0-or-later
+maintainer:
+  FN: systemd developers
+  email: systemd-devel@lists.freedesktop.org
+  url: https://lists.freedesktop.org/mailman/listinfo/systemd-devel

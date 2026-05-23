@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-schema/login1-session-schema.json",
+  "title": "logind Session",
+  "description": "A user session tracked by systemd-logind.",
+  "type": "object",
+  "required": ["session_id", "uid", "user_name", "object_path"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "uid": { "type": "integer" },
+    "user_name": { "type": "string" },
+    "seat_id": { "type": ["string", "null"] },
+    "object_path": { "type": "string" },
+    "class": { "type": "string", "enum": ["user", "greeter", "lock-screen", "background", "manager"] },
+    "type": { "type": "string", "enum": ["unspecified", "tty", "x11", "wayland", "mir", "web"] },
+    "state": { "type": "string", "enum": ["online", "active", "closing"] },
+    "remote": { "type": "boolean" },
+    "active": { "type": "boolean" }
+  }
+}

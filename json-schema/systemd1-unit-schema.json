@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-schema/systemd1-unit-schema.json",
+  "title": "systemd Unit",
+  "description": "Canonical record returned by the systemd Manager when enumerating loaded units via ListUnits() on org.freedesktop.systemd1.",
+  "type": "object",
+  "required": ["name", "load_state", "active_state", "sub_state", "object_path"],
+  "properties": {
+    "name": { "type": "string", "description": "Unit name (e.g. nginx.service)." },
+    "description": { "type": "string" },
+    "load_state": {
+      "type": "string",
+      "enum": ["stub", "loaded", "not-found", "bad-setting", "error", "merged", "masked"],
+      "description": "Reflects whether the unit file was found and parsed."
+    },
+    "active_state": {
+      "type": "string",
+      "enum": ["active", "reloading", "inactive", "failed", "activating", "deactivating"],
+      "description": "Generalized state of the unit."
+    },
+    "sub_state": { "type": "string", "description": "Unit-type-specific state (e.g. running, exited, listening)." },
+    "follower": { "type": ["string", "null"] },
+    "object_path": { "type": "string", "description": "D-Bus object path of the unit." },
+    "job_id": { "type": "integer" },
+    "job_type": { "type": "string" },
+    "job_object_path": { "type": "string" }
+  }
+}

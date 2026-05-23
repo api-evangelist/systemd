@@ -1,0 +1,37 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: systemd-networkd — Links
+  description: |
+    Self-contained Naftiko capability for systemd-networkd link enumeration and per-link
+    reconfiguration via D-Bus.
+  tags:
+  - D-Bus
+  - Network
+  - Networkd
+  created: '2026-05-23'
+  modified: '2026-05-23'
+binds:
+- namespace: env
+  keys:
+    SYSTEMD_BUS_ADDRESS: SYSTEMD_BUS_ADDRESS
+capability:
+  consumes:
+  - type: dbus
+    namespace: org.freedesktop.network1
+    busName: org.freedesktop.network1
+    objectPath: /org/freedesktop/network1
+    description: networkd link and manager methods.
+    resources:
+    - name: links
+      operations:
+      - { name: ListLinks, method: ListLinks, description: List all links. }
+      - { name: GetLinkByIndex, method: GetLinkByIndex, description: Look up a link by ifindex. }
+      - { name: GetLinkByName, method: GetLinkByName, description: Look up a link by name. }
+      - { name: ReconfigureLink, method: ReconfigureLink, description: Reapply the matching .network file. }
+      - { name: RenewLink, method: RenewLink, description: Force DHCP renew. }
+      - { name: SetLinkDNS, method: SetLinkDNS, description: Set DNS servers on a link. }
+      - { name: SetLinkDomains, method: SetLinkDomains, description: Set search domains on a link. }
+    - name: manager
+      operations:
+      - { name: Reload, method: Reload, description: Reload networkd config. }
+      - { name: Describe, method: Describe, description: Dump full networkd state as JSON. }

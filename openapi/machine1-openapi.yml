@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: systemd-machined (org.freedesktop.machine1)
+  version: '1.0'
+  summary: D-Bus API of systemd-machined modeled as REST operations.
+  description: |
+    Documentation/contract artifact for the `org.freedesktop.machine1` D-Bus interface set on the
+    system bus, exposed by systemd-machined. Tracks local containers and virtual machines
+    registered with the system, lists/inspects/imports machine images, opens shells inside
+    containers, and copies files in/out across container boundaries.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers: [{ url: 'dbus://system/org.freedesktop.machine1' }]
+tags:
+- name: Machines
+- name: Images
+paths:
+  /machines:
+    get:
+      tags: [Machines]
+      operationId: ListMachines
+      summary: List All Registered Machines
+      description: Mirrors `ListMachines()`. Returns (name, class, service, object path) tuples.
+      responses: { '200': { description: Array of machines., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Machine' } } } } } }
+  /machines/{name}:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    get:
+      tags: [Machines]
+      operationId: GetMachine
+      summary: Get A Machine By Name
+      description: Mirrors `GetMachine(name)`.
+      responses: { '200': { description: Machine object path. } }
+  /machines/{name}/terminate:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Machines]
+      operationId: TerminateMachine
+      summary: Terminate A Machine
+      description: Mirrors `TerminateMachine(name)`.
+      responses: { '204': { description: Terminated. } }
+  /machines/{name}/kill:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Machines]
+      operationId: KillMachine
+      summary: Send A Signal To A Machine
+      description: Mirrors `KillMachine(name, who, signal)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { who: { type: string, enum: [all, leader] }, signal: { type: integer } } } } } }
+      responses: { '204': { description: Signal sent. } }
+  /machines/{name}/open-shell:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Machines]
+      operationId: OpenMachineShell
+      summary: Open A Shell Inside A Machine
+      description: Mirrors `OpenMachineShell(name, user, path, args, env)`. Returns a PTY FD.
+      responses: { '200': { description: PTY FD info. } }
+  /machines/{name}/copy-from:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Machines]
+      operationId: CopyFromMachine
+      summary: Copy A File Out Of A Machine
+      description: Mirrors `CopyFromMachine(name, src, dest)`.
+      responses: { '204': { description: Copied. } }
+  /machines/{name}/copy-to:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Machines]
+      operationId: CopyToMachine
+      summary: Copy A File Into A Machine
+      description: Mirrors `CopyToMachine(name, src, dest)`.
+      responses: { '204': { description: Copied. } }
+  /images:
+    get:
+      tags: [Images]
+      operationId: ListImages
+      summary: List All Machine Images
+      description: Mirrors `ListImages()` on the Manager.
+      responses: { '200': { description: Array of images., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Image' } } } } } }
+  /images/{name}:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    delete:
+      tags: [Images]
+      operationId: RemoveImage
+      summary: Remove A Machine Image
+      description: Mirrors `RemoveImage(name)`.
+      responses: { '204': { description: Removed. } }
+  /images/{name}/clone:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Images]
+      operationId: CloneImage
+      summary: Clone A Machine Image
+      description: Mirrors `CloneImage(src, dest, read_only)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { dest: { type: string }, read_only: { type: boolean } } } } } }
+      responses: { '204': { description: Cloned. } }
+  /images/{name}/rename:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Images]
+      operationId: RenameImage
+      summary: Rename A Machine Image
+      description: Mirrors `RenameImage(src, dest)`.
+      responses: { '204': { description: Renamed. } }
+components:
+  schemas:
+    Machine:
+      type: object
+      properties:
+        name: { type: string }
+        class: { type: string, enum: [vm, container] }
+        service: { type: string, description: 'Service that registered the machine (e.g. systemd-nspawn, libvirt).' }
+        object_path: { type: string }
+    Image:
+      type: object
+      properties:
+        name: { type: string }
+        type: { type: string, enum: [directory, subvolume, raw, block] }
+        read_only: { type: boolean }
+        ctime: { type: integer }
+        mtime: { type: integer }
+        usage: { type: integer }
+        object_path: { type: string }

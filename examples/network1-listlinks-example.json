@@ -1,0 +1,9 @@
+{
+  "operation": "ListLinks",
+  "description": "Sample of the array returned by org.freedesktop.network1.Manager.ListLinks.",
+  "example": [
+    { "ifindex": 1, "name": "lo", "object_path": "/org/freedesktop/network1/link/_31" },
+    { "ifindex": 2, "name": "eth0", "object_path": "/org/freedesktop/network1/link/_32" },
+    { "ifindex": 3, "name": "wlan0", "object_path": "/org/freedesktop/network1/link/_33" }
+  ]
+}

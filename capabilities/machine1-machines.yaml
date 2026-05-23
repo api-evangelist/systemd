@@ -1,0 +1,41 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: systemd-machined — Machines And Images
+  description: |
+    Self-contained Naftiko capability for systemd-machined container/VM registration, lifecycle,
+    file copy, shell, and image management via D-Bus.
+  tags:
+  - Containers
+  - D-Bus
+  - Images
+  - Machined
+  - VMs
+  created: '2026-05-23'
+  modified: '2026-05-23'
+binds:
+- namespace: env
+  keys:
+    SYSTEMD_BUS_ADDRESS: SYSTEMD_BUS_ADDRESS
+capability:
+  consumes:
+  - type: dbus
+    namespace: org.freedesktop.machine1
+    busName: org.freedesktop.machine1
+    objectPath: /org/freedesktop/machine1
+    description: machined methods for managing containers, VMs, and images.
+    resources:
+    - name: machines
+      operations:
+      - { name: ListMachines, method: ListMachines, description: List registered machines. }
+      - { name: GetMachine, method: GetMachine, description: Look up a machine by name. }
+      - { name: TerminateMachine, method: TerminateMachine, description: Terminate a machine. }
+      - { name: KillMachine, method: KillMachine, description: Send a signal to a machine. }
+      - { name: OpenMachineShell, method: OpenMachineShell, description: Open a shell inside a machine. }
+      - { name: CopyFromMachine, method: CopyFromMachine, description: Copy a file out of a machine. }
+      - { name: CopyToMachine, method: CopyToMachine, description: Copy a file into a machine. }
+    - name: images
+      operations:
+      - { name: ListImages, method: ListImages, description: List machine images. }
+      - { name: RemoveImage, method: RemoveImage, description: Remove a machine image. }
+      - { name: CloneImage, method: CloneImage, description: Clone a machine image. }
+      - { name: RenameImage, method: RenameImage, description: Rename a machine image. }

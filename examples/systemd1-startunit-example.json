@@ -1,0 +1,11 @@
+{
+  "operation": "StartUnit",
+  "description": "Request and response for starting a unit via the systemd Manager. The Manager enqueues a job and returns the job's D-Bus object path.",
+  "request": {
+    "name": "nginx.service",
+    "mode": "replace"
+  },
+  "response": {
+    "path": "/org/freedesktop/systemd1/job/4711"
+  }
+}

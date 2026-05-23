@@ -1,0 +1,36 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: systemd Varlink — Manager And Units
+  description: |
+    Self-contained Naftiko capability wrapping the io.systemd.Manager and io.systemd.Unit Varlink
+    interfaces — the JSON-native equivalents of the D-Bus systemd1 surface.
+  tags:
+  - IPC
+  - Systemd
+  - Unit
+  - Varlink
+  created: '2026-05-23'
+  modified: '2026-05-23'
+binds:
+- namespace: env
+  keys:
+    SYSTEMD_VARLINK_SOCKET: SYSTEMD_VARLINK_SOCKET
+capability:
+  consumes:
+  - type: varlink
+    namespace: io.systemd.Manager
+    socket: /run/systemd/io.systemd.Manager
+    description: Manager-level varlink methods on PID 1.
+    resources:
+    - name: manager
+      operations:
+      - { name: Describe, method: io.systemd.Manager.Describe, description: Snapshot Manager runtime state. }
+      - { name: ListUnits, method: io.systemd.Manager.ListUnits, description: Stream all units. }
+  - type: varlink
+    namespace: io.systemd.Unit
+    socket: /run/systemd/io.systemd.Unit
+    description: Per-unit varlink methods.
+    resources:
+    - name: units
+      operations:
+      - { name: Describe, method: io.systemd.Unit.Describe, description: Dump full property bag of a unit. }

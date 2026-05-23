@@ -1,0 +1,67 @@
+name: systemd Vocabulary
+description: |
+  Operational and capability vocabulary for the systemd project — the core terms used across PID 1,
+  logind, networkd, resolved, machined, homed, hostnamed, oomd, sysupdated, portabled, and the
+  io.systemd.* Varlink surface.
+url: https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/vocabulary/systemd-vocabulary.yml
+created: '2026-05-23'
+modified: '2026-05-23'
+terms:
+- term: Unit
+  definition: The atomic, configurable element systemd manages. Subtypes are .service, .socket, .mount, .automount, .swap, .target, .path, .timer, .slice, .scope, .device.
+- term: Manager
+  definition: The PID 1 process (systemd itself) and the singleton D-Bus object at /org/freedesktop/systemd1 implementing org.freedesktop.systemd1.Manager.
+- term: Job
+  definition: A scheduled state transition (start, stop, restart, reload, ...) on a unit, tracked by the Manager and observable via ListJobs / JobNew / JobRemoved.
+- term: Target
+  definition: A unit type that groups other units to represent a synchronization point (multi-user.target, graphical.target, shutdown.target).
+- term: Slice
+  definition: A unit type representing a cgroup v2 subtree used to apply hierarchical resource controls (CPU, memory, IO, tasks).
+- term: Scope
+  definition: A unit type that wraps externally-created processes in a cgroup so they can be managed by systemd. Created via StartTransientUnit.
+- term: Transient Unit
+  definition: A unit created at runtime over D-Bus (StartTransientUnit) instead of from an on-disk unit file. Used by systemd-run, login session managers, and container managers.
+- term: Drop-in
+  definition: A configuration override file placed in <unit>.d/ that adjusts properties of a base unit file without forking it.
+- term: Cgroup
+  definition: Linux kernel facility for grouping processes and applying resource controls. systemd creates one cgroup per unit and is the canonical cgroup v2 manager on most distros.
+- term: PID 1
+  definition: The init process — the first userspace process the kernel starts. On systemd-based systems, PID 1 is the systemd binary itself.
+- term: D-Bus
+  definition: The IPC bus systemd uses for its primary, long-stable API surface. Bus names live under org.freedesktop.*.
+- term: Varlink
+  definition: A self-describing, JSON-line IPC protocol systemd has been adopting since v240 for newer interfaces (io.systemd.*).
+- term: Session
+  definition: A logind concept representing one user login (TTY, X11, Wayland, web, ...). Tracked by systemd-logind.
+- term: Seat
+  definition: A logical workstation — a collection of input/output devices that one user can use at a time. Managed by logind.
+- term: Inhibitor
+  definition: A lock acquired via logind that delays or blocks system suspend, shutdown, idle handling, lid-switch handling, or power/sleep key handling.
+- term: Link
+  definition: A network interface tracked by systemd-networkd (one per ifindex).
+- term: Machine
+  definition: A container or VM registered with systemd-machined.
+- term: Image
+  definition: A directory, btrfs subvolume, raw file, or block device that backs a machine, portable service, or sysext.
+- term: User Record
+  definition: A signed JSON document describing a user account in the systemd format, returned by io.systemd.UserDatabase.GetUserRecord.
+- term: Group Record
+  definition: A signed JSON document describing a group in the systemd format.
+- term: Credential
+  definition: A named secret passed to a unit via LoadCredential= or LoadCredentialEncrypted=, optionally TPM2-sealed.
+- term: Portable Service
+  definition: A self-contained service image that can be attached to a host with systemd-portabled, separating service code from the base OS.
+- term: System Extension (sysext)
+  definition: A read-only image layered atop /usr or /opt at runtime to add files without modifying the base image.
+- term: Configuration Extension (confext)
+  definition: A read-only image layered atop /etc to ship configuration overlays.
+- term: Boot Entry
+  definition: A Boot Loader Specification entry consumed by systemd-boot and managed via bootctl / io.systemd.BootControl.
+- term: PCR
+  definition: A TPM2 Platform Configuration Register. systemd-pcrlock and systemd-pcrextend manage measurements and policies.
+- term: PSI
+  definition: Linux Pressure Stall Information; the kernel signal systemd-oomd consumes to detect cgroups under memory or IO pressure.
+- term: A/B Update
+  definition: A transactional image-based update pattern in which a second slot is updated and atomically swapped in, implemented by systemd-sysupdate and systemd-sysupdated.
+- term: Generator
+  definition: A binary that runs early in boot to synthesize units on the fly (e.g. systemd-fstab-generator, systemd-gpt-auto-generator).

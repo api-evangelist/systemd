@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-schema/network1-link-schema.json",
+  "title": "networkd Link",
+  "description": "A network link tracked by systemd-networkd.",
+  "type": "object",
+  "required": ["ifindex", "name", "object_path"],
+  "properties": {
+    "ifindex": { "type": "integer" },
+    "name": { "type": "string" },
+    "object_path": { "type": "string" },
+    "type": { "type": "string", "description": "rtnetlink link type (ether, loopback, wlan, ...)." },
+    "operational_state": { "type": "string", "enum": ["missing", "off", "no-carrier", "dormant", "degraded-carrier", "carrier", "degraded", "enslaved", "routable"] },
+    "setup_state": { "type": "string", "enum": ["pending", "initialized", "configuring", "configured", "unmanaged", "failed", "linger"] },
+    "carrier_state": { "type": "string" },
+    "address_state": { "type": "string" }
+  }
+}

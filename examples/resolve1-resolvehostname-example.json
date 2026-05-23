@@ -1,0 +1,22 @@
+{
+  "operation": "ResolveHostname",
+  "description": "Resolve www.example.com via systemd-resolved (any interface, both address families).",
+  "request": {
+    "ifindex": 0,
+    "name": "www.example.com",
+    "family": 0,
+    "flags": 0
+  },
+  "response": [
+    {
+      "ifindex": 2,
+      "family": 2,
+      "address": [93, 184, 215, 14]
+    },
+    {
+      "ifindex": 2,
+      "family": 10,
+      "address": [38, 6, 40, 0, 2, 28, 0, 27, 35, 132, 0, 0, 0, 0, 199, 49]
+    }
+  ]
+}

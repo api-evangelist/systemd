@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-schema/varlink-user-record-schema.json",
+  "title": "systemd JSON User Record (partial)",
+  "description": "Partial schema for the systemd JSON User Record returned by io.systemd.UserDatabase.GetUserRecord. The full record contains additional sections (privileged, perMachine, binding, status, signature); see https://systemd.io/USER_RECORD/ for the normative spec.",
+  "type": "object",
+  "required": ["userName"],
+  "properties": {
+    "userName": { "type": "string", "description": "POSIX user name." },
+    "realName": { "type": "string" },
+    "uid": { "type": "integer", "minimum": 0 },
+    "gid": { "type": "integer", "minimum": 0 },
+    "memberOf": { "type": "array", "items": { "type": "string" } },
+    "homeDirectory": { "type": "string" },
+    "shell": { "type": "string" },
+    "service": { "type": "string", "description": "Backend that supplied the record (nss-systemd, io.systemd.Home, ...)." },
+    "disposition": { "type": "string", "enum": ["intrinsic", "system", "dynamic", "regular", "container", "foreign", "reserved"] },
+    "locked": { "type": "boolean" },
+    "notBeforeUSec": { "type": "integer" },
+    "notAfterUSec": { "type": "integer" },
+    "storage": { "type": "string", "enum": ["luks", "fscrypt", "directory", "subvolume", "cifs"] },
+    "diskSize": { "type": "integer" },
+    "perMachine": { "type": "array", "items": { "type": "object" } },
+    "privileged": { "type": "object" },
+    "binding": { "type": "object" },
+    "status": { "type": "object" },
+    "signature": { "type": "array", "items": { "type": "object" } }
+  }
+}

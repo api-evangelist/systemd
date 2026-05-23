@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/json-structure/systemd-structure.json",
+  "title": "systemd Interface Structure",
+  "description": "Cross-interface structural document describing the relationship between systemd's D-Bus and Varlink surfaces, their bus names/socket paths, and the resource families they expose.",
+  "type": "object",
+  "properties": {
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["interface", "transport", "bus_name_or_socket", "resources"],
+        "properties": {
+          "interface": { "type": "string" },
+          "transport": { "type": "string", "enum": ["dbus", "varlink"] },
+          "bus_name_or_socket": { "type": "string" },
+          "object_path": { "type": "string" },
+          "daemon": { "type": "string" },
+          "resources": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "interfaces": [
+        {
+          "interface": "org.freedesktop.systemd1",
+          "transport": "dbus",
+          "bus_name_or_socket": "org.freedesktop.systemd1",
+          "object_path": "/org/freedesktop/systemd1",
+          "daemon": "systemd (PID 1)",
+          "resources": ["units", "jobs", "manager"]
+        },
+        {
+          "interface": "org.freedesktop.login1",
+          "transport": "dbus",
+          "bus_name_or_socket": "org.freedesktop.login1",
+          "object_path": "/org/freedesktop/login1",
+          "daemon": "systemd-logind",
+          "resources": ["sessions", "users", "seats", "inhibitors", "power"]
+        },
+        {
+          "interface": "org.freedesktop.network1",
+          "transport": "dbus",
+          "bus_name_or_socket": "org.freedesktop.network1",
+          "object_path": "/org/freedesktop/network1",
+          "daemon": "systemd-networkd",
+          "resources": ["links", "manager"]
+        },
+        {
+          "interface": "org.freedesktop.resolve1",
+          "transport": "dbus",
+          "bus_name_or_socket": "org.freedesktop.resolve1",
+          "object_path": "/org/freedesktop/resolve1",
+          "daemon": "systemd-resolved",
+          "resources": ["resolve", "cache", "configuration"]
+        },
+        {
+          "interface": "org.freedesktop.machine1",
+          "transport": "dbus",
+          "bus_name_or_socket": "org.freedesktop.machine1",
+          "object_path": "/org/freedesktop/machine1",
+          "daemon": "systemd-machined",
+          "resources": ["machines", "images"]
+        },
+        {
+          "interface": "io.systemd.UserDatabase",
+          "transport": "varlink",
+          "bus_name_or_socket": "/run/systemd/userdb/io.systemd.UserDatabase",
+          "daemon": "nss-systemd / systemd-userdbd",
+          "resources": ["identity"]
+        },
+        {
+          "interface": "io.systemd.Credentials",
+          "transport": "varlink",
+          "bus_name_or_socket": "/run/systemd/io.systemd.Credentials",
+          "daemon": "systemd-creds / PID 1",
+          "resources": ["credentials"]
+        }
+      ]
+    }
+  ]
+}

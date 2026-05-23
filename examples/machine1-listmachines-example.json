@@ -1,0 +1,18 @@
+{
+  "operation": "ListMachines",
+  "description": "Sample of the array returned by org.freedesktop.machine1.Manager.ListMachines.",
+  "example": [
+    {
+      "name": "debian-trixie",
+      "class": "container",
+      "service": "systemd-nspawn",
+      "object_path": "/org/freedesktop/machine1/machine/debian_2dtrixie"
+    },
+    {
+      "name": "fedora-vm",
+      "class": "vm",
+      "service": "libvirt",
+      "object_path": "/org/freedesktop/machine1/machine/fedora_2dvm"
+    }
+  ]
+}

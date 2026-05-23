@@ -1,0 +1,19 @@
+{
+  "operation": "StartTransientUnit",
+  "description": "Create a transient .scope unit on the fly that wraps an existing PID, applying a cgroup memory limit and CPU weight. This is how systemd-run, nspawn, and login session managers register processes with PID 1.",
+  "request": {
+    "name": "my-task.scope",
+    "mode": "replace",
+    "properties": {
+      "Description": "Ad-hoc scope for background indexing job",
+      "PIDs": [12345],
+      "MemoryMax": 2147483648,
+      "CPUWeight": 50,
+      "Slice": "user.slice"
+    },
+    "aux": []
+  },
+  "response": {
+    "path": "/org/freedesktop/systemd1/job/4812"
+  }
+}
