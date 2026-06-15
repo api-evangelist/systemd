@@ -1,0 +1,1327 @@
+{
+  "item": [
+    {
+      "id": "da87cf5f-cfb6-4bba-9806-8cb100081da4",
+      "name": "Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56ec71f9-1afc-460d-8e47-6d4e55e2a150",
+          "name": "List All Active Sessions",
+          "request": {
+            "name": "List All Active Sessions",
+            "description": {
+              "content": "Mirrors `ListSessions()`. Returns an array of (session id, uid, user name, seat id, object path).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4748c470-1a72-4c75-897d-4f0a6cba777f",
+              "name": "Array of sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"session_id\": \"string\",\n    \"uid\": 7637,\n    \"user_name\": \"string\",\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"session_id\": \"string\",\n    \"uid\": 5590,\n    \"user_name\": \"string\",\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8be99a54-b7e2-492a-82f8-92d745599705",
+          "name": "Get A Session By ID",
+          "request": {
+            "name": "Get A Session By ID",
+            "description": {
+              "content": "Mirrors `GetSession(id)`. Returns the session object path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "317c372a-6a3a-4c08-810d-d61fa3aaf060",
+              "name": "Session object path.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "958c4f18-745d-44c4-a7f7-7c0ae56135bd",
+          "name": "Terminate A Session",
+          "request": {
+            "name": "Terminate A Session",
+            "description": {
+              "content": "Mirrors `TerminateSession(id)`. Kills all processes in the session's cgroup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":id",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a23f51f-b1aa-4032-b826-9e1be6188ed1",
+              "name": "Session terminated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":id",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e665c33-a45f-466e-992e-e53e401eb470",
+          "name": "Request Session Lock",
+          "request": {
+            "name": "Request Session Lock",
+            "description": {
+              "content": "Mirrors `LockSession(id)`. Asks the session's lock UI to engage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":id",
+                "lock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8771dd7c-bd5d-4eb5-8351-4dc0adf3d6e5",
+              "name": "Lock requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":id",
+                    "lock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f234599-dee5-4c42-a272-3d2f3feed1b8",
+          "name": "Request Session Unlock",
+          "request": {
+            "name": "Request Session Unlock",
+            "description": {
+              "content": "Mirrors `UnlockSession(id)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                ":id",
+                "unlock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "675ee516-2ac5-4cda-bdec-c960ce71d881",
+              "name": "Unlock requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    ":id",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "63734c3b-17fb-4517-8a61-8c1592b835ab",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61ece8a0-8722-4c92-a24b-1f9a09e83abc",
+          "name": "List Logged-In Users",
+          "request": {
+            "name": "List Logged-In Users",
+            "description": {
+              "content": "Mirrors `ListUsers()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0a47522-d35f-43c0-ab6c-e4d580a5a804",
+              "name": "Array of (uid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uid\": 5060,\n    \"name\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"uid\": 9753,\n    \"name\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cd06c15-741a-4ea5-9fad-af9401922344",
+          "name": "Get A User By UID",
+          "request": {
+            "name": "Get A User By UID",
+            "description": {
+              "content": "Mirrors `GetUser(uid)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":uid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "uid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb22b958-b9de-4d29-b19a-565018043c05",
+              "name": "User object path.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":uid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "uid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9155ac41-f160-4e95-b5ba-640c89a87705",
+          "name": "Terminate A User's Sessions",
+          "request": {
+            "name": "Terminate A User's Sessions",
+            "description": {
+              "content": "Mirrors `TerminateUser(uid)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":uid",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "uid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c860ea0-04f8-4560-a9db-0f41944f3f8f",
+              "name": "Terminated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":uid",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "uid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9d07e32b-2507-4223-8216-e4b38231b9d6",
+      "name": "Seats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f095a6e8-e85f-406b-a0a4-67fd9b44e1f6",
+          "name": "List Seats",
+          "request": {
+            "name": "List Seats",
+            "description": {
+              "content": "Mirrors `ListSeats()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "seats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fab85151-0e8a-4628-af18-37c036a1ba70",
+              "name": "Array of (seat id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "seats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "36396468-0861-40a4-adb8-2ab1258b522a",
+      "name": "Power",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64f9cc87-6d90-40a9-92b5-67b06ede713c",
+          "name": "Power Off The System",
+          "request": {
+            "name": "Power Off The System",
+            "description": {
+              "content": "Mirrors `PowerOff(interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "power",
+                "poweroff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fedc94eb-7835-417d-983c-dc1e01c2dd89",
+              "name": "Shutdown initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "power",
+                    "poweroff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8048418a-7e1b-44ed-9e31-9eaa193e1b3d",
+          "name": "Reboot The System",
+          "request": {
+            "name": "Reboot The System",
+            "description": {
+              "content": "Mirrors `Reboot(interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "power",
+                "reboot"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1d32265-4488-4074-896e-a8f04d89ac26",
+              "name": "Reboot initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "power",
+                    "reboot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa3ceabe-b700-42d7-8157-1e240e9c1f1c",
+          "name": "Suspend The System",
+          "request": {
+            "name": "Suspend The System",
+            "description": {
+              "content": "Mirrors `Suspend(interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "power",
+                "suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45af8376-f9b0-469e-b681-d2e195821576",
+              "name": "Suspend initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "power",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "788d3169-a09e-49a4-8ef4-700d4311cec5",
+          "name": "Hibernate The System",
+          "request": {
+            "name": "Hibernate The System",
+            "description": {
+              "content": "Mirrors `Hibernate(interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "power",
+                "hibernate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a67b5125-3f3a-4d53-8fc1-2ce53f563471",
+              "name": "Hibernate initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "power",
+                    "hibernate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa4611e2-4982-4c17-b674-47957a5b8e08",
+          "name": "Hybrid Sleep The System",
+          "request": {
+            "name": "Hybrid Sleep The System",
+            "description": {
+              "content": "Mirrors `HybridSleep(interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "power",
+                "hybrid-sleep"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4ed100a-3a7e-43de-aefb-83a868807c2c",
+              "name": "HybridSleep initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "power",
+                    "hybrid-sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cb0ec6cc-c5a8-4b9f-b9ce-0ec061225331",
+      "name": "Inhibitors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7294b096-8afe-44de-bb69-77053896b7f5",
+          "name": "List All Inhibitor Locks",
+          "request": {
+            "name": "List All Inhibitor Locks",
+            "description": {
+              "content": "Mirrors `ListInhibitors()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inhibitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "817f9a24-d938-45e4-995c-b1fe91ce10fe",
+              "name": "Array of inhibitor records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inhibitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"what\": \"string\",\n    \"who\": \"string\",\n    \"why\": \"string\",\n    \"mode\": \"block\",\n    \"uid\": 8660,\n    \"pid\": 9534\n  },\n  {\n    \"what\": \"string\",\n    \"who\": \"string\",\n    \"why\": \"string\",\n    \"mode\": \"block\",\n    \"uid\": 2961,\n    \"pid\": 6788\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34d7aa0f-9e26-45a3-8f06-e059fbfa8c28",
+          "name": "Acquire An Inhibitor Lock",
+          "request": {
+            "name": "Acquire An Inhibitor Lock",
+            "description": {
+              "content": "Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inhibitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"what\": \"<string>\",\n  \"who\": \"<string>\",\n  \"why\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d135a10-1877-44d9-934b-565099ee6c12",
+              "name": "Lock acquired (FD returned over D-Bus).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inhibitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"what\": \"<string>\",\n  \"who\": \"<string>\",\n  \"why\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fd\": 2401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.login1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1fc28b7-6dfc-448e-9dcd-769dfcb6e9f9",
+    "name": "systemd-logind (org.freedesktop.login1)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact modeling the `org.freedesktop.login1` D-Bus interface set\n(system bus). systemd-logind tracks user logins, seats, sessions, and inhibitor locks; gates\npower/reboot/sleep operations; manages ACLs for hot-pluggable devices; and exposes inhibitor\nlocks so applications can delay shutdown or idle handling.\n\nBus name: `org.freedesktop.login1`. Root object path: `/org/freedesktop/login1`.\n",
+      "type": "text/plain"
+    }
+  }
+}

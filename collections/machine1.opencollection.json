@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-machined (org.freedesktop.machine1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Registered Machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.machine1/machines"
+          },
+          "docs": "Mirrors `ListMachines()`. Returns (name, class, service, object path) tuples."
+        },
+        {
+          "info": {
+            "name": "Get A Machine By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `GetMachine(name)`."
+        },
+        {
+          "info": {
+            "name": "Terminate A Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name/terminate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `TerminateMachine(name)`."
+        },
+        {
+          "info": {
+            "name": "Send A Signal To A Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name/kill",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `KillMachine(name, who, signal)`."
+        },
+        {
+          "info": {
+            "name": "Open A Shell Inside A Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name/open-shell",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `OpenMachineShell(name, user, path, args, env)`. Returns a PTY FD."
+        },
+        {
+          "info": {
+            "name": "Copy A File Out Of A Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name/copy-from",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `CopyFromMachine(name, src, dest)`."
+        },
+        {
+          "info": {
+            "name": "Copy A File Into A Machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/machines/:name/copy-to",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `CopyToMachine(name, src, dest)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Machine Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.machine1/images"
+          },
+          "docs": "Mirrors `ListImages()` on the Manager."
+        },
+        {
+          "info": {
+            "name": "Remove A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "dbus://system/org.freedesktop.machine1/images/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `RemoveImage(name)`."
+        },
+        {
+          "info": {
+            "name": "Clone A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/images/:name/clone",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `CloneImage(src, dest, read_only)`."
+        },
+        {
+          "info": {
+            "name": "Rename A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.machine1/images/:name/rename",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `RenameImage(src, dest)`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

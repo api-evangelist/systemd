@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-resolved (org.freedesktop.resolve1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resolution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve A Hostname To Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/resolve/hostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveHostname(ifindex, name, family, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve An Address To Hostnames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/resolve/address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveAddress(ifindex, family, address, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve A Generic DNS Resource Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/resolve/record",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveRecord(ifindex, name, class, type, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve A DNS-SD/SRV Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/resolve/service",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveService(ifindex, name, type, domain, family, flags)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cache",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Flush All DNS Caches",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/cache/flush"
+          },
+          "docs": "Mirrors `FlushCaches()`."
+        },
+        {
+          "info": {
+            "name": "Reset Server Feature Detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.resolve1/cache/reset-server-features"
+          },
+          "docs": "Mirrors `ResetServerFeatures()`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set DNS Servers On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.resolve1/links/:ifindex/dns",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNS(ifindex, servers)`."
+        },
+        {
+          "info": {
+            "name": "Set DNSSEC Mode On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.resolve1/links/:ifindex/dnssec",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNSSEC(ifindex, mode)`. Mode is `yes`, `no`, or `allow-downgrade`."
+        },
+        {
+          "info": {
+            "name": "Set DNS-over-TLS Mode On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.resolve1/links/:ifindex/dns-over-tls",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNSOverTLS(ifindex, mode)`. Mode is `yes`, `no`, or `opportunistic`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

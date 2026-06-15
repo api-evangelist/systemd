@@ -1,0 +1,238 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd Varlink Interfaces (io.systemd.*)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Describe Manager State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Manager/Describe"
+          },
+          "docs": "Calls `io.systemd.Manager.Describe` on PID 1's varlink socket. Returns the manager's runtime state (architecture, virtualization, version, features, tainted, timestamps)."
+        },
+        {
+          "info": {
+            "name": "List All Units",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Manager/ListUnits"
+          },
+          "docs": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Unit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Describe A Single Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Unit/Describe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "UserDatabase",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up A User Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.UserDatabase/GetUserRecord",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec."
+        },
+        {
+          "info": {
+            "name": "Look Up A Group Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.UserDatabase/GetGroupRecord",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetGroupRecord`."
+        },
+        {
+          "info": {
+            "name": "Look Up Group Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.UserDatabase/GetMemberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetMemberships`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Resolve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve A Hostname (Varlink)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Resolve/ResolveHostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credentials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Encrypt A Credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Credentials/Encrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Credentials.Encrypt`. Wraps a secret with the system's encrypted-credentials key (TPM2 or host) for use as a `LoadCredentialEncrypted=` unit credential."
+        },
+        {
+          "info": {
+            "name": "Decrypt A Credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.Credentials/Decrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Credentials.Decrypt`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PCR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extend A TPM2 PCR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.PCRExtend/Extend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.PCRExtend.Extend`. Extends the named PCR with the supplied data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Boot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Boot Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.BootControl/ListBootEntries"
+          },
+          "docs": "Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Machine Images (Varlink)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "varlink://run/systemd/io.systemd/io.systemd.MachineImage/List"
+          },
+          "docs": "Calls `io.systemd.MachineImage.List`. JSON-native equivalent of machined's ListImages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

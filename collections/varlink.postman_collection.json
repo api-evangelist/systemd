@@ -1,0 +1,1203 @@
+{
+  "item": [
+    {
+      "id": "847dac5b-96bc-4dcc-af33-f4344b1db725",
+      "name": "Manager",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d415c03-de2c-49cf-a278-899472525745",
+          "name": "Describe Manager State",
+          "request": {
+            "name": "Describe Manager State",
+            "description": {
+              "content": "Calls `io.systemd.Manager.Describe` on PID 1's varlink socket. Returns the manager's runtime state (architecture, virtualization, version, features, tainted, timestamps).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "Describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6097f52-3237-4721-9d2c-bd106c9aa985",
+              "name": "Manager description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "Describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf0ab2d0-d1d1-4b61-9afe-2e79fdaa7a5b",
+          "name": "List All Units",
+          "request": {
+            "name": "List All Units",
+            "description": {
+              "content": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "ListUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28206127-8b63-4d6b-9f3c-ea747a1fbfcb",
+              "name": "Streamed unit records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "ListUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  {\n    \"key_0\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9f9e2242-6d60-48ad-8b16-d81c61348482",
+      "name": "Unit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47fa1180-1fbc-46f3-b813-8d7a8987844c",
+          "name": "List All Units",
+          "request": {
+            "name": "List All Units",
+            "description": {
+              "content": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "ListUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8af43cf0-b4ed-4dc3-8f91-ce0b15650f3e",
+              "name": "Streamed unit records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "ListUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": false,\n    \"key_1\": 7969.017403179908\n  },\n  {\n    \"key_0\": 6199,\n    \"key_1\": 7944.787772762484\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82df6933-55d7-418d-ad42-21d51958a2e6",
+          "name": "Describe A Single Unit",
+          "request": {
+            "name": "Describe A Single Unit",
+            "description": {
+              "content": "Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Unit",
+                "Describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17fdda0e-24fe-44c5-aa5c-b78cb082eef6",
+              "name": "Unit description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Unit",
+                    "Describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "26d84d80-00a2-433d-a1b1-64d3a8c2fffe",
+      "name": "UserDatabase",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a132748-53a2-4ff7-9a4d-126ea9e02b29",
+          "name": "Look Up A User Record",
+          "request": {
+            "name": "Look Up A User Record",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetUserRecord"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"uid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c468257-7919-4a21-9c30-d1d3da60061a",
+              "name": "JSON User Record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetUserRecord"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"uid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"record\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"incomplete\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3628ea3-54fc-4bae-ada5-a8441940f7d4",
+          "name": "Look Up A Group Record",
+          "request": {
+            "name": "Look Up A Group Record",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetGroupRecord`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetGroupRecord"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupName\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bad13da1-aac3-4e99-b116-4268240c7ae5",
+              "name": "JSON Group Record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetGroupRecord"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "109b0132-4abc-4d52-9fb4-7ec390e286b3",
+          "name": "Look Up Group Memberships",
+          "request": {
+            "name": "Look Up Group Memberships",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetMemberships`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetMemberships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"groupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f994e0d-3f6e-483a-a5ca-7ff4964cf10f",
+              "name": "Memberships.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetMemberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"groupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"userName\": \"string\",\n    \"groupName\": \"string\"\n  },\n  {\n    \"userName\": \"string\",\n    \"groupName\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6301b10b-f090-4636-87c8-4aa40a024ff5",
+      "name": "Resolve",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ae58f74-cfdf-4829-b698-d6add4ca4d1b",
+          "name": "Resolve A Hostname (Varlink)",
+          "request": {
+            "name": "Resolve A Hostname (Varlink)",
+            "description": {
+              "content": "Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Resolve",
+                "ResolveHostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": \"<integer>\",\n  \"family\": \"<integer>\",\n  \"flags\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5380a6a5-23cf-4378-883a-2ec6a52151b7",
+              "name": "Resolved addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Resolve",
+                    "ResolveHostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": \"<integer>\",\n  \"family\": \"<integer>\",\n  \"flags\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "550dc78b-9c85-444e-9912-af14ab57ba28",
+      "name": "Credentials",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78a9d62d-728b-4800-864a-512bf8e5f898",
+          "name": "Encrypt A Credential",
+          "request": {
+            "name": "Encrypt A Credential",
+            "description": {
+              "content": "Calls `io.systemd.Credentials.Encrypt`. Wraps a secret with the system's encrypted-credentials key (TPM2 or host) for use as a `LoadCredentialEncrypted=` unit credential.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Credentials",
+                "Encrypt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<string>\",\n  \"name\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"notAfter\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "225c0792-0d16-4a85-bda4-6549bf39eb18",
+              "name": "Encrypted blob.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Credentials",
+                    "Encrypt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<string>\",\n  \"name\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"notAfter\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blob\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9ad7d48-b277-4fe6-91e0-45ec7e385d1d",
+          "name": "Decrypt A Credential",
+          "request": {
+            "name": "Decrypt A Credential",
+            "description": {
+              "content": "Calls `io.systemd.Credentials.Decrypt`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Credentials",
+                "Decrypt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blob\": \"<string>\",\n  \"name\": \"<string>\",\n  \"timestamp\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8518496d-adc2-4ff2-8114-7c07db13ae50",
+              "name": "Decrypted plaintext.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Credentials",
+                    "Decrypt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blob\": \"<string>\",\n  \"name\": \"<string>\",\n  \"timestamp\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9fe9260d-35ec-427d-96eb-312dfebeda0c",
+      "name": "PCR",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ceabee0-53ee-445d-834a-872c62fd9540",
+          "name": "Extend A TPM2 PCR",
+          "request": {
+            "name": "Extend A TPM2 PCR",
+            "description": {
+              "content": "Calls `io.systemd.PCRExtend.Extend`. Extends the named PCR with the supplied data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.PCRExtend",
+                "Extend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pcr\": \"<integer>\",\n  \"data\": \"<string>\",\n  \"banks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc4d99ef-3e42-4459-830a-29fc7fadb936",
+              "name": "PCR extended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.PCRExtend",
+                    "Extend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pcr\": \"<integer>\",\n  \"data\": \"<string>\",\n  \"banks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "80a69d4c-0797-411c-a2c8-0b08632868fc",
+      "name": "Boot",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "650f5436-1614-4fb1-b942-4641727f053d",
+          "name": "List Boot Entries",
+          "request": {
+            "name": "List Boot Entries",
+            "description": {
+              "content": "Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.BootControl",
+                "ListBootEntries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f59c71f5-a9a8-492e-ba60-4ce68678c85e",
+              "name": "Array of boot entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.BootControl",
+                    "ListBootEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": false,\n    \"key_1\": 7969.017403179908\n  },\n  {\n    \"key_0\": 6199,\n    \"key_1\": 7944.787772762484\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3f307955-445b-40d6-89a5-5a10b17a32b5",
+      "name": "Image",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "343cb648-2d60-412d-ae1b-84dca2f1c525",
+          "name": "List Machine Images (Varlink)",
+          "request": {
+            "name": "List Machine Images (Varlink)",
+            "description": {
+              "content": "Calls `io.systemd.MachineImage.List`. JSON-native equivalent of machined's ListImages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.MachineImage",
+                "List"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78b90617-dc2e-42d8-80c8-a8be60046477",
+              "name": "Array of image records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.MachineImage",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": false,\n    \"key_1\": 7969.017403179908\n  },\n  {\n    \"key_0\": 6199,\n    \"key_1\": 7944.787772762484\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "varlink://run/systemd/io.systemd",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b768e11b-1a7c-46ab-97c3-8be7c42f594b",
+    "name": "systemd Varlink Interfaces (io.systemd.*)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact modeling the family of `io.systemd.*` Varlink interfaces\nexposed by systemd daemons through AF_UNIX sockets under `/run/systemd/io.systemd.*`. Varlink\nis a self-describing, JSON-line IPC protocol (single FD, newline-terminated messages); every\ninterface implements `org.varlink.service.GetInterfaceDescription` and `GetInfo`. Callers\ntypically use `varlinkctl call <socket> <method> '<json-args>'`.\n\nInterfaces modeled here are a representative subset. The full catalog of ~39 interfaces is\nlisted in `apis.yml` and includes: `io.systemd.Manager`, `io.systemd.Unit`, `io.systemd.Job`,\n`io.systemd.Login`, `io.systemd.Machine`, `io.systemd.MachineImage`,\n`io.systemd.MachineInstance`, `io.systemd.VirtualMachineInstance`, `io.systemd.Network`,\n`io.systemd.Network.Link`, `io.systemd.Resolve`, `io.systemd.Resolve.Hook`,\n`io.systemd.Resolve.Monitor`, `io.systemd.Journal`, `io.systemd.JournalAccess`,\n`io.systemd.Hostname`, `io.systemd.BootControl`, `io.systemd.Credentials`,\n`io.systemd.FactoryReset`, `io.systemd.Import`, `io.systemd.InstanceMetadata`,\n`io.systemd.AskPassword`, `io.systemd.Metrics`, `io.systemd.ManagedOOM`,\n`io.systemd.MountFileSystem`, `io.systemd.MuteConsole`, `io.systemd.NamespaceResource`,\n`io.systemd.PCRExtend`, `io.systemd.PCRLock`, `io.systemd.Repart`, `io.systemd.Shutdown`,\n`io.systemd.StorageProvider`, `io.systemd.Udev`, `io.systemd.UserDatabase`,\n`io.systemd.oom`, `io.systemd.oom.Prekill`, `io.systemd.service`, `io.systemd.sysext`.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,927 @@
+{
+  "item": [
+    {
+      "id": "d8da52bc-af08-4606-8104-5230bff23dec",
+      "name": "Machines",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "428d3c47-52c8-4254-8b95-e4de623d949a",
+          "name": "List All Registered Machines",
+          "request": {
+            "name": "List All Registered Machines",
+            "description": {
+              "content": "Mirrors `ListMachines()`. Returns (name, class, service, object path) tuples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98a3ddcc-7b05-4318-a944-75b875307f73",
+              "name": "Array of machines.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"class\": \"container\",\n    \"service\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"class\": \"vm\",\n    \"service\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0219dc9-29f7-4027-8069-c7bbc1c44340",
+          "name": "Get A Machine By Name",
+          "request": {
+            "name": "Get A Machine By Name",
+            "description": {
+              "content": "Mirrors `GetMachine(name)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91e0da72-ba55-4295-8258-f0ca5794e595",
+              "name": "Machine object path.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c599b55-3880-4c14-a613-580034091cd7",
+          "name": "Terminate A Machine",
+          "request": {
+            "name": "Terminate A Machine",
+            "description": {
+              "content": "Mirrors `TerminateMachine(name)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name",
+                "terminate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24ea626b-e4bd-420e-9d9c-c6011cdfd45f",
+              "name": "Terminated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name",
+                    "terminate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed6d04de-1629-40e0-a4a0-3337b05f0c59",
+          "name": "Send A Signal To A Machine",
+          "request": {
+            "name": "Send A Signal To A Machine",
+            "description": {
+              "content": "Mirrors `KillMachine(name, who, signal)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name",
+                "kill"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"who\": \"<string>\",\n  \"signal\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7efddb0a-6bee-46db-88db-6be43c9a0343",
+              "name": "Signal sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name",
+                    "kill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"who\": \"<string>\",\n  \"signal\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51ca581f-1305-4b11-9147-79dbf8cd72dd",
+          "name": "Open A Shell Inside A Machine",
+          "request": {
+            "name": "Open A Shell Inside A Machine",
+            "description": {
+              "content": "Mirrors `OpenMachineShell(name, user, path, args, env)`. Returns a PTY FD.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name",
+                "open-shell"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15a21c5d-ddb5-4242-81e7-2048be190c14",
+              "name": "PTY FD info.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name",
+                    "open-shell"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e9bfce-5663-40dd-ad67-26262aaa61f8",
+          "name": "Copy A File Out Of A Machine",
+          "request": {
+            "name": "Copy A File Out Of A Machine",
+            "description": {
+              "content": "Mirrors `CopyFromMachine(name, src, dest)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name",
+                "copy-from"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c59bbc2-42a1-465a-a0e9-1d3d4e23bca4",
+              "name": "Copied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name",
+                    "copy-from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce80e2df-d3de-4207-85f8-7006368e0700",
+          "name": "Copy A File Into A Machine",
+          "request": {
+            "name": "Copy A File Into A Machine",
+            "description": {
+              "content": "Mirrors `CopyToMachine(name, src, dest)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "machines",
+                ":name",
+                "copy-to"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad80c0d2-4ed0-4724-bef8-3afaef3988be",
+              "name": "Copied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "machines",
+                    ":name",
+                    "copy-to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ad0c2a5b-191d-4eb9-bb34-c11f3c167fb8",
+      "name": "Images",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ff9b506-f425-44f5-9e5e-9bbba88b58a7",
+          "name": "List All Machine Images",
+          "request": {
+            "name": "List All Machine Images",
+            "description": {
+              "content": "Mirrors `ListImages()` on the Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53bd5b45-9660-4273-b6fa-a89b055fc161",
+              "name": "Array of images.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"raw\",\n    \"read_only\": false,\n    \"ctime\": 2405,\n    \"mtime\": 5469,\n    \"usage\": 3523,\n    \"object_path\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"block\",\n    \"read_only\": false,\n    \"ctime\": 1926,\n    \"mtime\": 3421,\n    \"usage\": 2370,\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "060f790d-74f6-4058-a9b6-2863523212b3",
+          "name": "Remove A Machine Image",
+          "request": {
+            "name": "Remove A Machine Image",
+            "description": {
+              "content": "Mirrors `RemoveImage(name)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b000291-4c3a-429c-90ac-c40dc0739cc5",
+              "name": "Removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ecee8b8-150a-4b93-a220-7550a0142ee7",
+          "name": "Clone A Machine Image",
+          "request": {
+            "name": "Clone A Machine Image",
+            "description": {
+              "content": "Mirrors `CloneImage(src, dest, read_only)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images",
+                ":name",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dest\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49ffce06-83ef-464c-b568-d392c46c22d1",
+              "name": "Cloned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images",
+                    ":name",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dest\": \"<string>\",\n  \"read_only\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "525bc112-9715-4404-aa3a-216ec3dbb6e6",
+          "name": "Rename A Machine Image",
+          "request": {
+            "name": "Rename A Machine Image",
+            "description": {
+              "content": "Mirrors `RenameImage(src, dest)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images",
+                ":name",
+                "rename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f75a6ab1-bc1c-4bab-bf39-fa38be36b4ef",
+              "name": "Renamed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images",
+                    ":name",
+                    "rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.machine1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "44f28ab2-15af-4847-a7b2-27cf61d7b229",
+    "name": "systemd-machined (org.freedesktop.machine1)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.machine1` D-Bus interface set on the\nsystem bus, exposed by systemd-machined. Tracks local containers and virtual machines\nregistered with the system, lists/inspects/imports machine images, opens shells inside\ncontainers, and copies files in/out across container boundaries.\n",
+      "type": "text/plain"
+    }
+  }
+}

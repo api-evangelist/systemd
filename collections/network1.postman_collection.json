@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "76dfdf8e-6bb5-4d62-86a9-66c5a593b8d6",
+      "name": "Manager",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91ad6435-efed-4d90-a356-43f73eb8a054",
+          "name": "Reload networkd Configuration",
+          "request": {
+            "name": "Reload networkd Configuration",
+            "description": {
+              "content": "Mirrors `Reload()` on Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "reload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afba927d-1a74-4713-b90c-9ca00815b4de",
+              "name": "Reloaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd997343-c35c-40df-bf2c-601d4432d217",
+          "name": "Get Full networkd State Description",
+          "request": {
+            "name": "Get Full networkd State Description",
+            "description": {
+              "content": "Mirrors `Describe()`. Returns a JSON dump of full networkd state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75ee13bd-ca6c-4ede-8760-666794b153d5",
+              "name": "networkd state JSON.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": false,\n  \"key_2\": 9309\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d0df963f-ccd4-496a-80ed-506dd253c8f1",
+      "name": "Links",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e23a455-0384-4a87-b487-184701736868",
+          "name": "List All Network Links",
+          "request": {
+            "name": "List All Network Links",
+            "description": {
+              "content": "Mirrors `ListLinks()`. Returns (ifindex, ifname, object path) tuples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78416623-8676-4776-a504-b356c62218a6",
+              "name": "Array of links.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ifindex\": 1428,\n    \"name\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"ifindex\": 9120,\n    \"name\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "538cabb4-50e7-4e0b-8bb7-148b6bb86212",
+          "name": "Get A Link By ifindex",
+          "request": {
+            "name": "Get A Link By ifindex",
+            "description": {
+              "content": "Mirrors `GetLinkByIndex(ifindex)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f23f1827-4789-42dd-ba29-4de5e7e9a41f",
+              "name": "Link object path.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab9bb413-f109-40cd-a464-c4f5fdac0de0",
+          "name": "Get A Link By Name",
+          "request": {
+            "name": "Get A Link By Name",
+            "description": {
+              "content": "Mirrors `GetLinkByName(name)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                "by-name",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9720503-04b0-4628-ac03-d9801c634171",
+              "name": "Link object path.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    "by-name",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "413a64fc-a315-40f4-9eae-9aae56056381",
+          "name": "Reconfigure A Link",
+          "request": {
+            "name": "Reconfigure A Link",
+            "description": {
+              "content": "Mirrors `ReconfigureLink(ifindex)` — re-applies the matching .network file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "reconfigure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22a102b2-85f4-47cc-9e62-a191ce9e8796",
+              "name": "Reconfigured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "reconfigure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba5e6acd-fa1a-407b-9175-a13537db05ca",
+          "name": "Force DHCP Renew",
+          "request": {
+            "name": "Force DHCP Renew",
+            "description": {
+              "content": "Mirrors `RenewLink(ifindex)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "renew"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb2da7d1-7618-43b2-89ab-d571bdbe5051",
+              "name": "Renewal triggered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "renew"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b0a1417-2ed7-4a8d-838a-e641eed17c5a",
+          "name": "Set DNS Servers For A Link",
+          "request": {
+            "name": "Set DNS Servers For A Link",
+            "description": {
+              "content": "Mirrors `SetLinkDNS(ifindex, dns)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "dns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66cedf7c-3f22-4d98-8874-2ae91f80e61f",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "dns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"servers\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f49818f3-8fdb-4c01-a4a9-8037d62dccfe",
+          "name": "Set Search Domains For A Link",
+          "request": {
+            "name": "Set Search Domains For A Link",
+            "description": {
+              "content": "Mirrors `SetLinkDomains(ifindex, domains)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domains\": [\n    {\n      \"domain\": \"<string>\",\n      \"search_only\": \"<boolean>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"search_only\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d06eccef-dea0-4995-b53c-e1d4ed188647",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domains\": [\n    {\n      \"domain\": \"<string>\",\n      \"search_only\": \"<boolean>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"search_only\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.network1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f082a7b0-5e1f-4ac0-8287-103c306d33c7",
+    "name": "systemd-networkd (org.freedesktop.network1)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.network1` D-Bus interface set on the\nsystem bus, exposed by systemd-networkd. Provides per-link state introspection plus methods to\nreconfigure, force-renew DHCP, set DNS/NTP/domains, and reload configuration.\n\nBus name: `org.freedesktop.network1`. Root: `/org/freedesktop/network1`.\n",
+      "type": "text/plain"
+    }
+  }
+}

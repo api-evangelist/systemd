@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "8f7964f8-5664-4adf-92d5-51f3489e369a",
+      "name": "Resolution",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e212e9cf-d2ba-4cb0-99e4-40d14d22ca2d",
+          "name": "Resolve A Hostname To Addresses",
+          "request": {
+            "name": "Resolve A Hostname To Addresses",
+            "description": {
+              "content": "Mirrors `ResolveHostname(ifindex, name, family, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": 0,\n  \"family\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aec86f27-1244-46bc-b12a-26d8aa608e38",
+              "name": "Resolved addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": 0,\n  \"family\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ifindex\": 1640,\n    \"family\": 5142,\n    \"address\": [\n      4713,\n      2542\n    ]\n  },\n  {\n    \"ifindex\": 8718,\n    \"family\": 5246,\n    \"address\": [\n      729,\n      9202\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03119a09-8b81-46ea-815c-f6458f0c9575",
+          "name": "Resolve An Address To Hostnames",
+          "request": {
+            "name": "Resolve An Address To Hostnames",
+            "description": {
+              "content": "Mirrors `ResolveAddress(ifindex, family, address, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"family\": \"<integer>\",\n  \"address\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "920a0ccc-cd37-440a-81bf-0184ff00aadf",
+              "name": "Resolved names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"family\": \"<integer>\",\n  \"address\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ifindex\": 1191,\n    \"name\": \"string\"\n  },\n  {\n    \"ifindex\": 5641,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "889abc30-9924-4851-9ba0-54ea495fd4fa",
+          "name": "Resolve A Generic DNS Resource Record",
+          "request": {
+            "name": "Resolve A Generic DNS Resource Record",
+            "description": {
+              "content": "Mirrors `ResolveRecord(ifindex, name, class, type, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"class\": \"<integer>\",\n  \"type\": \"<integer>\",\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ccf7752-e481-4158-9058-18ba5d9a4b94",
+              "name": "Array of raw RRs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"class\": \"<integer>\",\n  \"type\": \"<integer>\",\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84c1ab0b-0ce8-4f35-86bb-ad2194471b18",
+          "name": "Resolve A DNS-SD/SRV Service",
+          "request": {
+            "name": "Resolve A DNS-SD/SRV Service",
+            "description": {
+              "content": "Mirrors `ResolveService(ifindex, name, type, domain, family, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "service"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ifindex\": 0,\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"family\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "497c5448-61a4-4741-b953-27df1507e448",
+              "name": "Service records with TXT data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "service"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ifindex\": 0,\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"family\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "238ad234-82ab-4d92-9132-489b6bbd2d31",
+      "name": "Configuration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14c1d1da-697f-4c5f-9800-b2c00b235326",
+          "name": "Set DNS Servers On A Link",
+          "request": {
+            "name": "Set DNS Servers On A Link",
+            "description": {
+              "content": "Mirrors `SetLinkDNS(ifindex, servers)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "dns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"servers\": [\n    {\n      \"family\": \"<integer>\",\n      \"address\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"family\": \"<integer>\",\n      \"address\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83940565-ff6b-4df4-ab3b-996cc61647ac",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "dns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"servers\": [\n    {\n      \"family\": \"<integer>\",\n      \"address\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"family\": \"<integer>\",\n      \"address\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a687c738-8d72-44f6-b036-4f2e67791a50",
+          "name": "Set DNSSEC Mode On A Link",
+          "request": {
+            "name": "Set DNSSEC Mode On A Link",
+            "description": {
+              "content": "Mirrors `SetLinkDNSSEC(ifindex, mode)`. Mode is `yes`, `no`, or `allow-downgrade`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "dnssec"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3634c754-986e-4407-a8b0-de648a5ef82e",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "dnssec"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c62fc52-5653-47eb-9a77-148e110cf113",
+          "name": "Set DNS-over-TLS Mode On A Link",
+          "request": {
+            "name": "Set DNS-over-TLS Mode On A Link",
+            "description": {
+              "content": "Mirrors `SetLinkDNSOverTLS(ifindex, mode)`. Mode is `yes`, `no`, or `opportunistic`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "links",
+                ":ifindex",
+                "dns-over-tls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ifindex",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5194d8d5-3143-4840-91fb-f40093ae7e20",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "links",
+                    ":ifindex",
+                    "dns-over-tls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ifindex",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1caa559-de20-40ac-bc42-3e6af0916a59",
+      "name": "Cache",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c656cb9-bb8c-476f-8fad-b9e9db3a0a60",
+          "name": "Flush All DNS Caches",
+          "request": {
+            "name": "Flush All DNS Caches",
+            "description": {
+              "content": "Mirrors `FlushCaches()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cache",
+                "flush"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0de9279a-f572-467f-be9e-e80c4b94e676",
+              "name": "Cache flushed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cache",
+                    "flush"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9e3e44c-e027-49aa-aaa4-44245729cba6",
+          "name": "Reset Server Feature Detection",
+          "request": {
+            "name": "Reset Server Feature Detection",
+            "description": {
+              "content": "Mirrors `ResetServerFeatures()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cache",
+                "reset-server-features"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd34b05a-c3c4-4cc3-9b3a-d21f9bf29168",
+              "name": "Reset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cache",
+                    "reset-server-features"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.resolve1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c662ce75-ccc3-4ea5-aaa9-8a88037a1e48",
+    "name": "systemd-resolved (org.freedesktop.resolve1)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.resolve1` D-Bus interface set on the\nsystem bus. systemd-resolved provides hostname/address/record/service resolution using DNS\n(incl. DNS-over-TLS), Multicast DNS, and LLMNR, plus DNSSEC validation and per-link DNS\nconfiguration.\n",
+      "type": "text/plain"
+    }
+  }
+}

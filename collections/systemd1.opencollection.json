@@ -1,0 +1,465 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd Manager (org.freedesktop.systemd1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Units",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Loaded Units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/units"
+          },
+          "docs": "Returns an array of all currently loaded units. Mirrors `ListUnits()` on the Manager."
+        },
+        {
+          "info": {
+            "name": "Get A Loaded Unit By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Unit name (e.g. `nginx.service`)."
+              }
+            ]
+          },
+          "docs": "Returns the D-Bus object path of an already-loaded unit. Mirrors `GetUnit(name)`."
+        },
+        {
+          "info": {
+            "name": "Load A Unit From Disk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/load",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Forces the Manager to load the named unit and returns its object path. Mirrors `LoadUnit(name)`."
+        },
+        {
+          "info": {
+            "name": "Start A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/start",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueues a start job for the unit. Mirrors `StartUnit(name, mode)`. Mode is one of `replace`, `fail`, `isolate`, `ignore-dependencies`, `ignore-requirements`."
+        },
+        {
+          "info": {
+            "name": "Stop A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/stop",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enqueues a stop job. Mirrors `StopUnit(name, mode)`."
+        },
+        {
+          "info": {
+            "name": "Restart A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/restart",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stops then starts. Mirrors `RestartUnit(name, mode)`."
+        },
+        {
+          "info": {
+            "name": "Reload A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/reload",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Asks a unit to reload its configuration (e.g. SIGHUP for services). Mirrors `ReloadUnit(name, mode)`."
+        },
+        {
+          "info": {
+            "name": "Reload Or Restart A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/reload-or-restart",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reloads if supported, otherwise restarts. Mirrors `ReloadOrRestartUnit(name, mode)`."
+        },
+        {
+          "info": {
+            "name": "Send A Signal To A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/kill",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a UNIX signal to the unit's main, control, or all processes. Mirrors `KillUnit(name, who, signal)`."
+        },
+        {
+          "info": {
+            "name": "Freeze A Unit's Cgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/freeze",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Suspends all processes in the unit's cgroup using the cgroup v2 freezer. Mirrors `FreezeUnit(name)`."
+        },
+        {
+          "info": {
+            "name": "Thaw A Unit's Cgroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/thaw",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resumes a frozen cgroup. Mirrors `ThawUnit(name)`."
+        },
+        {
+          "info": {
+            "name": "Get All Properties Of A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/properties",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the full property bag for a unit. Equivalent to `org.freedesktop.DBus.Properties.GetAll`."
+        },
+        {
+          "info": {
+            "name": "Set Runtime Properties On A Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "dbus://system/org.freedesktop.systemd1/units/:name/properties",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets one or more properties at runtime. Mirrors `SetUnitProperties(name, runtime, properties)`. Used for live cgroup resource changes (CPUWeight, MemoryMax, etc.)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cgroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start A Transient Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/units/transient",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates and starts a new transient unit (typically a scope or service) with the supplied properties. Mirrors `StartTransientUnit(name, mode, properties, aux)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pending And Running Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/jobs"
+          },
+          "docs": "Mirrors `ListJobs()`."
+        },
+        {
+          "info": {
+            "name": "Cancel A Pending Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/jobs/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `CancelJob(id)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reload Manager Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/reload"
+          },
+          "docs": "Reloads all unit files from disk without restarting services. Mirrors `Reload()`."
+        },
+        {
+          "info": {
+            "name": "Reexecute The Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/reexecute"
+          },
+          "docs": "Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`."
+        },
+        {
+          "info": {
+            "name": "Enable Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`."
+        },
+        {
+          "info": {
+            "name": "Disable Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`."
+        },
+        {
+          "info": {
+            "name": "Mask Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/mask",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`."
+        },
+        {
+          "info": {
+            "name": "Unmask Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/unmask"
+          },
+          "docs": "Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`."
+        },
+        {
+          "info": {
+            "name": "Set The Default Boot Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/set-default-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetDefaultTarget(target, force)`."
+        },
+        {
+          "info": {
+            "name": "Get The Default Boot Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/default-target"
+          },
+          "docs": "Mirrors `GetDefaultTarget()`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Manager Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.systemd1/manager/snapshot"
+          },
+          "docs": "Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

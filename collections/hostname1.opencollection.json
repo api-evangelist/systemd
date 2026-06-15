@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hostname",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get The Current Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/hostname"
+          },
+          "docs": "Returns the transient hostname (or static if not set)."
+        },
+        {
+          "info": {
+            "name": "Set The Transient Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/hostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetHostname(name, interactive)`."
+        },
+        {
+          "info": {
+            "name": "Set The Static Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/static-hostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetStaticHostname(name, interactive)`. Persisted to /etc/hostname."
+        },
+        {
+          "info": {
+            "name": "Set The Pretty Hostname",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/pretty-hostname"
+          },
+          "docs": "Mirrors `SetPrettyHostname(name, interactive)`. Free-form UTF-8 name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machine Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set The Chassis Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/chassis",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetChassis(chassis, interactive)`. One of `desktop`, `laptop`, `server`, `tablet`, `handset`, `embedded`, `vm`, `container`, `convertible`, `watch`."
+        },
+        {
+          "info": {
+            "name": "Set The Deployment Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/deployment"
+          },
+          "docs": "Mirrors `SetDeployment(deployment, interactive)`. Free-form tag like `production`/`staging`."
+        },
+        {
+          "info": {
+            "name": "Set The Location String",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/location"
+          },
+          "docs": "Mirrors `SetLocation(location, interactive)`."
+        },
+        {
+          "info": {
+            "name": "Describe All Hostname/Machine-Info Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/describe"
+          },
+          "docs": "Mirrors `Describe()`. Returns a JSON dump of every hostname property."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-logind (org.freedesktop.login1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Active Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/sessions"
+          },
+          "docs": "Mirrors `ListSessions()`. Returns an array of (session id, uid, user name, seat id, object path)."
+        },
+        {
+          "info": {
+            "name": "Get A Session By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `GetSession(id)`. Returns the session object path."
+        },
+        {
+          "info": {
+            "name": "Terminate A Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/sessions/:id/terminate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `TerminateSession(id)`. Kills all processes in the session's cgroup."
+        },
+        {
+          "info": {
+            "name": "Request Session Lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/sessions/:id/lock",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `LockSession(id)`. Asks the session's lock UI to engage."
+        },
+        {
+          "info": {
+            "name": "Request Session Unlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/sessions/:id/unlock",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `UnlockSession(id)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Logged-In Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/users"
+          },
+          "docs": "Mirrors `ListUsers()`."
+        },
+        {
+          "info": {
+            "name": "Get A User By UID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/users/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `GetUser(uid)`."
+        },
+        {
+          "info": {
+            "name": "Terminate A User's Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/users/:uid/terminate",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `TerminateUser(uid)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Seats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Seats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/seats"
+          },
+          "docs": "Mirrors `ListSeats()`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Power",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Power Off The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/power/poweroff",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `PowerOff(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Reboot The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/power/reboot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Reboot(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Suspend The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/power/suspend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Suspend(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Hibernate The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/power/hibernate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Hibernate(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Hybrid Sleep The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/power/hybrid-sleep"
+          },
+          "docs": "Mirrors `HybridSleep(interactive)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inhibitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Inhibitor Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.login1/inhibitors"
+          },
+          "docs": "Mirrors `ListInhibitors()`."
+        },
+        {
+          "info": {
+            "name": "Acquire An Inhibitor Lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.login1/inhibitors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

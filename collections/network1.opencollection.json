@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-networkd (org.freedesktop.network1)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Network Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.network1/links"
+          },
+          "docs": "Mirrors `ListLinks()`. Returns (ifindex, ifname, object path) tuples."
+        },
+        {
+          "info": {
+            "name": "Get A Link By ifindex",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.network1/links/:ifindex",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `GetLinkByIndex(ifindex)`."
+        },
+        {
+          "info": {
+            "name": "Get A Link By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.network1/links/by-name/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `GetLinkByName(name)`."
+        },
+        {
+          "info": {
+            "name": "Reconfigure A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.network1/links/:ifindex/reconfigure",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `ReconfigureLink(ifindex)` — re-applies the matching .network file."
+        },
+        {
+          "info": {
+            "name": "Force DHCP Renew",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.network1/links/:ifindex/renew",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `RenewLink(ifindex)`."
+        },
+        {
+          "info": {
+            "name": "Set DNS Servers For A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.network1/links/:ifindex/dns",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNS(ifindex, dns)`."
+        },
+        {
+          "info": {
+            "name": "Set Search Domains For A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.network1/links/:ifindex/domains",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDomains(ifindex, domains)`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reload networkd Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.network1/manager/reload"
+          },
+          "docs": "Mirrors `Reload()` on Manager."
+        },
+        {
+          "info": {
+            "name": "Get Full networkd State Description",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.network1/manager/describe"
+          },
+          "docs": "Mirrors `Describe()`. Returns a JSON dump of full networkd state."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
