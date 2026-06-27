@@ -365,49 +365,49 @@ common:
     url: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
   - type: Mastodon
     url: https://mastodon.social/@pid_eins
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/systemctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/journalctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/networkctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/resolvectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/loginctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/machinectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/timedatectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/localectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/busctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/varlinkctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/bootctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/homectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/coredumpctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/oomctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/portablectl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/importctl.html
-  - type: Tool
+  - type: Tools
     url: https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html
-  - type: SDK
+  - type: SDKs
     url: https://www.freedesktop.org/software/systemd/man/latest/sd-bus.html
-  - type: SDK
+  - type: SDKs
     url: https://www.freedesktop.org/software/systemd/man/latest/sd-varlink.html
-  - type: SDK
+  - type: SDKs
     url: https://www.freedesktop.org/software/systemd/man/latest/sd-journal.html
-  - type: SDK
+  - type: SDKs
     url: https://www.freedesktop.org/software/systemd/man/latest/sd-event.html
   - type: Vocabulary
     url: vocabulary/systemd-vocabulary.yml
