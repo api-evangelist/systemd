@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: systemd.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 28 13:41:25 2026 GMT
+  hsts: false
+- host: www.freedesktop.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 14 06:19:11 2026 GMT
+  hsts: false
+domains:
+- domain: systemd.io
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+- domain: freedesktop.org
+  dnssec: false
+  caa:
+  - 0 issue "globalsign.com"
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: none
