@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot UserDatabase API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: UserDatabase
+paths:
+  /io.systemd.UserDatabase/GetUserRecord:
+    post:
+      tags:
+      - UserDatabase
+      operationId: UserDatabaseGetUserRecord
+      summary: Look Up A User Record
+      description: Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                uid:
+                  type: integer
+                service:
+                  type: string
+      responses:
+        '200':
+          description: JSON User Record.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  record:
+                    type: object
+                    additionalProperties: true
+                  incomplete:
+                    type: boolean
+  /io.systemd.UserDatabase/GetGroupRecord:
+    post:
+      tags:
+      - UserDatabase
+      operationId: UserDatabaseGetGroupRecord
+      summary: Look Up A Group Record
+      description: Calls `io.systemd.UserDatabase.GetGroupRecord`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groupName:
+                  type: string
+                gid:
+                  type: integer
+                service:
+                  type: string
+      responses:
+        '200':
+          description: JSON Group Record.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /io.systemd.UserDatabase/GetMemberships:
+    post:
+      tags:
+      - UserDatabase
+      operationId: UserDatabaseGetMemberships
+      summary: Look Up Group Memberships
+      description: Calls `io.systemd.UserDatabase.GetMemberships`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                groupName:
+                  type: string
+      responses:
+        '200':
+          description: Memberships.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userName:
+                      type: string
+                    groupName:
+                      type: string

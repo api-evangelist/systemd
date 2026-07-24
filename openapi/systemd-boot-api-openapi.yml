@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Boot
+paths:
+  /io.systemd.BootControl/ListBootEntries:
+    post:
+      tags:
+      - Boot
+      operationId: BootControlListEntries
+      summary: List Boot Entries
+      description: Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries.
+      responses:
+        '200':
+          description: Array of boot entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true

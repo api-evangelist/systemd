@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Resolve API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Resolve
+paths:
+  /io.systemd.Resolve/ResolveHostname:
+    post:
+      tags:
+      - Resolve
+      operationId: VarlinkResolveHostname
+      summary: Resolve A Hostname (Varlink)
+      description: Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                ifindex:
+                  type: integer
+                name:
+                  type: string
+                family:
+                  type: integer
+                flags:
+                  type: integer
+      responses:
+        '200':
+          description: Resolved addresses.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

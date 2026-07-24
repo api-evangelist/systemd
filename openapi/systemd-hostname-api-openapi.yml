@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Hostname API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Hostname
+paths:
+  /hostname:
+    get:
+      tags:
+      - Hostname
+      operationId: GetHostname
+      summary: Get The Current Hostname
+      description: Returns the transient hostname (or static if not set).
+      responses:
+        '200':
+          description: Hostname.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hostname:
+                    type: string
+    put:
+      tags:
+      - Hostname
+      operationId: SetHostname
+      summary: Set The Transient Hostname
+      description: Mirrors `SetHostname(name, interactive)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostname:
+                  type: string
+                interactive:
+                  type: boolean
+      responses:
+        '204':
+          description: Updated.
+  /static-hostname:
+    put:
+      tags:
+      - Hostname
+      operationId: SetStaticHostname
+      summary: Set The Static Hostname
+      description: Mirrors `SetStaticHostname(name, interactive)`. Persisted to /etc/hostname.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostname:
+                  type: string
+                interactive:
+                  type: boolean
+      responses:
+        '204':
+          description: Updated.
+  /pretty-hostname:
+    put:
+      tags:
+      - Hostname
+      operationId: SetPrettyHostname
+      summary: Set The Pretty Hostname
+      description: Mirrors `SetPrettyHostname(name, interactive)`. Free-form UTF-8 name.
+      responses:
+        '204':
+          description: Updated.

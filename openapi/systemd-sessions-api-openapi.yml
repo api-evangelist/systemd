@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Sessions API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Sessions
+paths:
+  /sessions:
+    get:
+      tags:
+      - Sessions
+      operationId: ListSessions
+      summary: List All Active Sessions
+      description: Mirrors `ListSessions()`. Returns an array of (session id, uid, user name, seat id, object path).
+      responses:
+        '200':
+          description: Array of sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+  /sessions/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Sessions
+      operationId: GetSession
+      summary: Get A Session By ID
+      description: Mirrors `GetSession(id)`. Returns the session object path.
+      responses:
+        '200':
+          description: Session object path.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  path:
+                    type: string
+  /sessions/{id}/terminate:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Sessions
+      operationId: TerminateSession
+      summary: Terminate A Session
+      description: Mirrors `TerminateSession(id)`. Kills all processes in the session's cgroup.
+      responses:
+        '204':
+          description: Session terminated.
+  /sessions/{id}/lock:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Sessions
+      operationId: LockSession
+      summary: Request Session Lock
+      description: Mirrors `LockSession(id)`. Asks the session's lock UI to engage.
+      responses:
+        '204':
+          description: Lock requested.
+  /sessions/{id}/unlock:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Sessions
+      operationId: UnlockSession
+      summary: Request Session Unlock
+      description: Mirrors `UnlockSession(id)`.
+      responses:
+        '204':
+          description: Unlock requested.
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        session_id:
+          type: string
+        uid:
+          type: integer
+        user_name:
+          type: string
+        seat_id:
+          type: string
+        object_path:
+          type: string

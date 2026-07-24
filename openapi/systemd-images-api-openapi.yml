@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Images API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Images
+paths:
+  /images:
+    get:
+      tags:
+      - Images
+      operationId: ListImages
+      summary: List All Machine Images
+      description: Mirrors `ListImages()` on the Manager.
+      responses:
+        '200':
+          description: Array of images.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+  /images/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      tags:
+      - Images
+      operationId: RemoveImage
+      summary: Remove A Machine Image
+      description: Mirrors `RemoveImage(name)`.
+      responses:
+        '204':
+          description: Removed.
+  /images/{name}/clone:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Images
+      operationId: CloneImage
+      summary: Clone A Machine Image
+      description: Mirrors `CloneImage(src, dest, read_only)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dest:
+                  type: string
+                read_only:
+                  type: boolean
+      responses:
+        '204':
+          description: Cloned.
+  /images/{name}/rename:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Images
+      operationId: RenameImage
+      summary: Rename A Machine Image
+      description: Mirrors `RenameImage(src, dest)`.
+      responses:
+        '204':
+          description: Renamed.
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - directory
+          - subvolume
+          - raw
+          - block
+        read_only:
+          type: boolean
+        ctime:
+          type: integer
+        mtime:
+          type: integer
+        usage:
+          type: integer
+        object_path:
+          type: string

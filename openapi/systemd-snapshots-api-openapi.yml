@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Snapshots API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Snapshots
+  description: System state introspection.
+paths:
+  /manager/snapshot:
+    get:
+      tags:
+      - Snapshots
+      operationId: GetManagerProperties
+      summary: Get Manager Properties
+      description: Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.).
+      responses:
+        '200':
+          description: Property map.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true

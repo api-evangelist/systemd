@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Users API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Users
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      operationId: ListUsers
+      summary: List Logged-In Users
+      description: Mirrors `ListUsers()`.
+      responses:
+        '200':
+          description: Array of (uid
+          name: null
+          object path).: null
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/{uid}:
+    parameters:
+    - name: uid
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      tags:
+      - Users
+      operationId: GetUser
+      summary: Get A User By UID
+      description: Mirrors `GetUser(uid)`.
+      responses:
+        '200':
+          description: User object path.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  path:
+                    type: string
+  /users/{uid}/terminate:
+    parameters:
+    - name: uid
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      tags:
+      - Users
+      operationId: TerminateUser
+      summary: Terminate A User's Sessions
+      description: Mirrors `TerminateUser(uid)`.
+      responses:
+        '204':
+          description: Terminated.
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        uid:
+          type: integer
+        name:
+          type: string
+        object_path:
+          type: string

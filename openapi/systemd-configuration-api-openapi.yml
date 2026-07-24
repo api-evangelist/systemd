@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Configuration API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Configuration
+paths:
+  /links/{ifindex}/dns:
+    parameters:
+    - name: ifindex
+      in: path
+      required: true
+      schema:
+        type: integer
+    put:
+      tags:
+      - Configuration
+      operationId: SetLinkDNS
+      summary: Set DNS Servers On A Link
+      description: Mirrors `SetLinkDNS(ifindex, servers)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                servers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      family:
+                        type: integer
+                      address:
+                        type: array
+                        items:
+                          type: integer
+      responses:
+        '204':
+          description: Updated.
+  /links/{ifindex}/dnssec:
+    parameters:
+    - name: ifindex
+      in: path
+      required: true
+      schema:
+        type: integer
+    put:
+      tags:
+      - Configuration
+      operationId: SetLinkDNSSEC
+      summary: Set DNSSEC Mode On A Link
+      description: Mirrors `SetLinkDNSSEC(ifindex, mode)`. Mode is `yes`, `no`, or `allow-downgrade`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                  - true
+                  - false
+                  - allow-downgrade
+      responses:
+        '204':
+          description: Updated.
+  /links/{ifindex}/dns-over-tls:
+    parameters:
+    - name: ifindex
+      in: path
+      required: true
+      schema:
+        type: integer
+    put:
+      tags:
+      - Configuration
+      operationId: SetLinkDNSOverTLS
+      summary: Set DNS-over-TLS Mode On A Link
+      description: Mirrors `SetLinkDNSOverTLS(ifindex, mode)`. Mode is `yes`, `no`, or `opportunistic`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum:
+                  - true
+                  - false
+                  - opportunistic
+      responses:
+        '204':
+          description: Updated.
+  /manager/reload:
+    post:
+      tags:
+      - Configuration
+      operationId: Reload
+      summary: Reload Manager Configuration
+      description: Reloads all unit files from disk without restarting services. Mirrors `Reload()`.
+      responses:
+        '204':
+          description: Reloaded.
+  /manager/reexecute:
+    post:
+      tags:
+      - Configuration
+      operationId: Reexecute
+      summary: Reexecute The Manager
+      description: Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`.
+      responses:
+        '204':
+          description: Reexecuted.
+  /manager/enable:
+    post:
+      tags:
+      - Configuration
+      operationId: EnableUnitFiles
+      summary: Enable Unit Files
+      description: Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Carries-install info and change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/disable:
+    post:
+      tags:
+      - Configuration
+      operationId: DisableUnitFiles
+      summary: Disable Unit Files
+      description: Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/mask:
+    post:
+      tags:
+      - Configuration
+      operationId: MaskUnitFiles
+      summary: Mask Unit Files
+      description: Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/unmask:
+    post:
+      tags:
+      - Configuration
+      operationId: UnmaskUnitFiles
+      summary: Unmask Unit Files
+      description: Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`.
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/set-default-target:
+    post:
+      tags:
+      - Configuration
+      operationId: SetDefaultTarget
+      summary: Set The Default Boot Target
+      description: Mirrors `SetDefaultTarget(target, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: string
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/default-target:
+    get:
+      tags:
+      - Configuration
+      operationId: GetDefaultTarget
+      summary: Get The Default Boot Target
+      description: Mirrors `GetDefaultTarget()`.
+      responses:
+        '200':
+          description: Target unit name.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  target:
+                    type: string

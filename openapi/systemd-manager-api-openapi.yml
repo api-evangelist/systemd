@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Manager API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Manager
+paths:
+  /manager/reload:
+    post:
+      tags:
+      - Manager
+      operationId: ReloadNetwork
+      summary: Reload networkd Configuration
+      description: Mirrors `Reload()` on Manager.
+      responses:
+        '204':
+          description: Reloaded.
+  /manager/describe:
+    get:
+      tags:
+      - Manager
+      operationId: DescribeNetwork
+      summary: Get Full networkd State Description
+      description: Mirrors `Describe()`. Returns a JSON dump of full networkd state.
+      responses:
+        '200':
+          description: networkd state JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/reexecute:
+    post:
+      tags:
+      - Manager
+      operationId: Reexecute
+      summary: Reexecute The Manager
+      description: Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`.
+      responses:
+        '204':
+          description: Reexecuted.
+  /manager/enable:
+    post:
+      tags:
+      - Manager
+      operationId: EnableUnitFiles
+      summary: Enable Unit Files
+      description: Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Carries-install info and change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/disable:
+    post:
+      tags:
+      - Manager
+      operationId: DisableUnitFiles
+      summary: Disable Unit Files
+      description: Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/mask:
+    post:
+      tags:
+      - Manager
+      operationId: MaskUnitFiles
+      summary: Mask Unit Files
+      description: Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                runtime:
+                  type: boolean
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/unmask:
+    post:
+      tags:
+      - Manager
+      operationId: UnmaskUnitFiles
+      summary: Unmask Unit Files
+      description: Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`.
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/set-default-target:
+    post:
+      tags:
+      - Manager
+      operationId: SetDefaultTarget
+      summary: Set The Default Boot Target
+      description: Mirrors `SetDefaultTarget(target, force)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: string
+                force:
+                  type: boolean
+      responses:
+        '200':
+          description: Change set.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /manager/default-target:
+    get:
+      tags:
+      - Manager
+      operationId: GetDefaultTarget
+      summary: Get The Default Boot Target
+      description: Mirrors `GetDefaultTarget()`.
+      responses:
+        '200':
+          description: Target unit name.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  target:
+                    type: string
+  /manager/snapshot:
+    get:
+      tags:
+      - Manager
+      operationId: GetManagerProperties
+      summary: Get Manager Properties
+      description: Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.).
+      responses:
+        '200':
+          description: Property map.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /io.systemd.Manager/Describe:
+    post:
+      tags:
+      - Manager
+      operationId: ManagerDescribe
+      summary: Describe Manager State
+      description: Calls `io.systemd.Manager.Describe` on PID 1's varlink socket. Returns the manager's runtime state (architecture, virtualization, version, features, tainted, timestamps).
+      responses:
+        '200':
+          description: Manager description.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /io.systemd.Manager/ListUnits:
+    post:
+      tags:
+      - Manager
+      operationId: ManagerListUnits
+      summary: List All Units
+      description: Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.
+      responses:
+        '200':
+          description: Streamed unit records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true

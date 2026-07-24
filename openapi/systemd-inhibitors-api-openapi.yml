@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Inhibitors API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Inhibitors
+paths:
+  /inhibitors:
+    get:
+      tags:
+      - Inhibitors
+      operationId: ListInhibitors
+      summary: List All Inhibitor Locks
+      description: Mirrors `ListInhibitors()`.
+      responses:
+        '200':
+          description: Array of inhibitor records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inhibitor'
+    post:
+      tags:
+      - Inhibitors
+      operationId: Inhibit
+      summary: Acquire An Inhibitor Lock
+      description: Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - what
+              - who
+              - why
+              - mode
+              properties:
+                what:
+                  type: string
+                  description: Colon-separated list of shutdown, sleep, idle, handle-power-key, handle-suspend-key, handle-hibernate-key, handle-lid-switch.
+                who:
+                  type: string
+                why:
+                  type: string
+                mode:
+                  type: string
+                  enum:
+                  - block
+                  - delay
+      responses:
+        '200':
+          description: Lock acquired (FD returned over D-Bus).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fd:
+                    type: integer
+components:
+  schemas:
+    Inhibitor:
+      type: object
+      properties:
+        what:
+          type: string
+        who:
+          type: string
+        why:
+          type: string
+        mode:
+          type: string
+          enum:
+          - block
+          - delay
+        uid:
+          type: integer
+        pid:
+          type: integer

@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Cgroups API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Cgroups
+  description: Transient unit creation and cgroup-backed resource control.
+paths:
+  /units/transient:
+    post:
+      tags:
+      - Cgroups
+      operationId: StartTransientUnit
+      summary: Start A Transient Unit
+      description: Creates and starts a new transient unit (typically a scope or service) with the supplied properties. Mirrors `StartTransientUnit(name, mode, properties, aux)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - mode
+              properties:
+                name:
+                  type: string
+                mode:
+                  type: string
+                  enum:
+                  - replace
+                  - fail
+                  - isolate
+                  - ignore-dependencies
+                  - ignore-requirements
+                properties:
+                  type: object
+                  additionalProperties: true
+                aux:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '202':
+          description: Job enqueued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPath'
+components:
+  schemas:
+    JobPath:
+      type: object
+      properties:
+        path:
+          type: string
+          description: D-Bus object path of the job.

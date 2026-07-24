@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Unit API
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+
+    location, icon name, and other machine info.
+
+    '
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.hostname1
+tags:
+- name: Unit
+paths:
+  /io.systemd.Manager/ListUnits:
+    post:
+      tags:
+      - Unit
+      operationId: ManagerListUnits
+      summary: List All Units
+      description: Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.
+      responses:
+        '200':
+          description: Streamed unit records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+  /io.systemd.Unit/Describe:
+    post:
+      tags:
+      - Unit
+      operationId: UnitDescribe
+      summary: Describe A Single Unit
+      description: Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - unit
+              properties:
+                unit:
+                  type: string
+      responses:
+        '200':
+          description: Unit description.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
