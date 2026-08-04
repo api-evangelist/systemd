@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: systemd-networkd (org.freedesktop.network1)
+  version: '1.0'
+  summary: D-Bus API of systemd-networkd modeled as REST operations.
+  description: |
+    Documentation/contract artifact for the `org.freedesktop.network1` D-Bus interface set on the
+    system bus, exposed by systemd-networkd. Provides per-link state introspection plus methods to
+    reconfigure, force-renew DHCP, set DNS/NTP/domains, and reload configuration.
+
+    Bus name: `org.freedesktop.network1`. Root: `/org/freedesktop/network1`.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers: [{ url: 'dbus://system/org.freedesktop.network1' }]
+tags:
+- name: Manager
+- name: Links
+paths:
+  /links:
+    get:
+      tags: [Links]
+      operationId: ListLinks
+      summary: List All Network Links
+      description: Mirrors `ListLinks()`. Returns (ifindex, ifname, object path) tuples.
+      responses: { '200': { description: Array of links., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Link' } } } } } }
+  /links/{ifindex}:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    get:
+      tags: [Links]
+      operationId: GetLinkByIndex
+      summary: Get A Link By ifindex
+      description: Mirrors `GetLinkByIndex(ifindex)`.
+      responses: { '200': { description: Link object path., content: { application/json: { schema: { type: object, properties: { path: { type: string } } } } } } }
+  /links/by-name/{name}:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    get:
+      tags: [Links]
+      operationId: GetLinkByName
+      summary: Get A Link By Name
+      description: Mirrors `GetLinkByName(name)`.
+      responses: { '200': { description: Link object path. } }
+  /links/{ifindex}/reconfigure:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    post:
+      tags: [Links]
+      operationId: ReconfigureLink
+      summary: Reconfigure A Link
+      description: Mirrors `ReconfigureLink(ifindex)` — re-applies the matching .network file.
+      responses: { '204': { description: Reconfigured. } }
+  /links/{ifindex}/renew:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    post:
+      tags: [Links]
+      operationId: RenewLink
+      summary: Force DHCP Renew
+      description: Mirrors `RenewLink(ifindex)`.
+      responses: { '204': { description: Renewal triggered. } }
+  /links/{ifindex}/dns:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    put:
+      tags: [Links]
+      operationId: SetLinkDNS
+      summary: Set DNS Servers For A Link
+      description: Mirrors `SetLinkDNS(ifindex, dns)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { servers: { type: array, items: { type: string } } } } } } }
+      responses: { '204': { description: Updated. } }
+  /links/{ifindex}/domains:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    put:
+      tags: [Links]
+      operationId: SetLinkDomains
+      summary: Set Search Domains For A Link
+      description: Mirrors `SetLinkDomains(ifindex, domains)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { domains: { type: array, items: { type: object, properties: { domain: { type: string }, search_only: { type: boolean } } } } } } } } }
+      responses: { '204': { description: Updated. } }
+  /manager/reload:
+    post:
+      tags: [Manager]
+      operationId: ReloadNetwork
+      summary: Reload networkd Configuration
+      description: Mirrors `Reload()` on Manager.
+      responses: { '204': { description: Reloaded. } }
+  /manager/describe:
+    get:
+      tags: [Manager]
+      operationId: DescribeNetwork
+      summary: Get Full networkd State Description
+      description: Mirrors `Describe()`. Returns a JSON dump of full networkd state.
+      responses: { '200': { description: networkd state JSON., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        ifindex: { type: integer }
+        name: { type: string }
+        object_path: { type: string }

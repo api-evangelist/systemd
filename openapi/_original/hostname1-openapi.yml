@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: systemd-hostnamed (org.freedesktop.hostname1)
+  version: '1.0'
+  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
+  description: |
+    Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
+    location, icon name, and other machine info.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers: [{ url: 'dbus://system/org.freedesktop.hostname1' }]
+tags:
+- name: Hostname
+- name: Machine Info
+paths:
+  /hostname:
+    get:
+      tags: [Hostname]
+      operationId: GetHostname
+      summary: Get The Current Hostname
+      description: Returns the transient hostname (or static if not set).
+      responses: { '200': { description: Hostname., content: { application/json: { schema: { type: object, properties: { hostname: { type: string } } } } } } }
+    put:
+      tags: [Hostname]
+      operationId: SetHostname
+      summary: Set The Transient Hostname
+      description: Mirrors `SetHostname(name, interactive)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { hostname: { type: string }, interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Updated. } }
+  /static-hostname:
+    put:
+      tags: [Hostname]
+      operationId: SetStaticHostname
+      summary: Set The Static Hostname
+      description: Mirrors `SetStaticHostname(name, interactive)`. Persisted to /etc/hostname.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { hostname: { type: string }, interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Updated. } }
+  /pretty-hostname:
+    put:
+      tags: [Hostname]
+      operationId: SetPrettyHostname
+      summary: Set The Pretty Hostname
+      description: Mirrors `SetPrettyHostname(name, interactive)`. Free-form UTF-8 name.
+      responses: { '204': { description: Updated. } }
+  /chassis:
+    put:
+      tags: [Machine Info]
+      operationId: SetChassis
+      summary: Set The Chassis Type
+      description: Mirrors `SetChassis(chassis, interactive)`. One of `desktop`, `laptop`, `server`, `tablet`, `handset`, `embedded`, `vm`, `container`, `convertible`, `watch`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { chassis: { type: string }, interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Updated. } }
+  /deployment:
+    put:
+      tags: [Machine Info]
+      operationId: SetDeployment
+      summary: Set The Deployment Environment
+      description: Mirrors `SetDeployment(deployment, interactive)`. Free-form tag like `production`/`staging`.
+      responses: { '204': { description: Updated. } }
+  /location:
+    put:
+      tags: [Machine Info]
+      operationId: SetLocation
+      summary: Set The Location String
+      description: Mirrors `SetLocation(location, interactive)`.
+      responses: { '204': { description: Updated. } }
+  /describe:
+    get:
+      tags: [Machine Info]
+      operationId: DescribeHostname
+      summary: Describe All Hostname/Machine-Info Properties
+      description: Mirrors `Describe()`. Returns a JSON dump of every hostname property.
+      responses: { '200': { description: JSON dump., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }

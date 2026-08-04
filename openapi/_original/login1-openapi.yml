@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: systemd-logind (org.freedesktop.login1)
+  version: '1.0'
+  summary: D-Bus API of systemd-logind modeled as REST operations.
+  description: |
+    Documentation/contract artifact modeling the `org.freedesktop.login1` D-Bus interface set
+    (system bus). systemd-logind tracks user logins, seats, sessions, and inhibitor locks; gates
+    power/reboot/sleep operations; manages ACLs for hot-pluggable devices; and exposes inhibitor
+    locks so applications can delay shutdown or idle handling.
+
+    Bus name: `org.freedesktop.login1`. Root object path: `/org/freedesktop/login1`.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers:
+- url: dbus://system/org.freedesktop.login1
+tags:
+- name: Sessions
+- name: Users
+- name: Seats
+- name: Power
+- name: Inhibitors
+paths:
+  /sessions:
+    get:
+      tags: [Sessions]
+      operationId: ListSessions
+      summary: List All Active Sessions
+      description: Mirrors `ListSessions()`. Returns an array of (session id, uid, user name, seat id, object path).
+      responses: { '200': { description: Array of sessions., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Session' } } } } } }
+  /sessions/{id}:
+    parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+    get:
+      tags: [Sessions]
+      operationId: GetSession
+      summary: Get A Session By ID
+      description: Mirrors `GetSession(id)`. Returns the session object path.
+      responses: { '200': { description: Session object path., content: { application/json: { schema: { type: object, properties: { path: { type: string } } } } } } }
+  /sessions/{id}/terminate:
+    parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Sessions]
+      operationId: TerminateSession
+      summary: Terminate A Session
+      description: Mirrors `TerminateSession(id)`. Kills all processes in the session's cgroup.
+      responses: { '204': { description: Session terminated. } }
+  /sessions/{id}/lock:
+    parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Sessions]
+      operationId: LockSession
+      summary: Request Session Lock
+      description: Mirrors `LockSession(id)`. Asks the session's lock UI to engage.
+      responses: { '204': { description: Lock requested. } }
+  /sessions/{id}/unlock:
+    parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Sessions]
+      operationId: UnlockSession
+      summary: Request Session Unlock
+      description: Mirrors `UnlockSession(id)`.
+      responses: { '204': { description: Unlock requested. } }
+  /users:
+    get:
+      tags: [Users]
+      operationId: ListUsers
+      summary: List Logged-In Users
+      description: Mirrors `ListUsers()`.
+      responses: { '200': { description: Array of (uid, name, object path)., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/User' } } } } } }
+  /users/{uid}:
+    parameters: [{ name: uid, in: path, required: true, schema: { type: integer } }]
+    get:
+      tags: [Users]
+      operationId: GetUser
+      summary: Get A User By UID
+      description: Mirrors `GetUser(uid)`.
+      responses: { '200': { description: User object path., content: { application/json: { schema: { type: object, properties: { path: { type: string } } } } } } }
+  /users/{uid}/terminate:
+    parameters: [{ name: uid, in: path, required: true, schema: { type: integer } }]
+    post:
+      tags: [Users]
+      operationId: TerminateUser
+      summary: Terminate A User's Sessions
+      description: Mirrors `TerminateUser(uid)`.
+      responses: { '204': { description: Terminated. } }
+  /seats:
+    get:
+      tags: [Seats]
+      operationId: ListSeats
+      summary: List Seats
+      description: Mirrors `ListSeats()`.
+      responses: { '200': { description: Array of (seat id, object path)., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Seat' } } } } } }
+  /power/poweroff:
+    post:
+      tags: [Power]
+      operationId: PowerOff
+      summary: Power Off The System
+      description: Mirrors `PowerOff(interactive)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Shutdown initiated. } }
+  /power/reboot:
+    post:
+      tags: [Power]
+      operationId: Reboot
+      summary: Reboot The System
+      description: Mirrors `Reboot(interactive)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Reboot initiated. } }
+  /power/suspend:
+    post:
+      tags: [Power]
+      operationId: Suspend
+      summary: Suspend The System
+      description: Mirrors `Suspend(interactive)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Suspend initiated. } }
+  /power/hibernate:
+    post:
+      tags: [Power]
+      operationId: Hibernate
+      summary: Hibernate The System
+      description: Mirrors `Hibernate(interactive)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { interactive: { type: boolean } } } } } }
+      responses: { '204': { description: Hibernate initiated. } }
+  /power/hybrid-sleep:
+    post:
+      tags: [Power]
+      operationId: HybridSleep
+      summary: Hybrid Sleep The System
+      description: Mirrors `HybridSleep(interactive)`.
+      responses: { '204': { description: HybridSleep initiated. } }
+  /inhibitors:
+    get:
+      tags: [Inhibitors]
+      operationId: ListInhibitors
+      summary: List All Inhibitor Locks
+      description: Mirrors `ListInhibitors()`.
+      responses: { '200': { description: Array of inhibitor records., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Inhibitor' } } } } } }
+    post:
+      tags: [Inhibitors]
+      operationId: Inhibit
+      summary: Acquire An Inhibitor Lock
+      description: Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [what, who, why, mode]
+              properties:
+                what:
+                  type: string
+                  description: "Colon-separated list of shutdown, sleep, idle, handle-power-key, handle-suspend-key, handle-hibernate-key, handle-lid-switch."
+                who: { type: string }
+                why: { type: string }
+                mode: { type: string, enum: [block, delay] }
+      responses: { '200': { description: Lock acquired (FD returned over D-Bus)., content: { application/json: { schema: { type: object, properties: { fd: { type: integer } } } } } } }
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        session_id: { type: string }
+        uid: { type: integer }
+        user_name: { type: string }
+        seat_id: { type: string }
+        object_path: { type: string }
+    User:
+      type: object
+      properties:
+        uid: { type: integer }
+        name: { type: string }
+        object_path: { type: string }
+    Seat:
+      type: object
+      properties:
+        seat_id: { type: string }
+        object_path: { type: string }
+    Inhibitor:
+      type: object
+      properties:
+        what: { type: string }
+        who: { type: string }
+        why: { type: string }
+        mode: { type: string, enum: [block, delay] }
+        uid: { type: integer }
+        pid: { type: integer }

@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: systemd Manager (org.freedesktop.systemd1)
+  version: '1.0'
+  summary: D-Bus API of PID 1 (the systemd Manager) modeled as REST operations.
+  description: |
+    This OpenAPI document models the well-known systemd D-Bus interface set at bus name
+    `org.freedesktop.systemd1` (system bus). It is a documentation/contract artifact: callers do not actually
+    issue HTTPS requests against a server, they invoke D-Bus methods against PID 1. Paths here mirror the
+    canonical object path layout (`/org/freedesktop/systemd1/...`) and the operationId names match the
+    documented D-Bus method names.
+
+    Bus name: `org.freedesktop.systemd1`. Root object path: `/org/freedesktop/systemd1`. The Manager
+    interface enumerates units, manages jobs, loads/reloads configuration, and emits lifecycle signals.
+    Per-unit objects implement the `Unit` interface plus a type-specific interface (`Service`, `Socket`,
+    `Mount`, `Slice`, `Scope`, `Path`, `Swap`, `Timer`, `Target`).
+  contact:
+    name: systemd developers
+    url: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+  license:
+    name: LGPL-2.1-or-later
+    url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
+servers:
+- url: dbus://system/org.freedesktop.systemd1
+  description: System D-Bus (PID 1)
+tags:
+- name: Manager
+  description: Top-level Manager object methods.
+- name: Units
+  description: Unit lifecycle and enumeration.
+- name: Jobs
+  description: Pending and active jobs scheduled by the Manager.
+- name: Configuration
+  description: Loading, reloading, and reexecuting the manager.
+- name: Cgroups
+  description: Transient unit creation and cgroup-backed resource control.
+- name: Snapshots
+  description: System state introspection.
+paths:
+  /units:
+    get:
+      tags: [Units]
+      operationId: ListUnits
+      summary: List All Loaded Units
+      description: Returns an array of all currently loaded units. Mirrors `ListUnits()` on the Manager.
+      responses:
+        '200':
+          description: Array of units (name, description, load state, active state, sub state, follower, object path, job id, job type, job object path).
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Unit' }
+  /units/{name}:
+    parameters:
+    - { name: name, in: path, required: true, schema: { type: string }, description: Unit name (e.g. `nginx.service`). }
+    get:
+      tags: [Units]
+      operationId: GetUnit
+      summary: Get A Loaded Unit By Name
+      description: Returns the D-Bus object path of an already-loaded unit. Mirrors `GetUnit(name)`.
+      responses:
+        '200': { description: Object path of the unit., content: { application/json: { schema: { $ref: '#/components/schemas/UnitPath' } } } }
+        '404': { description: Unit not loaded. }
+  /units/{name}/load:
+    parameters:
+    - { name: name, in: path, required: true, schema: { type: string } }
+    post:
+      tags: [Units]
+      operationId: LoadUnit
+      summary: Load A Unit From Disk
+      description: Forces the Manager to load the named unit and returns its object path. Mirrors `LoadUnit(name)`.
+      responses:
+        '200': { description: Loaded unit object path., content: { application/json: { schema: { $ref: '#/components/schemas/UnitPath' } } } }
+  /units/{name}/start:
+    parameters:
+    - { name: name, in: path, required: true, schema: { type: string } }
+    post:
+      tags: [Units]
+      operationId: StartUnit
+      summary: Start A Unit
+      description: Enqueues a start job for the unit. Mirrors `StartUnit(name, mode)`. Mode is one of `replace`, `fail`, `isolate`, `ignore-dependencies`, `ignore-requirements`.
+      requestBody:
+        content: { application/json: { schema: { $ref: '#/components/schemas/JobModeRequest' } } }
+      responses:
+        '202': { description: Job enqueued; returns job object path., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } }
+  /units/{name}/stop:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: StopUnit
+      summary: Stop A Unit
+      description: Enqueues a stop job. Mirrors `StopUnit(name, mode)`.
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/JobModeRequest' } } } }
+      responses: { '202': { description: Job enqueued., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } } }
+  /units/{name}/restart:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: RestartUnit
+      summary: Restart A Unit
+      description: Stops then starts. Mirrors `RestartUnit(name, mode)`.
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/JobModeRequest' } } } }
+      responses: { '202': { description: Job enqueued., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } } }
+  /units/{name}/reload:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: ReloadUnit
+      summary: Reload A Unit
+      description: Asks a unit to reload its configuration (e.g. SIGHUP for services). Mirrors `ReloadUnit(name, mode)`.
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/JobModeRequest' } } } }
+      responses: { '202': { description: Job enqueued., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } } }
+  /units/{name}/reload-or-restart:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: ReloadOrRestartUnit
+      summary: Reload Or Restart A Unit
+      description: Reloads if supported, otherwise restarts. Mirrors `ReloadOrRestartUnit(name, mode)`.
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/JobModeRequest' } } } }
+      responses: { '202': { description: Job enqueued., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } } }
+  /units/{name}/kill:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: KillUnit
+      summary: Send A Signal To A Unit
+      description: Sends a UNIX signal to the unit's main, control, or all processes. Mirrors `KillUnit(name, who, signal)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [who, signal]
+              properties:
+                who: { type: string, enum: [main, control, all] }
+                signal: { type: integer, description: UNIX signal number (e.g. 15 = SIGTERM, 9 = SIGKILL). }
+      responses: { '204': { description: Signal sent. } }
+  /units/{name}/freeze:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: FreezeUnit
+      summary: Freeze A Unit's Cgroup
+      description: Suspends all processes in the unit's cgroup using the cgroup v2 freezer. Mirrors `FreezeUnit(name)`.
+      responses: { '204': { description: Frozen. } }
+  /units/{name}/thaw:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    post:
+      tags: [Units]
+      operationId: ThawUnit
+      summary: Thaw A Unit's Cgroup
+      description: Resumes a frozen cgroup. Mirrors `ThawUnit(name)`.
+      responses: { '204': { description: Thawed. } }
+  /units/{name}/properties:
+    parameters: [{ name: name, in: path, required: true, schema: { type: string } }]
+    get:
+      tags: [Units]
+      operationId: GetAllUnitProperties
+      summary: Get All Properties Of A Unit
+      description: Returns the full property bag for a unit. Equivalent to `org.freedesktop.DBus.Properties.GetAll`.
+      responses: { '200': { description: Unit property map., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+    patch:
+      tags: [Units]
+      operationId: SetUnitProperties
+      summary: Set Runtime Properties On A Unit
+      description: Sets one or more properties at runtime. Mirrors `SetUnitProperties(name, runtime, properties)`. Used for live cgroup resource changes (CPUWeight, MemoryMax, etc.).
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runtime: { type: boolean, description: If true, changes apply only until reboot. }
+                properties: { type: object, additionalProperties: true }
+      responses: { '204': { description: Properties updated. } }
+  /units/transient:
+    post:
+      tags: [Cgroups, Units]
+      operationId: StartTransientUnit
+      summary: Start A Transient Unit
+      description: Creates and starts a new transient unit (typically a scope or service) with the supplied properties. Mirrors `StartTransientUnit(name, mode, properties, aux)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, mode]
+              properties:
+                name: { type: string }
+                mode: { type: string, enum: [replace, fail, isolate, ignore-dependencies, ignore-requirements] }
+                properties: { type: object, additionalProperties: true }
+                aux: { type: array, items: { type: object } }
+      responses: { '202': { description: Job enqueued., content: { application/json: { schema: { $ref: '#/components/schemas/JobPath' } } } } }
+  /jobs:
+    get:
+      tags: [Jobs]
+      operationId: ListJobs
+      summary: List Pending And Running Jobs
+      description: Mirrors `ListJobs()`.
+      responses: { '200': { description: Array of jobs., content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/Job' } } } } } }
+  /jobs/{id}/cancel:
+    parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+    post:
+      tags: [Jobs]
+      operationId: CancelJob
+      summary: Cancel A Pending Job
+      description: Mirrors `CancelJob(id)`.
+      responses: { '204': { description: Job cancelled. } }
+  /manager/reload:
+    post:
+      tags: [Configuration, Manager]
+      operationId: Reload
+      summary: Reload Manager Configuration
+      description: Reloads all unit files from disk without restarting services. Mirrors `Reload()`.
+      responses: { '204': { description: Reloaded. } }
+  /manager/reexecute:
+    post:
+      tags: [Configuration, Manager]
+      operationId: Reexecute
+      summary: Reexecute The Manager
+      description: Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`.
+      responses: { '204': { description: Reexecuted. } }
+  /manager/enable:
+    post:
+      tags: [Configuration, Manager]
+      operationId: EnableUnitFiles
+      summary: Enable Unit Files
+      description: Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { files: { type: array, items: { type: string } }, runtime: { type: boolean }, force: { type: boolean } } } } } }
+      responses: { '200': { description: Carries-install info and change set., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /manager/disable:
+    post:
+      tags: [Configuration, Manager]
+      operationId: DisableUnitFiles
+      summary: Disable Unit Files
+      description: Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { files: { type: array, items: { type: string } }, runtime: { type: boolean } } } } } }
+      responses: { '200': { description: Change set., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /manager/mask:
+    post:
+      tags: [Configuration, Manager]
+      operationId: MaskUnitFiles
+      summary: Mask Unit Files
+      description: Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { files: { type: array, items: { type: string } }, runtime: { type: boolean }, force: { type: boolean } } } } } }
+      responses: { '200': { description: Change set., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /manager/unmask:
+    post:
+      tags: [Configuration, Manager]
+      operationId: UnmaskUnitFiles
+      summary: Unmask Unit Files
+      description: Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`.
+      responses: { '200': { description: Change set., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /manager/set-default-target:
+    post:
+      tags: [Configuration, Manager]
+      operationId: SetDefaultTarget
+      summary: Set The Default Boot Target
+      description: Mirrors `SetDefaultTarget(target, force)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { target: { type: string }, force: { type: boolean } } } } } }
+      responses: { '200': { description: Change set., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /manager/default-target:
+    get:
+      tags: [Configuration, Manager]
+      operationId: GetDefaultTarget
+      summary: Get The Default Boot Target
+      description: Mirrors `GetDefaultTarget()`.
+      responses: { '200': { description: Target unit name., content: { application/json: { schema: { type: object, properties: { target: { type: string } } } } } } }
+  /manager/snapshot:
+    get:
+      tags: [Snapshots, Manager]
+      operationId: GetManagerProperties
+      summary: Get Manager Properties
+      description: Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.).
+      responses: { '200': { description: Property map., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+components:
+  schemas:
+    UnitPath:
+      type: object
+      properties: { path: { type: string, description: D-Bus object path. } }
+    JobPath:
+      type: object
+      properties: { path: { type: string, description: D-Bus object path of the job. } }
+    JobModeRequest:
+      type: object
+      properties:
+        mode: { type: string, enum: [replace, fail, isolate, ignore-dependencies, ignore-requirements], default: replace }
+    Unit:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        load_state: { type: string, enum: [stub, loaded, not-found, bad-setting, error, merged, masked] }
+        active_state: { type: string, enum: [active, reloading, inactive, failed, activating, deactivating] }
+        sub_state: { type: string }
+        follower: { type: string, nullable: true }
+        object_path: { type: string }
+        job_id: { type: integer }
+        job_type: { type: string }
+        job_object_path: { type: string }
+    Job:
+      type: object
+      properties:
+        id: { type: integer }
+        unit: { type: string }
+        type: { type: string, enum: [start, verify-active, stop, reload, restart, try-restart, reload-or-start] }
+        state: { type: string, enum: [waiting, running] }
+        object_path: { type: string }
+        unit_object_path: { type: string }

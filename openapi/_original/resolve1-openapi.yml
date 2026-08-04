@@ -1,0 +1,142 @@
+openapi: 3.1.0
+info:
+  title: systemd-resolved (org.freedesktop.resolve1)
+  version: '1.0'
+  summary: D-Bus API of systemd-resolved modeled as REST operations.
+  description: |
+    Documentation/contract artifact for the `org.freedesktop.resolve1` D-Bus interface set on the
+    system bus. systemd-resolved provides hostname/address/record/service resolution using DNS
+    (incl. DNS-over-TLS), Multicast DNS, and LLMNR, plus DNSSEC validation and per-link DNS
+    configuration.
+  license: { name: LGPL-2.1-or-later, url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt }
+servers: [{ url: 'dbus://system/org.freedesktop.resolve1' }]
+tags:
+- name: Resolution
+- name: Configuration
+- name: Cache
+paths:
+  /resolve/hostname:
+    post:
+      tags: [Resolution]
+      operationId: ResolveHostname
+      summary: Resolve A Hostname To Addresses
+      description: Mirrors `ResolveHostname(ifindex, name, family, flags)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                ifindex: { type: integer, default: 0 }
+                name: { type: string }
+                family: { type: integer, description: 'AF_UNSPEC=0, AF_INET=2, AF_INET6=10', default: 0 }
+                flags: { type: integer, default: 0 }
+      responses: { '200': { description: Resolved addresses., content: { application/json: { schema: { $ref: '#/components/schemas/AddressList' } } } } }
+  /resolve/address:
+    post:
+      tags: [Resolution]
+      operationId: ResolveAddress
+      summary: Resolve An Address To Hostnames
+      description: Mirrors `ResolveAddress(ifindex, family, address, flags)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [family, address]
+              properties:
+                ifindex: { type: integer, default: 0 }
+                family: { type: integer }
+                address: { type: array, items: { type: integer } }
+                flags: { type: integer, default: 0 }
+      responses: { '200': { description: Resolved names., content: { application/json: { schema: { type: array, items: { type: object, properties: { ifindex: { type: integer }, name: { type: string } } } } } } } }
+  /resolve/record:
+    post:
+      tags: [Resolution]
+      operationId: ResolveRecord
+      summary: Resolve A Generic DNS Resource Record
+      description: Mirrors `ResolveRecord(ifindex, name, class, type, flags)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, class, type]
+              properties:
+                ifindex: { type: integer, default: 0 }
+                name: { type: string }
+                class: { type: integer, description: DNS class (1=IN). }
+                type: { type: integer, description: DNS RR type (1=A, 28=AAAA, 5=CNAME, 16=TXT, 33=SRV, ...). }
+                flags: { type: integer, default: 0 }
+      responses: { '200': { description: Array of raw RRs., content: { application/json: { schema: { type: array, items: { type: object } } } } } }
+  /resolve/service:
+    post:
+      tags: [Resolution]
+      operationId: ResolveService
+      summary: Resolve A DNS-SD/SRV Service
+      description: Mirrors `ResolveService(ifindex, name, type, domain, family, flags)`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ifindex: { type: integer, default: 0 }
+                name: { type: string }
+                type: { type: string }
+                domain: { type: string }
+                family: { type: integer, default: 0 }
+                flags: { type: integer, default: 0 }
+      responses: { '200': { description: Service records with TXT data., content: { application/json: { schema: { type: object, additionalProperties: true } } } } }
+  /cache/flush:
+    post:
+      tags: [Cache]
+      operationId: FlushCaches
+      summary: Flush All DNS Caches
+      description: Mirrors `FlushCaches()`.
+      responses: { '204': { description: Cache flushed. } }
+  /cache/reset-server-features:
+    post:
+      tags: [Cache]
+      operationId: ResetServerFeatures
+      summary: Reset Server Feature Detection
+      description: Mirrors `ResetServerFeatures()`.
+      responses: { '204': { description: Reset. } }
+  /links/{ifindex}/dns:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    put:
+      tags: [Configuration]
+      operationId: SetLinkDNS
+      summary: Set DNS Servers On A Link
+      description: Mirrors `SetLinkDNS(ifindex, servers)`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { servers: { type: array, items: { type: object, properties: { family: { type: integer }, address: { type: array, items: { type: integer } } } } } } } } } }
+      responses: { '204': { description: Updated. } }
+  /links/{ifindex}/dnssec:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    put:
+      tags: [Configuration]
+      operationId: SetLinkDNSSEC
+      summary: Set DNSSEC Mode On A Link
+      description: Mirrors `SetLinkDNSSEC(ifindex, mode)`. Mode is `yes`, `no`, or `allow-downgrade`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { mode: { type: string, enum: [yes, no, allow-downgrade] } } } } } }
+      responses: { '204': { description: Updated. } }
+  /links/{ifindex}/dns-over-tls:
+    parameters: [{ name: ifindex, in: path, required: true, schema: { type: integer } }]
+    put:
+      tags: [Configuration]
+      operationId: SetLinkDNSOverTLS
+      summary: Set DNS-over-TLS Mode On A Link
+      description: Mirrors `SetLinkDNSOverTLS(ifindex, mode)`. Mode is `yes`, `no`, or `opportunistic`.
+      requestBody: { content: { application/json: { schema: { type: object, properties: { mode: { type: string, enum: [yes, no, opportunistic] } } } } } }
+      responses: { '204': { description: Updated. } }
+components:
+  schemas:
+    AddressList:
+      type: array
+      items:
+        type: object
+        properties:
+          ifindex: { type: integer }
+          family: { type: integer }
+          address: { type: array, items: { type: integer } }
