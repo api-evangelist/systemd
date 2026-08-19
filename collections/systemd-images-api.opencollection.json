@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Images API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Machine Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/images"
+          },
+          "docs": "Mirrors `ListImages()` on the Manager."
+        },
+        {
+          "info": {
+            "name": "Remove A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "dbus://system/org.freedesktop.hostname1/images/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `RemoveImage(name)`."
+        },
+        {
+          "info": {
+            "name": "Clone A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/images/:name/clone",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `CloneImage(src, dest, read_only)`."
+        },
+        {
+          "info": {
+            "name": "Rename A Machine Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/images/:name/rename",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mirrors `RenameImage(src, dest)`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "db064fea-fd69-4ba5-afb7-74a5507be817",
+      "name": "Hostname",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58df7485-7151-4386-8874-2ab3bdcc88e4",
+          "name": "Get The Current Hostname",
+          "request": {
+            "name": "Get The Current Hostname",
+            "description": {
+              "content": "Returns the transient hostname (or static if not set).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "507e8406-5ad3-4a3c-8c93-daf926c585bf",
+              "name": "Hostname.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "567094c1-0fb9-40ac-bd8c-b979ae391638",
+          "name": "Set The Transient Hostname",
+          "request": {
+            "name": "Set The Transient Hostname",
+            "description": {
+              "content": "Mirrors `SetHostname(name, interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostname\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "59f4914c-d873-42c1-8767-06d0305544a6",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51e3bd1c-98c6-4025-b229-118dd4ed1f69",
+          "name": "Set The Static Hostname",
+          "request": {
+            "name": "Set The Static Hostname",
+            "description": {
+              "content": "Mirrors `SetStaticHostname(name, interactive)`. Persisted to /etc/hostname.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "static-hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostname\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e4f2ae6-7488-4282-a6a9-9cc78a8c9b31",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "static-hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cac52d15-1c54-4311-8a5c-ec4542176b52",
+          "name": "Set The Pretty Hostname",
+          "request": {
+            "name": "Set The Pretty Hostname",
+            "description": {
+              "content": "Mirrors `SetPrettyHostname(name, interactive)`. Free-form UTF-8 name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pretty-hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bca3c083-ee2b-4dc0-8d39-d7063121cd91",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pretty-hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "125d5853-111f-4abd-8799-59919b5274ba",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Hostname API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "99db2b63-510b-445e-846f-1b486a7c7eff",
+      "name": "Boot",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad6b906b-d6b6-4edf-9fe5-b658f4c92528",
+          "name": "List Boot Entries",
+          "request": {
+            "name": "List Boot Entries",
+            "description": {
+              "content": "Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.BootControl",
+                "ListBootEntries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf216d13-89d4-4499-9a35-e1aa322c3a1f",
+              "name": "Array of boot entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.BootControl",
+                    "ListBootEntries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 4193.848005933548\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": 1487,\n    \"key_2\": 9896\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "74d92d60-cfe3-4047-8e7b-f1ae162260e6",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

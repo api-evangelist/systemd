@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "d83ff92a-8662-4335-810d-ab49def8f8b1",
+      "name": "Seats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1415c961-3cb5-475b-8797-a4c1044acc0d",
+          "name": "List Seats",
+          "request": {
+            "name": "List Seats",
+            "description": {
+              "content": "Mirrors `ListSeats()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "seats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a104c81-62e3-4da5-b40f-33a841ff0227",
+              "name": "Array of (seat id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "seats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  },\n  {\n    \"seat_id\": \"string\",\n    \"object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "83faddce-a6c8-4433-9b53-00604fdc6291",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Seats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

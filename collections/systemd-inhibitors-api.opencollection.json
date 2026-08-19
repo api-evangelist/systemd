@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Inhibitors API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inhibitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Inhibitor Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/inhibitors"
+          },
+          "docs": "Mirrors `ListInhibitors()`."
+        },
+        {
+          "info": {
+            "name": "Acquire An Inhibitor Lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/inhibitors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

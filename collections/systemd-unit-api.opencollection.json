@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Unit API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Units",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.Manager/ListUnits"
+          },
+          "docs": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records."
+        },
+        {
+          "info": {
+            "name": "Describe A Single Unit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.Unit/Describe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

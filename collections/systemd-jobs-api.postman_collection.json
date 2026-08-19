@@ -1,0 +1,180 @@
+{
+  "item": [
+    {
+      "id": "8adcb816-bd9b-46c9-b8e9-5d8be607e938",
+      "name": "Jobs",
+      "description": {
+        "content": "Pending and active jobs scheduled by the Manager.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79099003-fd04-415f-8672-56b6b1f0fc1f",
+          "name": "List Pending And Running Jobs",
+          "request": {
+            "name": "List Pending And Running Jobs",
+            "description": {
+              "content": "Mirrors `ListJobs()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "638cf53a-f51a-4d45-90bd-2a056832b106",
+              "name": "Array of jobs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2020,\n    \"unit\": \"string\",\n    \"type\": \"stop\",\n    \"state\": \"waiting\",\n    \"object_path\": \"string\",\n    \"unit_object_path\": \"string\"\n  },\n  {\n    \"id\": 4573,\n    \"unit\": \"string\",\n    \"type\": \"restart\",\n    \"state\": \"running\",\n    \"object_path\": \"string\",\n    \"unit_object_path\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "656bb6c0-cb87-40c4-907e-746881e659a0",
+          "name": "Cancel A Pending Job",
+          "request": {
+            "name": "Cancel A Pending Job",
+            "description": {
+              "content": "Mirrors `CancelJob(id)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28fc71a2-5515-4189-98cf-6fbc95c18086",
+              "name": "Job cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c27fa13b-0994-430f-b9f7-88349dd04dc0",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Power API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Power",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Power Off The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/power/poweroff",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `PowerOff(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Reboot The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/power/reboot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Reboot(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Suspend The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/power/suspend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Suspend(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Hibernate The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/power/hibernate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `Hibernate(interactive)`."
+        },
+        {
+          "info": {
+            "name": "Hybrid Sleep The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/power/hybrid-sleep"
+          },
+          "docs": "Mirrors `HybridSleep(interactive)`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

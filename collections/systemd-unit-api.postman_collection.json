@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "a837a548-0941-46ce-a06e-c45007b4ca4f",
+      "name": "Unit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb1b9a82-161b-4f15-a2ad-8b99b097fb71",
+          "name": "List All Units",
+          "request": {
+            "name": "List All Units",
+            "description": {
+              "content": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "ListUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23399023-93f1-4bf8-87ec-a52485c01cd7",
+              "name": "Streamed unit records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "ListUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": \"string\",\n    \"key_1\": 5325.106941846967,\n    \"key_2\": 3891,\n    \"key_3\": 5155\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbdff6dd-cae1-47ae-a1d2-1209d38fadb7",
+          "name": "Describe A Single Unit",
+          "request": {
+            "name": "Describe A Single Unit",
+            "description": {
+              "content": "Calls `io.systemd.Unit.Describe`. Returns the full property bag for one unit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Unit",
+                "Describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0076d680-cee6-4f58-b3fb-fe1dfeb48bd8",
+              "name": "Unit description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Unit",
+                    "Describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unit\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2334,\n  \"key_3\": 9506.794146361073,\n  \"key_4\": 2793\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cb01cf6c-878d-498a-b64b-77b59f6fe5ff",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Unit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

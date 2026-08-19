@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "7e1604f9-fdd5-41ea-bbcb-c1b3a2ebe4b8",
+      "name": "UserDatabase",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c0efe34-89cb-4547-bbdd-584fb4654de2",
+          "name": "Look Up A User Record",
+          "request": {
+            "name": "Look Up A User Record",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetUserRecord"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"uid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c27557db-c094-460f-8479-4cb6268de0ef",
+              "name": "JSON User Record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetUserRecord"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"uid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"record\": {\n    \"key_0\": \"string\",\n    \"key_1\": 291\n  },\n  \"incomplete\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62f56ee1-d1b4-4c47-b13d-02e09128feff",
+          "name": "Look Up A Group Record",
+          "request": {
+            "name": "Look Up A Group Record",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetGroupRecord`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetGroupRecord"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupName\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "883db49a-27fc-49b7-bd8d-78b478bf7d9d",
+              "name": "JSON Group Record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetGroupRecord"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"gid\": \"<integer>\",\n  \"service\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": true,\n  \"key_3\": true,\n  \"key_4\": 6152\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b58e043-a56f-458d-96eb-b99674649f98",
+          "name": "Look Up Group Memberships",
+          "request": {
+            "name": "Look Up Group Memberships",
+            "description": {
+              "content": "Calls `io.systemd.UserDatabase.GetMemberships`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.UserDatabase",
+                "GetMemberships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"groupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41eaef45-bc5f-40ad-8107-041f11adcc34",
+              "name": "Memberships.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.UserDatabase",
+                    "GetMemberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"groupName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"userName\": \"string\",\n    \"groupName\": \"string\"\n  },\n  {\n    \"userName\": \"string\",\n    \"groupName\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5a2826c2-0377-4e22-b22d-d5de216aeedd",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot UserDatabase API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Boot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Boot Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.BootControl/ListBootEntries"
+          },
+          "docs": "Calls `io.systemd.BootControl.ListBootEntries`. Returns Boot Loader Specification entries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

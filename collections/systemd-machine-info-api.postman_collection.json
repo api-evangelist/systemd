@@ -1,0 +1,299 @@
+{
+  "item": [
+    {
+      "id": "c5942fd0-0afe-413c-b03e-a1575463fcfa",
+      "name": "Machine Info",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41b6d32f-1be1-402b-8ad2-d4e54891b80a",
+          "name": "Set The Chassis Type",
+          "request": {
+            "name": "Set The Chassis Type",
+            "description": {
+              "content": "Mirrors `SetChassis(chassis, interactive)`. One of `desktop`, `laptop`, `server`, `tablet`, `handset`, `embedded`, `vm`, `container`, `convertible`, `watch`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chassis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chassis\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77d96d34-e15f-4ecb-8679-0781ac9500de",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chassis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chassis\": \"<string>\",\n  \"interactive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d2276ea-3584-4a4d-b403-a2dc35493373",
+          "name": "Set The Deployment Environment",
+          "request": {
+            "name": "Set The Deployment Environment",
+            "description": {
+              "content": "Mirrors `SetDeployment(deployment, interactive)`. Free-form tag like `production`/`staging`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b1a0d63-8a31-4fc0-83d4-a1381e5274db",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fac18772-1329-4bb9-a2cc-a27b54c1089a",
+          "name": "Set The Location String",
+          "request": {
+            "name": "Set The Location String",
+            "description": {
+              "content": "Mirrors `SetLocation(location, interactive)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23188a21-8bf3-4a2c-9e56-f2c1fd2f3025",
+              "name": "Updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da434898-d8b3-4196-906b-bef2152cd0a8",
+          "name": "Describe All Hostname/Machine-Info Properties",
+          "request": {
+            "name": "Describe All Hostname/Machine-Info Properties",
+            "description": {
+              "content": "Mirrors `Describe()`. Returns a JSON dump of every hostname property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23381ed1-e2f2-4b95-b8c9-105621a14723",
+              "name": "JSON dump.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 9292.043964510098,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fe7453e5-a3d5-4c29-b0dd-c91fcfcfcd66",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Machine Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot UserDatabase API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserDatabase",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up A User Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.UserDatabase/GetUserRecord",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetUserRecord`. NSS-replacement lookup, returns a JSON User Record per the systemd UserRecord spec."
+        },
+        {
+          "info": {
+            "name": "Look Up A Group Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.UserDatabase/GetGroupRecord",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetGroupRecord`."
+        },
+        {
+          "info": {
+            "name": "Look Up Group Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.UserDatabase/GetMemberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.UserDatabase.GetMemberships`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

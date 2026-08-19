@@ -1,0 +1,404 @@
+{
+  "item": [
+    {
+      "id": "a483319e-026c-4f81-b219-f540c367a72d",
+      "name": "Resolution",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86aa3ed6-96bd-48a5-b4a7-9172cda28d43",
+          "name": "Resolve A Hostname To Addresses",
+          "request": {
+            "name": "Resolve A Hostname To Addresses",
+            "description": {
+              "content": "Mirrors `ResolveHostname(ifindex, name, family, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "hostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": 0,\n  \"family\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6e517b2-234d-4069-bfdf-92b8146914e3",
+              "name": "Resolved addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "hostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": 0,\n  \"family\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ifindex\": 7014,\n    \"family\": 1394,\n    \"address\": [\n      1845,\n      8409\n    ]\n  },\n  {\n    \"ifindex\": 3189,\n    \"family\": 3935,\n    \"address\": [\n      8484,\n      3788\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c189c62-367c-453c-a469-739944b33807",
+          "name": "Resolve An Address To Hostnames",
+          "request": {
+            "name": "Resolve An Address To Hostnames",
+            "description": {
+              "content": "Mirrors `ResolveAddress(ifindex, family, address, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"family\": \"<integer>\",\n  \"address\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d96d520a-2f85-4ea6-875e-ebef3f226083",
+              "name": "Resolved names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"family\": \"<integer>\",\n  \"address\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ifindex\": 6661,\n    \"name\": \"string\"\n  },\n  {\n    \"ifindex\": 6578,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfa9e6a3-eb99-4a02-9752-6f89f7d81bf8",
+          "name": "Resolve A Generic DNS Resource Record",
+          "request": {
+            "name": "Resolve A Generic DNS Resource Record",
+            "description": {
+              "content": "Mirrors `ResolveRecord(ifindex, name, class, type, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "record"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"class\": \"<integer>\",\n  \"type\": \"<integer>\",\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e820a29-1108-44a7-bd90-20bbc0b5c413",
+              "name": "Array of raw RRs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "record"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"class\": \"<integer>\",\n  \"type\": \"<integer>\",\n  \"ifindex\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "723a525b-fcdf-4e5a-b22b-ae1c3e1c35ca",
+          "name": "Resolve A DNS-SD/SRV Service",
+          "request": {
+            "name": "Resolve A DNS-SD/SRV Service",
+            "description": {
+              "content": "Mirrors `ResolveService(ifindex, name, type, domain, family, flags)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve",
+                "service"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ifindex\": 0,\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"family\": 0,\n  \"flags\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "195a49b0-45e6-4b3e-b1c1-1af5334041c6",
+              "name": "Service records with TXT data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve",
+                    "service"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ifindex\": 0,\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"family\": 0,\n  \"flags\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4302.2834103236055,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "11cea9a5-008a-45ff-92d3-7c84f4621aed",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Resolution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

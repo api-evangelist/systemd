@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Resolve API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resolve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve A Hostname (Varlink)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.Resolve/ResolveHostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

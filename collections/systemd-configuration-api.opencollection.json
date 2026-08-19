@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Configuration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set DNS Servers On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/links/:ifindex/dns",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNS(ifindex, servers)`."
+        },
+        {
+          "info": {
+            "name": "Set DNSSEC Mode On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/links/:ifindex/dnssec",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNSSEC(ifindex, mode)`. Mode is `yes`, `no`, or `allow-downgrade`."
+        },
+        {
+          "info": {
+            "name": "Set DNS-over-TLS Mode On A Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "dbus://system/org.freedesktop.hostname1/links/:ifindex/dns-over-tls",
+            "params": [
+              {
+                "name": "ifindex",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetLinkDNSOverTLS(ifindex, mode)`. Mode is `yes`, `no`, or `opportunistic`."
+        },
+        {
+          "info": {
+            "name": "Reload Manager Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/reload"
+          },
+          "docs": "Reloads all unit files from disk without restarting services. Mirrors `Reload()`."
+        },
+        {
+          "info": {
+            "name": "Reexecute The Manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/reexecute"
+          },
+          "docs": "Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`."
+        },
+        {
+          "info": {
+            "name": "Enable Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`."
+        },
+        {
+          "info": {
+            "name": "Disable Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`."
+        },
+        {
+          "info": {
+            "name": "Mask Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/mask",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`."
+        },
+        {
+          "info": {
+            "name": "Unmask Unit Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/unmask"
+          },
+          "docs": "Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`."
+        },
+        {
+          "info": {
+            "name": "Set The Default Boot Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/set-default-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `SetDefaultTarget(target, force)`."
+        },
+        {
+          "info": {
+            "name": "Get The Default Boot Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/default-target"
+          },
+          "docs": "Mirrors `GetDefaultTarget()`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

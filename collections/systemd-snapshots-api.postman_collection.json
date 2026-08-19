@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "043202b4-dee5-4e67-b936-3443e6e329b1",
+      "name": "Snapshots",
+      "description": {
+        "content": "System state introspection.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b48f55ab-e003-4431-abea-177338425203",
+          "name": "Get Manager Properties",
+          "request": {
+            "name": "Get Manager Properties",
+            "description": {
+              "content": "Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "snapshot"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9ec816d-4ad4-4aac-89f6-e2ac5f736dcd",
+              "name": "Property map.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ab9d6a44-865a-4e8e-998a-0fa12d34c55e",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

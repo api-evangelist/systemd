@@ -1,0 +1,115 @@
+{
+  "item": [
+    {
+      "id": "aa8bc459-17c8-4355-92f7-14cf42aaa9c7",
+      "name": "PCR",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "249ae651-1383-4d9b-94b9-ffccb2169002",
+          "name": "Extend A TPM2 PCR",
+          "request": {
+            "name": "Extend A TPM2 PCR",
+            "description": {
+              "content": "Calls `io.systemd.PCRExtend.Extend`. Extends the named PCR with the supplied data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.PCRExtend",
+                "Extend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pcr\": \"<integer>\",\n  \"data\": \"<string>\",\n  \"banks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3efb740-f801-48df-b0b4-308eb301ff14",
+              "name": "PCR extended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.PCRExtend",
+                    "Extend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pcr\": \"<integer>\",\n  \"data\": \"<string>\",\n  \"banks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3795f60-d814-4121-94d6-de1e10b8a639",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot PCR API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

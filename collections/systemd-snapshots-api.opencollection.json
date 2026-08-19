@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Snapshots API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Manager Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/manager/snapshot"
+          },
+          "docs": "Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

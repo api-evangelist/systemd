@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Image API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Machine Images (Varlink)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.MachineImage/List"
+          },
+          "docs": "Calls `io.systemd.MachineImage.List`. JSON-native equivalent of machined's ListImages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

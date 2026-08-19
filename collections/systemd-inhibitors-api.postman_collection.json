@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "09edc3cc-d3a4-4d76-8085-272629e97051",
+      "name": "Inhibitors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ffbdd0c-974c-46b0-8cd8-7948cf630931",
+          "name": "List All Inhibitor Locks",
+          "request": {
+            "name": "List All Inhibitor Locks",
+            "description": {
+              "content": "Mirrors `ListInhibitors()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inhibitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfa131e4-7732-4fa6-bbac-7bea58763749",
+              "name": "Array of inhibitor records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inhibitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"what\": \"string\",\n    \"who\": \"string\",\n    \"why\": \"string\",\n    \"mode\": \"block\",\n    \"uid\": 2324,\n    \"pid\": 6917\n  },\n  {\n    \"what\": \"string\",\n    \"who\": \"string\",\n    \"why\": \"string\",\n    \"mode\": \"delay\",\n    \"uid\": 8433,\n    \"pid\": 1906\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b832b9b-b7c7-44ae-839a-651b6be1fa55",
+          "name": "Acquire An Inhibitor Lock",
+          "request": {
+            "name": "Acquire An Inhibitor Lock",
+            "description": {
+              "content": "Mirrors `Inhibit(what, who, why, mode)`. Returns an FD representing the lock.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inhibitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"what\": \"<string>\",\n  \"who\": \"<string>\",\n  \"why\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15a67385-7a49-42d8-bc35-01f5a0448fec",
+              "name": "Lock acquired (FD returned over D-Bus).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inhibitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"what\": \"<string>\",\n  \"who\": \"<string>\",\n  \"why\": \"<string>\",\n  \"mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fd\": 5037\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "080aea1b-c105-4356-8c16-cf11467bca96",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Inhibitors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,956 @@
+{
+  "item": [
+    {
+      "id": "fbcf7d38-8a37-402c-a729-9f6b9d5975c7",
+      "name": "Manager",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e604bca-7fbb-4322-a75b-96b1171bbb64",
+          "name": "Reload networkd Configuration",
+          "request": {
+            "name": "Reload networkd Configuration",
+            "description": {
+              "content": "Mirrors `Reload()` on Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "reload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "119ff187-76a3-4b71-af2f-f282885ea34b",
+              "name": "Reloaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8d21329-4576-49e6-9a92-b247641d3391",
+          "name": "Get Full networkd State Description",
+          "request": {
+            "name": "Get Full networkd State Description",
+            "description": {
+              "content": "Mirrors `Describe()`. Returns a JSON dump of full networkd state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c299f80-172c-4a97-a58e-54e8f4543322",
+              "name": "networkd state JSON.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ff56a20-1a98-4092-a755-429ffeef5610",
+          "name": "Reexecute The Manager",
+          "request": {
+            "name": "Reexecute The Manager",
+            "description": {
+              "content": "Re-executes the systemd binary in-place, preserving state. Mirrors `Reexecute()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "reexecute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1a2024f-5d8d-4d87-a5ee-d46256269b68",
+              "name": "Reexecuted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "reexecute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bf2036a-51b4-4dee-80c9-3995b1fead96",
+          "name": "Enable Unit Files",
+          "request": {
+            "name": "Enable Unit Files",
+            "description": {
+              "content": "Creates the symlinks that make units start at boot. Mirrors `EnableUnitFiles(files, runtime, force)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\",\n  \"force\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "27ca14db-301b-458b-82f1-e154e0076ce6",
+              "name": "Carries-install info and change set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\",\n  \"force\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9833c5e4-0294-457e-b903-541397c264d2",
+          "name": "Disable Unit Files",
+          "request": {
+            "name": "Disable Unit Files",
+            "description": {
+              "content": "Removes the symlinks that make units start at boot. Mirrors `DisableUnitFiles(files, runtime)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2554e148-e532-4adc-b0f9-1d195ea72f4a",
+              "name": "Change set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75178d70-b028-4a67-8538-2eb7ef2980a0",
+          "name": "Mask Unit Files",
+          "request": {
+            "name": "Mask Unit Files",
+            "description": {
+              "content": "Symlinks units to /dev/null so they cannot be started. Mirrors `MaskUnitFiles(files, runtime, force)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "mask"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\",\n  \"force\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85926c0b-9fe4-4641-8020-7571dbcb8a4e",
+              "name": "Change set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "mask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"files\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"runtime\": \"<boolean>\",\n  \"force\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f96e1b30-280d-46eb-8b54-94d97413b69f",
+          "name": "Unmask Unit Files",
+          "request": {
+            "name": "Unmask Unit Files",
+            "description": {
+              "content": "Reverses MaskUnitFiles. Mirrors `UnmaskUnitFiles(files, runtime)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "unmask"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98339a5f-5b55-4070-9b59-4df223680d94",
+              "name": "Change set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "unmask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d01f3b52-994f-4fd5-bd46-6cebc96f0377",
+          "name": "Set The Default Boot Target",
+          "request": {
+            "name": "Set The Default Boot Target",
+            "description": {
+              "content": "Mirrors `SetDefaultTarget(target, force)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "set-default-target"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"<string>\",\n  \"force\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ec9d27e-9da6-4bae-8ed8-6a5dadbfbbee",
+              "name": "Change set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "set-default-target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target\": \"<string>\",\n  \"force\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7a56d50-b022-4ddb-b5f5-415c1507e5e0",
+          "name": "Get The Default Boot Target",
+          "request": {
+            "name": "Get The Default Boot Target",
+            "description": {
+              "content": "Mirrors `GetDefaultTarget()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "default-target"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c45e9d70-a0a3-497e-9e28-d133f24619f6",
+              "name": "Target unit name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "default-target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"target\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89ff53fd-3f0f-467f-b1d8-204884b0d78c",
+          "name": "Get Manager Properties",
+          "request": {
+            "name": "Get Manager Properties",
+            "description": {
+              "content": "Returns the full property map of the Manager (Version, Features, Virtualization, Architecture, Tainted, FirmwareTimestamp, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manager",
+                "snapshot"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04751ce8-ddfd-4cab-b8ad-836bd1227989",
+              "name": "Property map.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manager",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7887031-055c-4ae8-ac3f-c16130a146f1",
+          "name": "Describe Manager State",
+          "request": {
+            "name": "Describe Manager State",
+            "description": {
+              "content": "Calls `io.systemd.Manager.Describe` on PID 1's varlink socket. Returns the manager's runtime state (architecture, virtualization, version, features, tainted, timestamps).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "Describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "511fb67d-8475-457a-8ea6-a8f7fda41874",
+              "name": "Manager description.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "Describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 3824.083019095885\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b35884fe-2dc8-4cce-b4c8-01d2036d2639",
+          "name": "List All Units",
+          "request": {
+            "name": "List All Units",
+            "description": {
+              "content": "Calls `io.systemd.Manager.ListUnits`. Returns an iterable stream of unit records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Manager",
+                "ListUnits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8b3b439-3811-47fa-820f-d5c1d49bfe25",
+              "name": "Streamed unit records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Manager",
+                    "ListUnits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "48989d0a-3add-4f82-99d8-7bdceaad28ec",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

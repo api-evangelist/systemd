@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "6b463a39-bc41-4909-9f27-9707aedd78f1",
+      "name": "Cache",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5465e70-6313-4ae8-8d81-abcf924099c9",
+          "name": "Flush All DNS Caches",
+          "request": {
+            "name": "Flush All DNS Caches",
+            "description": {
+              "content": "Mirrors `FlushCaches()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cache",
+                "flush"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5890ed4f-60fc-4023-89b4-9478a0b225a5",
+              "name": "Cache flushed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cache",
+                    "flush"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "903fe64a-35be-4adb-8597-6d956ef5eb4d",
+          "name": "Reset Server Feature Detection",
+          "request": {
+            "name": "Reset Server Feature Detection",
+            "description": {
+              "content": "Mirrors `ResetServerFeatures()`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cache",
+                "reset-server-features"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f29aa6a-fe86-46e3-ae38-02cd65db6d9f",
+              "name": "Reset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cache",
+                    "reset-server-features"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5818b1e1-6dc5-4f3b-b305-a8908e02c0d9",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Cache API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

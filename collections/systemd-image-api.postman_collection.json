@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "fb0a5aaa-a3c0-42c1-9c8f-4aec52dba294",
+      "name": "Image",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11f77703-fbc3-4280-a19d-1f701a405ce4",
+          "name": "List Machine Images (Varlink)",
+          "request": {
+            "name": "List Machine Images (Varlink)",
+            "description": {
+              "content": "Calls `io.systemd.MachineImage.List`. JSON-native equivalent of machined's ListImages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.MachineImage",
+                "List"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "980badb6-46f0-4654-8de5-e7807bb9360e",
+              "name": "Array of image records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.MachineImage",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": true,\n    \"key_1\": false,\n    \"key_2\": true\n  },\n  {\n    \"key_0\": 9086,\n    \"key_1\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02b788dc-0b44-425c-83ac-a5772fdc71f6",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Image API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

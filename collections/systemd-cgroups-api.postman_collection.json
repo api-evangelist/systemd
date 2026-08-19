@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "20e6fd95-e09d-4aa0-acb8-2c4c05f0e4df",
+      "name": "Cgroups",
+      "description": {
+        "content": "Transient unit creation and cgroup-backed resource control.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4bddf1c-36fb-4ce7-abdd-acf37c8411e1",
+          "name": "Start A Transient Unit",
+          "request": {
+            "name": "Start A Transient Unit",
+            "description": {
+              "content": "Creates and starts a new transient unit (typically a scope or service) with the supplied properties. Mirrors `StartTransientUnit(name, mode, properties, aux)`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "units",
+                "transient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"properties\": {\n    \"key_0\": 3392,\n    \"key_1\": \"string\"\n  },\n  \"aux\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "960db801-fb37-4b9a-b6e6-3a8a646ef44b",
+              "name": "Job enqueued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "units",
+                    "transient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"properties\": {\n    \"key_0\": 4653,\n    \"key_1\": true\n  },\n  \"aux\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"path\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b7bde59-a887-41e4-add7-9da577ccaeee",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Cgroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

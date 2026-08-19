@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot PCR API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PCR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extend A TPM2 PCR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/io.systemd.PCRExtend/Extend",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls `io.systemd.PCRExtend.Extend`. Extends the named PCR with the supplied data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

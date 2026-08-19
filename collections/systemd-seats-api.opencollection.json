@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Seats API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Seats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Seats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "dbus://system/org.freedesktop.hostname1/seats"
+          },
+          "docs": "Mirrors `ListSeats()`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

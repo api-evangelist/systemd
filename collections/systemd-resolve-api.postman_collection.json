@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "1d1821d0-ab47-4ce3-b683-645c4149dc8e",
+      "name": "Resolve",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "178d61a7-ee4a-40fd-b7b3-e9d5dba22684",
+          "name": "Resolve A Hostname (Varlink)",
+          "request": {
+            "name": "Resolve A Hostname (Varlink)",
+            "description": {
+              "content": "Calls `io.systemd.Resolve.ResolveHostname`. Newer JSON-native equivalent of the D-Bus ResolveHostname.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "io.systemd.Resolve",
+                "ResolveHostname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": \"<integer>\",\n  \"family\": \"<integer>\",\n  \"flags\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c080a36a-59f8-4ce4-9b77-dd31ef328e5a",
+              "name": "Resolved addresses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "io.systemd.Resolve",
+                    "ResolveHostname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"ifindex\": \"<integer>\",\n  \"family\": \"<integer>\",\n  \"flags\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "dbus://system/org.freedesktop.hostname1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f57d81d4-543b-4300-9f8d-ce5b9eca71c8",
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Resolve API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the\nsystem bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,\nlocation, icon name, and other machine info.\n",
+      "type": "text/plain"
+    }
+  }
+}

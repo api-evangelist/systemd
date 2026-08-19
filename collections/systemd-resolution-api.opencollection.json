@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "systemd-hostnamed (org.freedesktop.hostname1) Boot Resolution API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resolution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve A Hostname To Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/resolve/hostname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveHostname(ifindex, name, family, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve An Address To Hostnames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/resolve/address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveAddress(ifindex, family, address, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve A Generic DNS Resource Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/resolve/record",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveRecord(ifindex, name, class, type, flags)`."
+        },
+        {
+          "info": {
+            "name": "Resolve A DNS-SD/SRV Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "dbus://system/org.freedesktop.hostname1/resolve/service",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mirrors `ResolveService(ifindex, name, type, domain, family, flags)`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
