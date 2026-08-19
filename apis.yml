@@ -46,7 +46,7 @@ tags:
 created: '2026-05-23'
 modified: '2026-05-23'
 url: https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: systemd:org-freedesktop-locale1
   name: systemd-localed (org.freedesktop.locale1)
