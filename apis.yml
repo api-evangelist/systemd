@@ -33,6 +33,23 @@ tags:
   - D-Bus
   - Init
   - IPC
+  - journal
+  - Linux
+  - Logging
+  - Network
+  - Open-Source
+  - PID 1
+  - Service Manager
+  - System
+  - systemd
+  - Varlink
+tags_raw:
+  - Boot
+  - Cgroups
+  - Container
+  - D-Bus
+  - Init
+  - IPC
   - Journal
   - Linux
   - Logging
@@ -129,6 +146,11 @@ apis:
   humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html
   baseURL: dbus:org.freedesktop.import1
   tags:
+  - Containers
+  - D-Bus
+  - Image
+  - Importd
+  tags_raw:
   - Containers
   - D-Bus
   - Images
@@ -483,6 +505,8 @@ apis:
   humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
   baseURL: dbus:org.freedesktop.systemd1
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -559,6 +583,8 @@ apis:
   humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
   baseURL: dbus:org.freedesktop.systemd1
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -711,6 +737,8 @@ apis:
   humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
   baseURL: dbus:org.freedesktop.systemd1
   tags:
+  - Managers
+  tags_raw:
   - Manager
   properties:
   - type: OpenAPI
@@ -1129,6 +1157,8 @@ apis:
   humanURL: https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html
   baseURL: dbus:org.freedesktop.systemd1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
