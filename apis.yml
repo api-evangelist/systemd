@@ -12,6 +12,18 @@ description: |
   systemd is dual-licensed (LGPL-2.1-or-later for libraries and most code, GPL-2.0-or-later for select tools)
   and developed openly on GitHub at systemd/systemd.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -1192,6 +1204,10 @@ apis:
   - type: SourceCode
     url: https://github.com/systemd/systemd/tree/main/src
 common:
+  - type: CodeOfConduct
+    url: https://github.com/systemd/systemd/blob/main/docs/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/systemd/systemd/blob/main/docs/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/systemd-agentic-access.yml
   - type: DomainSecurity
