@@ -1,20 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: systemd-hostnamed (org.freedesktop.hostname1) Boot Unit API
+  title: systemd Varlink Interfaces (io.systemd.*) Unit API
   version: '1.0'
-  summary: D-Bus API of systemd-hostnamed modeled as REST operations.
-  description: 'Documentation/contract artifact for the `org.freedesktop.hostname1` D-Bus interface on the
+  summary: Varlink IPC surface exposed by systemd daemons modeled as REST operations.
+  description: 'Documentation/contract artifact modeling the family of `io.systemd.*` Varlink interfaces
 
-    system bus. Manages the system hostname (static, transient, pretty), chassis type, deployment,
-
-    location, icon name, and other machine info.
-
-    '
+    exposed by systemd daemons through AF_UNIX sockets under `/run/systemd/io.systemd.*`.'
   license:
     name: LGPL-2.1-or-later
     url: https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt
 servers:
-- url: dbus://system/org.freedesktop.hostname1
+- url: varlink://run/systemd/io.systemd
 tags:
 - name: Unit
 paths:
