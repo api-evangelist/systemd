@@ -70,8 +70,8 @@ paths:
                 mode:
                   type: string
                   enum:
-                  - true
-                  - false
+                  - 'yes'
+                  - 'no'
                   - allow-downgrade
       responses:
         '204':
@@ -100,8 +100,8 @@ paths:
                 mode:
                   type: string
                   enum:
-                  - true
-                  - false
+                  - 'yes'
+                  - 'no'
                   - opportunistic
       responses:
         '204':
