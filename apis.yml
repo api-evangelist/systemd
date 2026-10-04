@@ -1210,6 +1210,9 @@ apis:
   - type: SourceCode
     url: https://github.com/systemd/systemd/tree/main/src
 common:
+  - type: CapabilityMap
+    url: capabilities/systemd-capability-edges.yml
+    name: systemd Business Capability Map
   - type: CodeOfConduct
     url: https://github.com/systemd/systemd/blob/main/docs/CODE_OF_CONDUCT.md
   - type: ContributionGuide
