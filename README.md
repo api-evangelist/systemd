@@ -1,4 +1,4 @@
-# systemd (systemd)
+# systemd
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,569 +64,207 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-systemd is a suite of basic building blocks for a Linux system. It runs as PID 1 and is the system and service
-manager that bootstraps the rest of the userspace, supervises long-running services, and exposes a coordinated
-set of D-Bus and Varlink IPC interfaces for managing services (systemd1), users and sessions (logind),
-network interfaces (networkd), name resolution (resolved), containers/VMs (machined), home directories
-(homed), boot entries (boot1/sysupdate1), system hostname/locale/timedate, OOM protection (oomd), portable
-services, and image imports. The project also publishes a stable command-line surface (systemctl,
-journalctl, networkctl, resolvectl, loginctl, machinectl, hostnamectl, timedatectl, localectl, busctl,
-varlinkctl, bootctl, homectl, coredumpctl, oomctl, portablectl, importctl, systemd-analyze and more).
-systemd is dual-licensed (LGPL-2.1-or-later for libraries and most code, GPL-2.0-or-later for select tools)
-and developed openly on GitHub at systemd/systemd.
-
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/systemd/refs/heads/main/apis.yml)
-
-## Scope
-
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
-
-## Tags
-
-- Boot
-- Cgroups
-- Container
-- D-Bus
-- Init
-- IPC
-- Journal
-- Linux
-- Logging
-- Network
-- Open Source
-- PID 1
-- Service Manager
-- System
-- Systemd
-- Varlink
+systemd is a suite of basic building blocks for a Linux system. It runs as PID 1 and is the system and service manager that bootstraps the rest of the userspace, supervises long-running services, and exposes a coordinated set of D-Bus and Varlink IPC interfaces for managing services (systemd1), users and sessions (logind), network interfaces (networkd), name resolution (resolved), containers/VMs (machined), home directories (homed), boot entries (boot1/sysupdate1), system hostname/locale/timedate, OOM protection (oomd), portable services, and image imports. The project also publishes a stable command-line surface (systemctl, journalctl, networkctl, resolvectl, loginctl, machinectl, hostnamectl, timedatectl, localectl, busctl, varlinkctl, bootctl, homectl, coredumpctl, oomctl, portablectl, importctl, systemd-analyze and more). systemd is dual-licensed (LGPL-2.1-or-later for libraries and most code, GPL-2.0-or-later for select tools) and developed openly on GitHub at systemd/systemd.
 
-## Timestamps
+**Areas:** Boot · Cgroups · Containers · D-Bus · Init · IPC · Journals · Linux · Logging · Networks · Open Source · PID 1
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-23
+## systemd on APIs.io
 
-## APIs
+Everything profiled for systemd is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/systemd/](https://apis.io/providers/systemd/)** — or go straight to one of the APIs or properties below.
 
-### systemd Manager (org.freedesktop.systemd1)
+### APIs (34)
 
-Core D-Bus API exposed by PID 1 on the system bus. The Manager object at /org/freedesktop/systemd1
-enumerates and controls units (services, sockets, mounts, targets, timers, paths, slices, scopes, swaps,
-devices), starts and stops jobs, loads/reloads configuration, manages cgroup-backed transient units, and
-emits lifecycle signals (UnitNew, UnitRemoved, JobNew, JobRemoved, Reloading, StartupFinished). Per-unit
-interfaces (Unit, Service, Socket, Mount, Slice, Scope, Path, Swap, Timer, Target) expose state,
-properties, and operations on individual units.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
-- **Base URL:** `dbus:org.freedesktop.systemd1`
-
-#### Tags
-
-- Cgroups
-- D-Bus
-- Service Manager
-- Systemd
-- Units
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.systemd1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.systemd1.xml)
-- [OpenAPI](openapi/systemd1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-logind (org.freedesktop.login1)
-
-D-Bus API of systemd-logind for tracking user logins, seats, sessions, and inhibitor locks. Manages
-session creation, switching, idle hints, lock/unlock, power-button handling, lid-switch handling,
-suspend/hibernate/reboot/power-off operations, and ACLs for hot-pluggable devices.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html)
-- **Base URL:** `dbus:org.freedesktop.login1`
-
-#### Tags
-
-- D-Bus
-- Logind
-- Sessions
-- Users
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.login1.xml)
-- [OpenAPI](openapi/login1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-networkd (org.freedesktop.network1)
-
-D-Bus API of systemd-networkd for managing network interfaces, link configuration, DHCP server state,
-and netdev/network unit reload. Exposes Manager and per-Link interfaces with methods to set link
-properties, reconfigure, force renew, and query link state.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.network1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.network1.html)
-- **Base URL:** `dbus:org.freedesktop.network1`
-
-#### Tags
-
-- D-Bus
-- DHCP
-- Network
-- Networkd
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.network1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.network1.xml)
-- [OpenAPI](openapi/network1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-resolved (org.freedesktop.resolve1)
-
-D-Bus API of systemd-resolved for DNS/mDNS/LLMNR resolution, DNSSEC validation, per-link DNS
-configuration, search domain management, DNS-over-TLS settings, and cache flushing. Exposes
-ResolveHostname, ResolveAddress, ResolveRecord, ResolveService and per-Link configuration methods.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.resolve1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.resolve1.html)
-- **Base URL:** `dbus:org.freedesktop.resolve1`
-
-#### Tags
-
-- D-Bus
-- DNS
-- DNSSEC
-- Resolved
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.resolve1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.resolve1.xml)
-- [OpenAPI](openapi/resolve1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-machined (org.freedesktop.machine1)
-
-D-Bus API of systemd-machined for tracking and managing local containers and virtual machines,
-enumerating their associated images, opening shells/login sessions inside them, copying files in/out,
-and binding mounts across container boundaries.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.machine1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.machine1.html)
-- **Base URL:** `dbus:org.freedesktop.machine1`
-
-#### Tags
-
-- Containers
-- D-Bus
-- Machined
-- VMs
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.machine1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.machine1.xml)
-- [OpenAPI](openapi/machine1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-hostnamed (org.freedesktop.hostname1)
-
-D-Bus API of systemd-hostnamed for getting and setting the system hostname (static, transient, pretty),
-deployment/location/icon metadata, chassis type, and machine info.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.hostname1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.hostname1.html)
-- **Base URL:** `dbus:org.freedesktop.hostname1`
-
-#### Tags
-
-- D-Bus
-- Hostname
-- Hostnamed
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.hostname1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.hostname1.xml)
-- [OpenAPI](openapi/hostname1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-localed (org.freedesktop.locale1)
-
-D-Bus API of systemd-localed for getting and setting the system locale, X11 keymap, and console keymap.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.locale1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.locale1.html)
-- **Base URL:** `dbus:org.freedesktop.locale1`
-
-#### Tags
-
-- D-Bus
-- Locale
-- Localed
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.locale1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.locale1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-timedated (org.freedesktop.timedate1)
-
-D-Bus API of systemd-timedated for getting and setting the system time, timezone, NTP enablement, and
-RTC-in-local-time policy.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timedate1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timedate1.html)
-- **Base URL:** `dbus:org.freedesktop.timedate1`
-
-#### Tags
-
-- D-Bus
-- NTP
-- Time
-- Timedated
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timedate1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.timedate1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-timesyncd (org.freedesktop.timesync1)
-
-D-Bus API of systemd-timesyncd exposing the current NTP server, peers, root delay/dispersion, and
-synchronization status.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timesync1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timesync1.html)
-- **Base URL:** `dbus:org.freedesktop.timesync1`
-
-#### Tags
-
-- D-Bus
-- NTP
-- SNTP
-- Timesyncd
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.timesync1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.timesync1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-homed (org.freedesktop.home1)
-
-D-Bus API of systemd-homed for managing portable, encrypted user home directories (LUKS, btrfs subvol,
-fscrypt, CIFS, directory) including create/remove/update/list operations, activation, authentication,
-and rebalancing.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.home1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.home1.html)
-- **Base URL:** `dbus:org.freedesktop.home1`
-
-#### Tags
-
-- D-Bus
-- Home Directories
-- Homed
-- LUKS
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.home1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.home1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-importd (org.freedesktop.import1)
-
-D-Bus API of systemd-importd for importing, exporting, downloading, listing, and removing container/VM
-machine images (tar, raw, dkr/OCI, qcow2) used by machined and portable services.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html)
-- **Base URL:** `dbus:org.freedesktop.import1`
-
-#### Tags
-
-- Containers
-- D-Bus
-- Images
-- Importd
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.import1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.import1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-oomd (org.freedesktop.oom1)
-
-D-Bus API of systemd-oomd, the userspace out-of-memory killer that uses cgroup v2 PSI signals to kill
-cgroups under memory or swap pressure. Exposes per-slice/cgroup state and policy.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.oom1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.oom1.html)
-- **Base URL:** `dbus:org.freedesktop.oom1`
-
-#### Tags
-
-- Cgroups
-- D-Bus
-- OOM
-- Oomd
-- PSI
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.oom1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.oom1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-portabled (org.freedesktop.portable1)
-
-D-Bus API of systemd-portabled for attaching/detaching portable service images, listing attached
-images, inspecting them, and managing their lifecycle on the host.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.portable1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.portable1.html)
-- **Base URL:** `dbus:org.freedesktop.portable1`
-
-#### Tags
-
-- D-Bus
-- Portable Services
-- Portabled
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.portable1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.portable1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd-sysupdated (org.freedesktop.sysupdate1)
-
-D-Bus API of systemd-sysupdated for transactional A/B updates of system/host/portable/container images
-using systemd-sysupdate transfers, including target enumeration, version listing, and update jobs.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.sysupdate1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.sysupdate1.html)
-- **Base URL:** `dbus:org.freedesktop.sysupdate1`
-
-#### Tags
-
-- A/B Updates
-- D-Bus
-- Sysupdated
-- System Updates
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.sysupdate1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.sysupdate1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LogControl1 (org.freedesktop.LogControl1)
-
-Generic D-Bus interface that systemd daemons (and other services) implement to expose runtime log
-level and log target configuration. Allows tools like systemd-analyze to change verbosity without
-restart.
-
-- **Human URL:** [https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.LogControl1.html](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.LogControl1.html)
-- **Base URL:** `dbus:org.freedesktop.LogControl1`
-
-#### Tags
-
-- D-Bus
-- Logging
-- Observability
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.LogControl1.html)
-- [Interface Definition](https://github.com/systemd/systemd/blob/main/man/org.freedesktop.LogControl1.xml)
-- [Postman Collection](collections/hostname1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hostname1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/login1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/login1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/machine1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/machine1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/network1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/network1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/resolve1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/resolve1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/systemd1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/systemd1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### systemd Varlink Interfaces (io.systemd.*)
-
-Modern JSON-line IPC surface exposed by systemd daemons via Varlink (single-fd, self-describing,
-discoverable through `varlinkctl`). Covers ~39 interfaces including io.systemd.Manager, io.systemd.Unit,
-io.systemd.Job, io.systemd.Login, io.systemd.Machine, io.systemd.Machine.Image,
-io.systemd.MachineInstance, io.systemd.VirtualMachineInstance, io.systemd.Network,
-io.systemd.Network.Link, io.systemd.Resolve, io.systemd.Resolve.Hook, io.systemd.Resolve.Monitor,
-io.systemd.Journal, io.systemd.JournalAccess, io.systemd.Hostname, io.systemd.BootControl,
-io.systemd.Credentials, io.systemd.FactoryReset, io.systemd.Import, io.systemd.InstanceMetadata,
-io.systemd.AskPassword, io.systemd.Metrics, io.systemd.ManagedOOM, io.systemd.MountFileSystem,
-io.systemd.MuteConsole, io.systemd.NamespaceResource, io.systemd.PCRExtend, io.systemd.PCRLock,
-io.systemd.Repart, io.systemd.Shutdown, io.systemd.StorageProvider, io.systemd.Udev,
-io.systemd.UserDatabase, io.systemd.oom, io.systemd.oom.Prekill, io.systemd.service, io.systemd.sysext.
-
-- **Human URL:** [https://systemd.io/USER_GROUP_API/](https://systemd.io/USER_GROUP_API/)
-- **Base URL:** `varlink:io.systemd`
-
-#### Tags
-
-- IPC
-- JSON
-- Varlink
-
-#### Properties
-
-- [Documentation](https://www.freedesktop.org/software/systemd/man/latest/varlinkctl.html)
-- [Source Code](https://github.com/systemd/systemd/tree/main/src)
-- [OpenAPI](openapi/varlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/varlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/varlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+- [systemd-localed (org.freedesktop.locale1)](https://apis.io/apis/systemd/org-freedesktop-locale1/) — D-Bus API of systemd-localed for getting and setting the system locale, X11 keymap, and console keymap.
+- [systemd-timedated (org.freedesktop.timedate1)](https://apis.io/apis/systemd/org-freedesktop-timedate1/) — D-Bus API of systemd-timedated for getting and setting the system time, timezone, NTP enablement, and RTC-in-local-time policy.
+- [systemd-timesyncd (org.freedesktop.timesync1)](https://apis.io/apis/systemd/org-freedesktop-timesync1/) — D-Bus API of systemd-timesyncd exposing the current NTP server, peers, root delay/dispersion, and synchronization status.
+- [systemd-homed (org.freedesktop.home1)](https://apis.io/apis/systemd/org-freedesktop-home1/) — D-Bus API of systemd-homed for managing portable, encrypted user home directories (LUKS, btrfs subvol, fscrypt, CIFS, directory) including…
+- [systemd-importd (org.freedesktop.import1)](https://apis.io/apis/systemd/org-freedesktop-import1/) — D-Bus API of systemd-importd for importing, exporting, downloading, listing, and removing container/VM machine images (tar, raw, dkr/OCI, qcow2) used by…
+- [systemd-oomd (org.freedesktop.oom1)](https://apis.io/apis/systemd/org-freedesktop-oom1/) — D-Bus API of systemd-oomd, the userspace out-of-memory killer that uses cgroup v2 PSI signals to kill cgroups under memory or swap pressure. Exposes…
+- [systemd-portabled (org.freedesktop.portable1)](https://apis.io/apis/systemd/org-freedesktop-portable1/) — D-Bus API of systemd-portabled for attaching/detaching portable service images, listing attached images, inspecting them, and managing their lifecycle on…
+- [systemd-sysupdated (org.freedesktop.sysupdate1)](https://apis.io/apis/systemd/org-freedesktop-sysupdate1/) — D-Bus API of systemd-sysupdated for transactional A/B updates of system/host/portable/container images using systemd-sysupdate transfers, including target…
+- [LogControl1 (org.freedesktop.LogControl1)](https://apis.io/apis/systemd/org-freedesktop-logcontrol1/) — Generic D-Bus interface that systemd daemons (and other services) implement to expose runtime log level and log target configuration. Allows tools like…
+- [systemd Boot API](https://apis.io/apis/systemd/systemd-boot-api/) — The Boot API from systemd — 1 operation(s) for boot.
+- [systemd Cache API](https://apis.io/apis/systemd/systemd-cache-api/) — The Cache API from systemd — 2 operation(s) for cache.
+- [systemd Cgroups API](https://apis.io/apis/systemd/systemd-cgroups-api/) — Transient unit creation and cgroup-backed resource control.
+- [systemd Configuration API](https://apis.io/apis/systemd/systemd-configuration-api/) — The Configuration API from systemd — 11 operation(s) for configuration.
+- [systemd Credentials API](https://apis.io/apis/systemd/systemd-credentials-api/) — The Credentials API from systemd — 2 operation(s) for credentials.
+- [systemd Hostname API](https://apis.io/apis/systemd/systemd-hostname-api/) — The Hostname API from systemd — 3 operation(s) for hostname.
+- [systemd Image API](https://apis.io/apis/systemd/systemd-image-api/) — The Image API from systemd — 1 operation(s) for image.
+- [systemd Images API](https://apis.io/apis/systemd/systemd-images-api/) — The Images API from systemd — 4 operation(s) for images.
+- [systemd Inhibitors API](https://apis.io/apis/systemd/systemd-inhibitors-api/) — The Inhibitors API from systemd — 1 operation(s) for inhibitors.
+- [systemd Jobs API](https://apis.io/apis/systemd/systemd-jobs-api/) — Pending and active jobs scheduled by the Manager.
+- [systemd Links API](https://apis.io/apis/systemd/systemd-links-api/) — The Links API from systemd — 7 operation(s) for links.
+- [systemd Machine Info API](https://apis.io/apis/systemd/systemd-machine-info-api/) — The Machine Info API from systemd — 4 operation(s) for machine info.
+- [systemd Machines API](https://apis.io/apis/systemd/systemd-machines-api/) — The Machines API from systemd — 7 operation(s) for machines.
+- [systemd Manager API](https://apis.io/apis/systemd/systemd-manager-api/) — The Manager API from systemd — 12 operation(s) for manager.
+- [systemd PCR API](https://apis.io/apis/systemd/systemd-pcr-api/) — The PCR API from systemd — 1 operation(s) for pcr.
+- [systemd Power API](https://apis.io/apis/systemd/systemd-power-api/) — The Power API from systemd — 5 operation(s) for power.
+- [systemd Resolution API](https://apis.io/apis/systemd/systemd-resolution-api/) — The Resolution API from systemd — 4 operation(s) for resolution.
+- [systemd Resolve API](https://apis.io/apis/systemd/systemd-resolve-api/) — The Resolve API from systemd — 1 operation(s) for resolve.
+- [systemd Seats API](https://apis.io/apis/systemd/systemd-seats-api/) — The Seats API from systemd — 1 operation(s) for seats.
+- [systemd Sessions API](https://apis.io/apis/systemd/systemd-sessions-api/) — The Sessions API from systemd — 5 operation(s) for sessions.
+- [systemd Snapshots API](https://apis.io/apis/systemd/systemd-snapshots-api/) — System state introspection.
+- [systemd Unit API](https://apis.io/apis/systemd/systemd-unit-api/) — The Unit API from systemd — 2 operation(s) for unit.
+- [systemd Units API](https://apis.io/apis/systemd/systemd-units-api/) — Unit lifecycle and enumeration.
+- [systemd UserDatabase API](https://apis.io/apis/systemd/systemd-userdatabase-api/) — The UserDatabase API from systemd — 3 operation(s) for userdatabase.
+- [systemd Users API](https://apis.io/apis/systemd/systemd-users-api/) — The Users API from systemd — 3 operation(s) for users.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Systemd Agentic Access](https://apis.io/agentic-access/systemd/systemd-agentic-access/)
+
+#### JSON Schema (6)
+
+The data models the API reads and writes.
+
+- [logind Session](https://apis.io/schemas/systemd/login1-session/)
+- [machined Machine](https://apis.io/schemas/systemd/machine1-machine/)
+- [networkd Link](https://apis.io/schemas/systemd/network1-link/)
+- [systemd Job](https://apis.io/schemas/systemd/systemd1-job/)
+- [systemd Unit](https://apis.io/schemas/systemd/systemd1-unit/)
+- [systemd JSON User Record (partial)](https://apis.io/schemas/systemd/varlink-user-record/)
+
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Systemd Structure](https://apis.io/json-structure/systemd/systemd-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Systemd Context](https://apis.io/jsonld/systemd/systemd-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [systemd Vocabulary](https://apis.io/vocabularies/systemd/systemd-vocabulary/)
+
+#### Examples (10)
+
+Example requests and responses.
+
+- [Login1 Inhibit Example](https://apis.io/examples/systemd/login1-inhibit-example/)
+- [Login1 Listsessions Example](https://apis.io/examples/systemd/login1-listsessions-example/)
+- [Machine1 Listmachines Example](https://apis.io/examples/systemd/machine1-listmachines-example/)
+- [Network1 Listlinks Example](https://apis.io/examples/systemd/network1-listlinks-example/)
+- [Resolve1 Resolvehostname Example](https://apis.io/examples/systemd/resolve1-resolvehostname-example/)
+- [Systemd1 Listunits Example](https://apis.io/examples/systemd/systemd1-listunits-example/)
+- [Systemd1 Starttransient Example](https://apis.io/examples/systemd/systemd1-starttransient-example/)
+- [Systemd1 Startunit Example](https://apis.io/examples/systemd/systemd1-startunit-example/)
+- [Varlink Credentials Encrypt Example](https://apis.io/examples/systemd/varlink-credentials-encrypt-example/)
+- [Varlink Userdb Getuser Example](https://apis.io/examples/systemd/varlink-userdb-getuser-example/)
+
+#### Collections (32)
+
+Postman and Open Collection request collections.
+
+- [systemd-hostnamed (org.freedesktop.hostname1)](https://apis.io/collections/systemd/open-hostname1/)
+- [systemd-logind (org.freedesktop.login1)](https://apis.io/collections/systemd/open-login1/)
+- [systemd-machined (org.freedesktop.machine1)](https://apis.io/collections/systemd/open-machine1/)
+- [systemd-networkd (org.freedesktop.network1)](https://apis.io/collections/systemd/open-network1/)
+- [systemd-resolved (org.freedesktop.resolve1)](https://apis.io/collections/systemd/open-resolve1/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot API](https://apis.io/collections/systemd/open-systemd-boot-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Cache API](https://apis.io/collections/systemd/open-systemd-cache-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Cgroups API](https://apis.io/collections/systemd/open-systemd-cgroups-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Configuration API](https://apis.io/collections/systemd/open-systemd-configuration-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Credentials API](https://apis.io/collections/systemd/open-systemd-credentials-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Hostname API](https://apis.io/collections/systemd/open-systemd-hostname-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Image API](https://apis.io/collections/systemd/open-systemd-image-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Images API](https://apis.io/collections/systemd/open-systemd-images-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Inhibitors API](https://apis.io/collections/systemd/open-systemd-inhibitors-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Jobs API](https://apis.io/collections/systemd/open-systemd-jobs-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Links API](https://apis.io/collections/systemd/open-systemd-links-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Machine Info API](https://apis.io/collections/systemd/open-systemd-machine-info-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Machines API](https://apis.io/collections/systemd/open-systemd-machines-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Manager API](https://apis.io/collections/systemd/open-systemd-manager-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot PCR API](https://apis.io/collections/systemd/open-systemd-pcr-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Power API](https://apis.io/collections/systemd/open-systemd-power-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Resolution API](https://apis.io/collections/systemd/open-systemd-resolution-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Resolve API](https://apis.io/collections/systemd/open-systemd-resolve-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Seats API](https://apis.io/collections/systemd/open-systemd-seats-api/)
+- [systemd-hostnamed (org.freedesktop.hostname1) Boot Sessions API](https://apis.io/collections/systemd/open-systemd-sessions-api/)
+- …and 7 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [systemd — jsonschema rules](https://apis.io/rules/systemd/systemd-jsonschema-spectral-rules/)
+- [systemd API Rules](https://apis.io/rules/systemd/systemd-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Systemd Domain Security](https://apis.io/security/systemd/systemd-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://systemd.io)
 - [Documentation](https://www.freedesktop.org/software/systemd/man/latest/)
-- [GitHub Organization](https://github.com/systemd)
-- [GitHub Repository](https://github.com/systemd/systemd)
-- [Source Code](https://github.com/systemd/systemd)
-- [License](https://github.com/systemd/systemd/blob/main/LICENSES/LGPL-2.1-or-later.txt)
-- [License](https://github.com/systemd/systemd/blob/main/LICENSES/GPL-2.0-or-later.txt)
-- [Release Notes](https://github.com/systemd/systemd/releases)
 - [Changelog](https://github.com/systemd/systemd/blob/main/NEWS)
-- [Issue Tracker](https://github.com/systemd/systemd/issues)
-- [Pull Requests](https://github.com/systemd/systemd/pulls)
-- [Mailing List](https://lists.freedesktop.org/mailman/listinfo/systemd-devel)
-- [Mastodon](https://mastodon.social/@pid_eins)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/systemctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/journalctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/networkctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/resolvectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/loginctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/machinectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/timedatectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/localectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/busctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/varlinkctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/bootctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/homectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/coredumpctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/oomctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/portablectl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/importctl.html)
-- [Tool](https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html)
-- [SDK](https://www.freedesktop.org/software/systemd/man/latest/sd-bus.html)
-- [SDK](https://www.freedesktop.org/software/systemd/man/latest/sd-varlink.html)
-- [SDK](https://www.freedesktop.org/software/systemd/man/latest/sd-journal.html)
-- [SDK](https://www.freedesktop.org/software/systemd/man/latest/sd-event.html)
-- [Vocabulary](vocabulary/systemd-vocabulary.yml)
-- [JSON-LD](json-ld/systemd-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [GitHub](https://github.com/systemd)
+
+## API Evangelist rating
+
+**Kin Score 30.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.0 |
+| Contract governance | 27.3 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 0.0 |
+
+**Agent readiness 16.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/systemd/](https://apis.io/providers/systemd/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for systemd: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/systemd/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
